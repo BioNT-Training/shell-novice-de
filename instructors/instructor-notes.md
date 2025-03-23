@@ -1,284 +1,259 @@
 ---
-title: Instructor Notes
+title: Hinweise für den Kursleiter
 ---
 
-- Why do we learn to use the shell?
-  - Allows users to automate repetitive tasks
-  - And capture small data manipulation steps that are normally not recorded
-    to make research reproducible
-- The Problem
-  - Running the same workflow on several samples can be unnecessarily labour intensive
-  - Manual manipulation of data files:
-    - is often not captured in documentation
-    - is hard to reproduce
-    - is hard to troubleshoot, review, or improve
-- The Shell
-  - Workflows can be automated through the use of shell scripts
-  - Built-in commands allow for easy data manipulation (e.g. sort, grep, etc.)
-  - Every step can be captured in the shell script and allow reproducibility and
-    easy troubleshooting
 
-## Overall
+- Warum lernen wir, die Shell zu benutzen?
+  - Ermöglicht es Benutzern, sich wiederholende Aufgaben zu automatisieren
+  - Und erfassen Sie kleine Datenmanipulationsschritte, die normalerweise nicht
+    aufgezeichnet werden, um die Forschung reproduzierbar zu machen
+- Das Problem
+  - Die Ausführung desselben Arbeitsablaufs für mehrere Proben kann unnötig
+    arbeitsintensiv sein
+  - Manuelle Manipulation von Datendateien:
+    - ist oft nicht in der Dokumentation erfasst
+    - ist schwer zu reproduzieren
+    - ist schwer zu beheben, zu überprüfen oder zu verbessern
+- Die Shell
+  - Arbeitsabläufe können durch die Verwendung von Shell-Skripten automatisiert werden
+  - Eingebaute Befehle ermöglichen eine einfache Datenmanipulation (z.B. sort, grep,
+    etc.)
+  - Jeder Schritt kann im Shell-Skript festgehalten werden und ermöglicht so die
+    Reproduzierbarkeit und einfache Fehlersuche
 
-Many people have questioned whether we should still teach the shell.
-After all,
-anyone who wants to rename several thousand data files
-can easily do so interactively in the Python interpreter,
-and anyone who's doing serious data analysis
-is probably going to do most of their work inside the IPython Notebook or R Studio.
-So why teach the shell?
+## Insgesamt
 
-The first answer is,
-"Because so much else depends on it."
-Installing software,
-configuring your default editor,
-and controlling remote machines frequently assume a basic familiarity with the shell,
-and with related ideas like standard input and output.
-Many tools also use its terminology
-(for example, the `%ls` and `%cd` magic commands in IPython).
+Viele Leute haben sich gefragt, ob wir die Shell noch unterrichten sollten. Schließlich
+kann jeder, der mehrere tausend Datendateien umbenennen möchte, dies leicht interaktiv
+im Python-Interpreter tun, und jeder, der ernsthafte Datenanalysen durchführt, wird
+wahrscheinlich den Großteil seiner Arbeit im IPython Notebook oder R Studio erledigen.
+Warum also die Shell lehren?
 
-The second answer is,
-"Because it's an easy way to introduce some fundamental ideas about how to use computers."
-As we teach people how to use the Unix shell,
-we teach them that they should get the computer to repeat things
-(via tab completion,
-`!` followed by a command number,
-and `for` loops)
-rather than repeating things themselves.
-We also teach them to take things they've discovered they do frequently
-and save them for later re-use
-(via shell scripts),
-to give things sensible names,
-and to write a little bit of documentation
-(like comment at the top of shell scripts)
-to make their future selves' lives better.
+Die erste Antwort lautet: "Weil so viel anderes davon abhängt." Das Installieren von
+Software, das Konfigurieren Ihres Standard-Editors und das Steuern von entfernten
+Rechnern setzt häufig eine grundlegende Vertrautheit mit der Shell und damit verbundenen
+Begriffen wie Standardeingabe und -ausgabe voraus. Viele Werkzeuge verwenden auch ihre
+Terminologie (zum Beispiel die magischen Befehle `%ls` und `%cd` in IPython).
 
-The third answer is,
-"Because it enables use of many domain-specific tools and compute resources researchers
-cannot access otherwise."
-Familiarity with the shell is very useful for remote accessing machines,
-using high-performance computing infrastructure,
-and running new specialist tools in many disciplines.
-We do not teach HPC or domain-specific skills here
-but lay the groundwork for further development of these skills.
-In particular,
-understanding the syntax of commands, flags, and help systems is useful for domain specific tools
-and understanding the file system (and how to navigate it) is useful for remote access.
+Die zweite Antwort lautet: "Weil es eine einfache Möglichkeit ist, einige grundlegende
+Ideen über den Umgang mit Computern zu vermitteln." Wenn wir den Teilnehmern beibringen,
+wie man die Unix-Shell benutzt, bringen wir ihnen bei, dass sie den Computer dazu
+bringen sollten, Dinge zu wiederholen (durch Tabulator-Vervollständigung, `!` gefolgt
+von einer Befehlsnummer und `for`-Schleifen), anstatt sie selbst zu wiederholen. Wir
+bringen ihnen auch bei, Dinge, die sie häufig tun, für eine spätere Wiederverwendung zu
+speichern (über Shell-Skripte), Dingen sinnvolle Namen zu geben und ein wenig
+Dokumentation zu schreiben (z. B. Kommentare am Anfang von Shell-Skripten), um das Leben
+ihrer zukünftigen Selbst zu verbessern.
 
-Finally,
-and perhaps most importantly,
-teaching people the shell lets us teach them
-to think about programming in terms of function composition.
-In the case of the shell,
-this takes the form of pipelines rather than nested function calls,
-but the core idea of "small pieces, loosely joined" is the same.
+Die dritte Antwort lautet: "Weil sie die Nutzung vieler domänenspezifischer Werkzeuge
+und Rechenressourcen ermöglicht, auf die Forscher sonst keinen Zugriff haben." Die
+Vertrautheit mit der Shell ist sehr nützlich für den Fernzugriff auf Maschinen, die
+Nutzung der Infrastruktur für Hochleistungsrechner und die Ausführung neuer
+Spezialwerkzeuge in vielen Disziplinen. Wir lehren hier keine HPC- oder
+domänenspezifischen Fähigkeiten, sondern legen den Grundstein für die weitere
+Entwicklung dieser Fähigkeiten. Insbesondere das Verständnis der Syntax von Befehlen,
+Flags und Hilfesystemen ist für domänenspezifische Tools nützlich und das Verständnis
+des Dateisystems (und wie man darin navigiert) ist für den Fernzugriff nützlich.
 
-All of this material can be covered in three hours
-as long as learners using Windows do not run into roadblocks such as:
+Schließlich, und das ist vielleicht das Wichtigste, können wir den Teilnehmern durch das
+Erlernen der Shell beibringen, über das Programmieren im Sinne der Funktionskomposition
+nachzudenken. Im Fall der Shell nimmt dies die Form von Pipelines anstelle von
+verschachtelten Funktionsaufrufen an, aber der Kerngedanke von "kleinen Stücken, lose
+verbunden" ist derselbe.
 
-- not being able to figure out where their home directory is
-  (particularly if they're using Cygwin);
-- not being able to run a plain text editor;
-  and
-- the shell refusing to run scripts that include DOS line endings.
+Der gesamte Stoff kann in drei Stunden behandelt werden, sofern die Lernenden, die
+Windows verwenden, nicht auf Hindernisse stoßen wie:
 
-## Preparing to Teach
+- nicht herausfinden können, wo ihr Home-Verzeichnis ist (besonders wenn sie Cygwin
+  benutzen);
+- nicht in der Lage, einen einfachen Texteditor auszuführen; und
+- die Shell weigert sich, Skripte auszuführen, die DOS-Zeilenenden enthalten.
 
-- Use the `data` directory for in-workshop exercises and live coding examples.
-  You can clone the shell-novice directory or use the *Download ZIP*
-  button on the right to get the entire
-  [Git repository](https://github.com/swcarpentry/shell-novice). We also now provide
-  a zip file of the `data` directory
-  at the [Setup page](../learners/setup.md).
+## Vorbereitung auf den Unterricht
 
-- Website: various practices have been used.
-  
-  - Option 1: Can give links to learners before the lesson so they can follow along,
-    catch up,
-    and see exercises (particularly if you're following the lesson content without many changes).
-  - Option 2: Don't show the website to the learners during the lesson,
-    as it can be distracting:
-    students may read instead of listen, and having another window open is an additional
-    cognitive load.
-  - In any case, make sure to point to website as a post-workshop reference.
+- Verwenden Sie das Verzeichnis `data` für die Übungen im Workshop und die
+  Live-Programmierbeispiele. Sie können das Verzeichnis shell-novice klonen oder die
+  Schaltfläche *ZIP herunterladen* auf der rechten Seite verwenden, um das gesamte
+  [Git-Repository] (https://github.com/swcarpentry/shell-novice) zu erhalten. Wir bieten
+  jetzt auch eine Zip-Datei des `data`-Verzeichnisses auf der
+  [Setup-Seite](../learners/setup.md).
 
-- Content:
-  Unless you have a truly generous amount of time (4+ hours),
-  it is likely that you will not cover ALL the material in this lesson in a single half-day
-  session.
-  Plan ahead on what you might skip, what you really want to emphasize, etc.
+- Website: Es wurden verschiedene Praktiken angewandt.
 
-- Exercises:
-  Think in advance about how you might want to handle exercises during the lesson.
-  How are you assigning them (website, slide, handout)?
-  Do you want everyone to try it and then you show the solution?
-  Have a learner show the solution?
-  Have groups each do a different exercise and present their solutions?
+  - Option 1: Sie können den Lernenden vor der Lektion Links geben, damit sie folgen,
+    aufholen und Übungen sehen können (besonders, wenn Sie dem Inhalt der Lektion ohne
+    viele Änderungen folgen).
+  - Option 2: Zeigen Sie den Lernenden die Website nicht während des Unterrichts, da
+    dies ablenkend wirken kann: Die Schüler lesen vielleicht, anstatt zuzuhören, und ein
+    weiteres geöffnetes Fenster stellt eine zusätzliche kognitive Belastung dar.
+  - Stellen Sie auf jeden Fall sicher, dass Sie auf die Website als Referenz nach dem
+    Workshop verweisen.
 
-- The [Reference page](../learners/reference.md) can be printed out
-  and given to students as a reference, your choice.
+- Inhalt: Wenn Sie nicht wirklich viel Zeit haben (4+ Stunden), werden Sie
+  wahrscheinlich nicht ALLE Inhalte dieser Lektion in einer einzigen halbtägigen Sitzung
+  behandeln können. Planen Sie im Voraus, was Sie auslassen könnten, was Sie wirklich
+  betonen wollen, usw.
 
-- Other preparation:
-  Feel free to add your own examples or side comments,
-  but know that it shouldn't be necessary:
-  the topics and commands can be taught as given on the lesson pages.
-  If you think there is a place where the lesson is lacking,
-  feel free to file an issue or submit a pull request.
+- Übungen: Überlegen Sie sich im Voraus, wie Sie die Übungen während des Unterrichts
+  behandeln wollen. Wie werden Sie sie zuweisen (Website, Folie, Handout)? Sollen alle
+  die Aufgabe lösen und Sie zeigen dann die Lösung? Lassen Sie einen Lernenden die
+  Lösung zeigen? Lassen Sie die Gruppen jeweils eine andere Übung machen und ihre
+  Lösungen präsentieren?
 
-## Teaching Notes
+- Die [Referenzseite](../learners/reference.md) kann ausgedruckt und den Studenten als
+  Referenz gegeben werden, ganz wie Sie wollen.
 
-- Super cool online resource!
-  [http://explainshell.com/](https://explainshell.com/) will dissect any shell command you type in
-  and display help text for each piece.
-  Additional nice manual tool could be [http://tldr.sh/](https://tldr.sh/)
-  with short very descriptive manuals for shell commands,
-  useful especially on Windows while using Git BASH where `man` could not work.
+- Andere Vorbereitungen: Es steht Ihnen frei, eigene Beispiele oder Kommentare
+  hinzuzufügen, aber Sie sollten wissen, dass dies nicht notwendig ist: Die Themen und
+  Befehle können so unterrichtet werden, wie sie auf den Lektionsseiten angegeben sind.
+  Wenn Sie der Meinung sind, dass die Lektion an einer Stelle fehlt, können Sie gerne
+  einen Fehler melden oder einen Pull-Request einreichen.
 
-- Another super cool online resource is [http://www.shellcheck.net](https://www.shellcheck.net),
-  which will check shell scripts (both uploaded and typed in) for common errors.
+## Lehrnotizen
 
-- Resources for "splitting" your shell so that recent commands
-  remain in view: [https://github.com/rgaiacs/swc-shell-split-window](https://github.com/rgaiacs/swc-shell-split-window).
+- Super coole Online-Ressource! [http://explainshell.com/](https://explainshell.com/)
+  zerlegt jeden Shell-Befehl, den Sie eingeben, und zeigt zu jedem Teil einen Hilfetext
+  an. Ein weiteres nettes Handbuch-Tool ist [http://tldr.sh/](https://tldr.sh/) mit
+  kurzen, sehr anschaulichen Handbüchern für Shell-Befehle, nützlich vor allem unter
+  Windows bei der Verwendung von Git BASH, wo `man` nicht funktioniert.
 
-- Tab completion sounds like a small thing: it isn't.
-  Re-running old commands using `!123` or `!wc`
-  isn't a small thing either,
-  and neither are wildcard expansion and `for` loops.
-  Each one is an opportunity to repeat one of the big ideas of Software Carpentry:
-  if the computer *can* repeat it,
-  some programmer somewhere will almost certainly have built
-  some way for the computer *to* repeat it.
+- Eine weitere supercoole Online-Ressource ist
+  [http://www.shellcheck.net](https://www.shellcheck.net), die Shell-Skripte (sowohl
+  hochgeladene als auch eingetippte) auf häufige Fehler überprüft.
 
-- Building up a pipeline with four or five stages,
-  then putting it in a shell script for re-use
-  and calling that script inside a `for` loop,
-  is a great opportunity to show how
-  "seven plus or minus two"
-  connects to programming.
-  Once we have figured out how to do something moderately complicated,
-  we make it re-usable and give it a name
-  so that it only takes up one slot in working memory
-  rather than several.
-  It is also a good opportunity to talk about exploratory programming:
-  rather than designing a program up front,
-  we can do a few useful things
-  and then retroactively decide which are worth encapsulating
-  for future re-use.
+- Ressourcen zum "Aufteilen" Ihrer Shell, damit die letzten Befehle im Blick bleiben:
+  [https://github.com/rgaiacs/swc-shell-split-window](https://github.com/rgaiacs/swc-shell-split-window).
 
-- If everything is going well, you can drive home the point that file
-  extensions are essentially there to help computers (and human
-  readers) understand file content and are not a requirement of files
-  (covered briefly in
-  [Navigating Files and Directories](../episodes/02-filedir.md)).
-  This can be done in the
-  [Pipes and Filters](../episodes/04-pipefilter.md) section by showing
-  that you can redirect standard output to a file without the .txt extension
-  (e.g., lengths), and that the resulting file is still a perfectly usable text file.
-  Make the point that if double-clicked in the GUI, the computer will
-  probably ask you what you want to do.
+- Tabulatorvervollständigung klingt wie eine Kleinigkeit: ist es aber nicht. Die
+  Wiederholung alter Befehle mit `!123` oder `!wc` ist auch keine Kleinigkeit, ebenso
+  wenig wie Wildcard-Expansion und `for`-Schleifen. Jede dieser Möglichkeiten ist eine
+  Gelegenheit, eine der großen Ideen des Software Carpentry zu wiederholen: Wenn der
+  Computer sie wiederholen *kann*, wird irgendein Programmierer irgendwo mit ziemlicher
+  Sicherheit einen Weg gefunden haben, damit der Computer sie wiederholen *kann*.
 
-- We have to leave out many important things because of time constraints,
-  including file permissions, job control, and SSH.
-  If learners already understand the basic material,
-  this can be covered instead using the online lessons as guidelines.
-  These limitations also have follow-on consequences:
+- Das Erstellen einer Pipeline mit vier oder fünf Schritten, das anschließende Einfügen
+  in ein Shell-Skript zur Wiederverwendung und das Aufrufen dieses Skripts innerhalb
+  einer `for`-Schleife ist eine gute Gelegenheit, um zu zeigen, wie "sieben plus oder
+  minus zwei" mit dem Programmieren zusammenhängt. Sobald wir herausgefunden haben, wie
+  wir etwas einigermaßen Kompliziertes machen können, machen wir es wiederverwendbar und
+  geben ihm einen Namen, damit es nur einen Platz im Arbeitsspeicher einnimmt und nicht
+  mehrere. Es ist auch eine gute Gelegenheit, über exploratives Programmieren zu
+  sprechen: Anstatt ein Programm im Voraus zu entwerfen, können wir ein paar nützliche
+  Dinge tun und dann im Nachhinein entscheiden, welche davon es wert sind, für die
+  zukünftige Wiederverwendung gekapselt zu werden.
 
-- It's hard to discuss `#!` (shebang) without first discussing
-  permissions, which we don't do.  `#!` is also [pretty
-  complicated][shebang], so even if we did discuss permissions, we
-  probably still wouldn't want to discuss `#!`.
+- Wenn alles gut läuft, können Sie darauf hinweisen, dass Dateierweiterungen im
+  Wesentlichen dazu da sind, Computern (und menschlichen Lesern) zu helfen, den Inhalt
+  von Dateien zu verstehen, und keine Voraussetzung für Dateien sind (kurz behandelt in
+  [Navigieren in Dateien und Verzeichnissen](../episodes/02-filedir.md)). Dies kann im
+  Abschnitt [Pipes und Filter](../episodes/04-pipefilter.md) geschehen, indem Sie
+  zeigen, dass Sie die Standardausgabe in eine Datei ohne die Erweiterung .txt umleiten
+  können (z.B. Längen), und dass die resultierende Datei immer noch eine vollkommen
+  brauchbare Textdatei ist. Weisen Sie darauf hin, dass der Computer Sie bei einem
+  Doppelklick in der grafischen Benutzeroberfläche wahrscheinlich fragen wird, was Sie
+  tun wollen.
 
-- Installing Bash and a reasonable set of Unix commands on Windows
-  always involves some fiddling and frustration.
-  Please see the latest set of installation guidelines for advice,
-  and try it out yourself *before* teaching a class.
+- Aus Zeitgründen müssen wir viele wichtige Dinge weglassen, darunter
+  Dateiberechtigungen, Job Control und SSH. Wenn die Lernenden den grundlegenden Stoff
+  bereits verstehen, können diese Themen stattdessen anhand der Online-Lektionen
+  behandelt werden. Diese Einschränkungen haben auch Konsequenzen für die Folgekurse:
 
-- By default, you may have a long string of information attached to
-  your command prompt in Git Bash. To reduce the "noise" and proceed
-  with a tidier prompt, enter the command:
-  
+- Es ist schwer, über `#!` (shebang) zu diskutieren, ohne zuerst über Berechtigungen zu
+  sprechen, was wir nicht tun. `#!` ist auch [ziemlich kompliziert][shebang], also
+  selbst wenn wir Berechtigungen diskutieren würden, würden wir wahrscheinlich immer
+  noch nicht `#!` diskutieren wollen.
+
+- Die Installation der Bash und eines vernünftigen Satzes von Unix-Befehlen unter
+  Windows ist immer mit etwas Tüftelei und Frustration verbunden. Bitte sehen Sie sich
+  die neuesten Installationsrichtlinien an und probieren Sie es selbst aus, *bevor* Sie
+  eine Klasse unterrichten.
+
+- Standardmäßig haben Sie möglicherweise eine lange Reihe von Informationen an Ihre
+  Eingabeaufforderung in Git Bash angehängt. Um das "Rauschen" zu reduzieren und mit
+  einer übersichtlicheren Eingabeaufforderung fortzufahren, geben Sie den Befehl ein:
+
   ```bash
   PS1='$ '
   ```
 
-- On Windows machines
-  if `nano` hasn't been properly installed with the
-  [Software Carpentry Windows Installer][windows-installer]
-  it is possible to use `notepad` as an alternative.  There will be a GUI
-  interface and line endings are treated differently, but otherwise, for
-  the purposes of this lesson, `notepad` and `nano` can be used almost interchangeably.
+- Auf Windows-Rechnern, auf denen `nano` nicht ordnungsgemäß mit dem [Software Carpentry
+  Windows Installer][windows-installer] installiert wurde, ist es möglich, `notepad` als
+  Alternative zu verwenden. Es wird eine GUI-Schnittstelle geben und Zeilenenden werden
+  anders behandelt, aber ansonsten können `notepad` und `nano` für die Zwecke dieser
+  Lektion fast austauschbar verwendet werden.
 
-- On Windows, it appears that:
-  
+- Unter Windows sieht es so aus:
+
   ```bash
   $ cd
   $ cd Desktop
   ```
-  
-  will always put someone on their desktop
-  (unless their machine is backed up using enterprise OneDrive, see next point).
-  Have them create the example directory for the shell exercises there
-  so that they can find it easily
-  and watch it evolve.
 
-- If a Windows machine is backed up with enterprise OneDrive, their GUI desktop may
-  be rendered from a folder within OneDrive, which will not match the contents of `~/Desktop`.
-  The OneDrive desktop should be accessible using one of the following commands
-  (if the name of the enterprise isn't clear, look through the output of `ls` to find
-  the right folder):
-  
+  wird immer jemanden auf seinen Desktop setzen (es sei denn, sein Rechner ist mit dem
+  OneDrive des Unternehmens gesichert, siehe nächster Punkt). Lassen Sie sie das
+  Beispielverzeichnis für die Shell-Übungen dort anlegen, damit sie es leicht finden und
+  seine Entwicklung beobachten können.
+
+- Wenn ein Windows-Rechner mit OneDrive gesichert ist, kann es sein, dass der
+  GUI-Desktop aus einem Ordner in OneDrive gerendert wird, der nicht mit dem Inhalt von
+  `~/Desktop` übereinstimmt. Der OneDrive-Desktop sollte mit einem der folgenden Befehle
+  aufgerufen werden können (wenn der Name des Unternehmens nicht klar ist, sehen Sie
+  sich die Ausgabe von `ls` an, um den richtigen Ordner zu finden):
+
   ```bash
   $ cd "~/OneDrive - Name Of Enterprise/Desktop"
   $ cd "C:/Users/Username/OneDrive - Name Of Enterprise/Desktop"
   ```
-  
-  One way to spot if the computer is using this kind of configuration is to look at files,
-  folders or links on the desktop. Usually the icon contains a shortcut/arrow symbol if it
-  is a link, or just the plain icon if the file is just saved in the `Desktop` folder.
-  Files synced with OneDrive contain an additional symbol indicating the sync status
-  (typically blue arrows for 'sync pending' or a green tick for 'synced').
 
-- Stay within POSIX-compliant commands, as all the teaching materials do.
-  Your particular shell may have extensions beyond POSIX that are not available
-  on other machines, especially the default macOS bash and Windows bash emulators.
-  For example, POSIX `ls` does not have an `--ignore=` or `-I` option, and POSIX
-  `head` takes `-n 10` or `-10`, but not the long form of `--lines=10`.
+  Eine Möglichkeit, zu erkennen, ob der Computer diese Art von Konfiguration verwendet,
+  ist, sich Dateien, Ordner oder Verknüpfungen auf dem Desktop anzusehen. Normalerweise
+  enthält das Symbol eine Verknüpfung/ein Pfeilsymbol, wenn es sich um einen Link
+  handelt, oder nur das einfache Symbol, wenn die Datei nur im Ordner `Desktop`
+  gespeichert ist. Mit OneDrive synchronisierte Dateien enthalten ein zusätzliches
+  Symbol, das den Synchronisierungsstatus anzeigt (typischerweise blaue Pfeile für
+  "Synchronisierung ausstehend" oder ein grünes Häkchen für "synchronisiert").
+
+- Bleiben Sie innerhalb der POSIX-kompatiblen Befehle, wie es alle Lehrmaterialien tun.
+  Ihre spezielle Shell verfügt möglicherweise über Erweiterungen, die über POSIX
+  hinausgehen und auf anderen Rechnern nicht zur Verfügung stehen, insbesondere bei den
+  Standard-Bash-Emulatoren für macOS und Windows. Zum Beispiel hat POSIX `ls` keine
+  `--ignore=` oder `-I` Option, und POSIX `head` nimmt `-n 10` oder `-10`, aber nicht
+  die lange Form von `--lines=10`.
 
 ## Windows
 
-Installing Bash and a reasonable set of Unix commands on Windows
-always involves some fiddling and frustration.
-Please see the latest set of installation guidelines for advice,
-and try it out yourself *before* teaching a class.
-Options we have explored include:
+Die Installation der Bash und eines vernünftigen Satzes von Unix-Befehlen unter Windows
+ist immer mit etwas Tüftelei und Frustration verbunden. Bitte sehen Sie sich die
+neuesten Installationsrichtlinien an und probieren Sie es selbst aus, *bevor* Sie eine
+Klasse unterrichten. Zu den von uns untersuchten Optionen gehören:
 
-1. [msysGit](https://msysgit.github.io/) (also called "Git Bash"),
+1. [msysGit](https://msysgit.github.io/) (auch "Git Bash" genannt),
 2. [Cygwin](https://www.cygwin.com/),
-3. using a desktop virtual machine, and
-4. having learners connect to a remote Unix machine (typically a VM in the cloud).
+3. unter Verwendung einer virtuellen Desktop-Maschine, und
+4. Die Lernenden müssen sich mit einem entfernten Unix-Rechner (typischerweise eine VM
+   in der Cloud) verbinden.
 
-Cygwin was the preferred option until mid-2013,
-but once we started teaching Git,
-msysGit proved to work better.
-Desktop virtual machines and cloud-based VMs work well for technically sophisticated learners,
-and can reduce installation and configuration at the start of the workshop,
-but:
+Cygwin war bis Mitte 2013 die bevorzugte Option, aber als wir anfingen, Git zu
+unterrichten, erwies sich msysGit als besser geeignet. Virtuelle Desktop-Maschinen und
+Cloud-basierte VMs eignen sich gut für technisch versierte Lernende und können den
+Installations- und Konfigurationsaufwand zu Beginn des Workshops verringern, aber:
 
-1. they don't work well on underpowered machines,
-2. they're confusing for novices (because simple things like copy and paste work differently),
-3. learners leave the workshop without a working environment on their operating system of choice,
-  and
-4. learners may show up without having downloaded the VM or the wireless will go down
-  (or become congested) during the lesson.
+1. Sie funktionieren nicht gut auf leistungsschwachen Rechnern,
+2. Sie sind verwirrend für Anfänger (weil einfache Dinge wie Kopieren und Einfügen
+   anders funktionieren),
+3. Lernende verlassen den Workshop ohne eine Arbeitsumgebung auf dem Betriebssystem
+   ihrer Wahl, und
+4. Es kann vorkommen, dass Teilnehmer auftauchen, ohne die VM heruntergeladen zu haben,
+   oder dass das WLAN während des Unterrichts ausfällt (oder überlastet wird).
 
-Whatever you use,
-please *test it yourself* on a Windows machine *before* your workshop:
-things may always have changed behind your back since your last workshop.
-And please also make use of our
-[Software Carpentry Windows Installer][windows-installer].
+Was auch immer Sie verwenden, bitte *testen Sie es selbst* auf einem Windows-Rechner
+*vor* Ihrem Workshop: Es kann sich immer etwas hinter Ihrem Rücken geändert haben seit
+Ihrem letzten Workshop. Und nutzen Sie bitte auch unseren [Software Carpentry Windows
+Installer][windows-installer].
 
 [shebang]: https://www.in-ulm.de/~mascheck/various/shebang/
 [windows-installer]: https://github.com/swcarpentry/windows-installer
+
 
 
 

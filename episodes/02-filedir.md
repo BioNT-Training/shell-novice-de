@@ -1,53 +1,58 @@
 ---
-title: Navigating Files and Directories
+title: Dateien und Verzeichnisse durchsuchen
 teaching: 30
 exercises: 10
 ---
 
+
 ::::::::::::::::::::::::::::::::::::::: objectives
 
-- Explain the similarities and differences between a file and a directory.
-- Translate an absolute path into a relative path and vice versa.
-- Construct absolute and relative paths that identify specific files and directories.
-- Use options and arguments to change the behaviour of a shell command.
-- Demonstrate the use of tab completion and explain its advantages.
+- Erkläre die Gemeinsamkeiten und Unterschiede zwischen einer Datei und einem
+  Verzeichnis.
+- Übersetzt einen absoluten Pfad in einen relativen Pfad und umgekehrt.
+- Konstruieren Sie absolute und relative Pfade, die bestimmte Dateien und Verzeichnisse
+  identifizieren.
+- Verwenden Sie Optionen und Argumente, um das Verhalten eines Shell-Befehls zu ändern.
+- Demonstrieren Sie die Verwendung der Tabulatorvervollständigung und erklären Sie ihre
+  Vorteile.
 
 ::::::::::::::::::::::::::::::::::::::::::::::::::
 
 :::::::::::::::::::::::::::::::::::::::: questions
 
-- How can I move around on my computer?
-- How can I see what files and directories I have?
-- How can I specify the location of a file or directory on my computer?
+- Wie kann ich mich auf meinem Computer bewegen?
+- Wie kann ich sehen, welche Dateien und Verzeichnisse ich habe?
+- Wie kann ich den Ort einer Datei oder eines Verzeichnisses auf meinem Computer
+  angeben?
 
 ::::::::::::::::::::::::::::::::::::::::::::::::::
 
 :::::::::::::::::::::::::::::::::::::::: instructor
 
-Introducing and navigating the filesystem in the shell
-(covered in [Navigating Files and Directories](02-filedir.md) section)
-can be confusing. You may have both terminal and GUI file explorer
-open side by side so learners can see the content and file
-structure while they're using terminal to navigate the system.
+Die Einführung und Navigation im Dateisystem in der Shell (behandelt im Abschnitt
+[Navigieren in Dateien und Verzeichnissen](02-filedir.md)) kann verwirrend sein. Sie
+können sowohl das Terminal als auch den GUI-Dateiexplorer nebeneinander geöffnet haben,
+damit die Lernenden den Inhalt und die Dateistruktur sehen können, während sie das
+Terminal zum Navigieren im System verwenden.
 
 ::::::::::::::::::::::::::::::::::::::::::::::::::
 
-The part of the operating system responsible for managing files and directories
-is called the **file system**.
-It organizes our data into files,
-which hold information,
-and directories (also called 'folders'),
-which hold files or other directories.
+Der Teil des Betriebssystems, der für die Verwaltung von Dateien und Verzeichnissen
+zuständig ist, wird **Dateisystem** genannt. Es organisiert unsere Daten in Dateien, die
+Informationen enthalten, und Verzeichnissen (auch 'Ordner' genannt), die Dateien oder
+andere Verzeichnisse enthalten.
 
-Several commands are frequently used to create, inspect, rename, and delete files and directories.
-To start exploring them, we'll go to our open shell window.
+Mehrere Befehle werden häufig zum Erstellen, Überprüfen, Umbenennen und Löschen von
+Dateien und Verzeichnissen verwendet. Um sie zu erforschen, gehen wir zu unserem
+geöffneten Shell-Fenster.
 
-First, let's find out where we are by running a command called `pwd`
-(which stands for 'print working directory'). Directories are like *places* — at any time
-while we are using the shell, we are in exactly one place called
-our **current working directory**. Commands mostly read and write files in the
-current working directory, i.e. 'here', so knowing where you are before running
-a command is important. `pwd` shows you where you are:
+Zuerst wollen wir herausfinden, wo wir uns befinden, indem wir einen Befehl namens `pwd`
+ausführen (das steht für 'print working directory'). Verzeichnisse sind wie *Orte* - zu
+jeder Zeit, während wir die Shell benutzen, sind wir an genau einem Ort, der unser
+**aktuelles Arbeitsverzeichnis** genannt wird. Die meisten Befehle lesen und schreiben
+Dateien im aktuellen Arbeitsverzeichnis, d.h. 'hier', daher ist es wichtig zu wissen, wo
+man sich befindet, bevor man einen Befehl ausführt.`pwd` zeigt Ihnen, wo Sie sich
+befinden:
 
 ```bash
 $ pwd
@@ -57,88 +62,81 @@ $ pwd
 /Users/nelle
 ```
 
-Here,
-the computer's response is `/Users/nelle`,
-which is Nelle's **home directory**:
+Hier ist die Antwort des Computers `/Users/nelle`, was Nelles **Home-Verzeichnis** ist:
 
-:::::::::::::::::::::::::::::::::::::::::  callout
+::::::::::::::::::::::::::::::::::::::::: callout
 
-## Home Directory Variation
+## Variation des Heimatverzeichnisses
 
-The home directory path will look different on different operating systems.
-On Linux, it may look like `/home/nelle`,
-and on Windows, it will be similar to `C:\Documents and Settings\nelle` or
-`C:\Users\nelle`.
-(Note that it may look slightly different for different versions of Windows.)
-In future examples, we've used Mac output as the default - Linux and Windows
-output may differ slightly but should be generally similar.
+Der Pfad zum Heimatverzeichnis sieht auf verschiedenen Betriebssystemen unterschiedlich
+aus. Unter Linux kann er wie `/home/nelle` aussehen, und unter Windows wird er ähnlich
+wie `C:\Documents and Settings\nelle` oder `C:\Users\nelle` sein. (Beachten Sie, dass es
+bei verschiedenen Windows-Versionen etwas anders aussehen kann.) In den zukünftigen
+Beispielen haben wir die Mac-Ausgabe als Standard verwendet - die Linux- und
+Windows-Ausgabe kann leicht abweichen, sollte aber im Allgemeinen ähnlich sein.
 
-We will also assume that your `pwd` command returns your user's home directory.
-If `pwd` returns something different, you may need to navigate there using `cd`
-or some commands in this lesson will not work as written.
-See [Exploring Other Directories](#exploring-other-directories) for more details
-on the `cd` command.
+Wir nehmen auch an, dass Ihr `pwd`-Befehl das Heimatverzeichnis Ihres Benutzers
+zurückgibt. Wenn `pwd` etwas anderes zurückgibt, müssen Sie möglicherweise mit `cd`
+dorthin navigieren, oder einige Befehle in dieser Lektion werden nicht wie geschrieben
+funktionieren. Siehe [Andere Verzeichnisse erforschen](#exploring-other-directories) für
+weitere Details über den `cd` Befehl.
 
 
 ::::::::::::::::::::::::::::::::::::::::::::::::::
 
-To understand what a 'home directory' is,
-let's have a look at how the file system as a whole is organized.  For the
-sake of this example, we'll be
-illustrating the filesystem on our scientist Nelle's computer.  After this
-illustration, you'll be learning commands to explore your own filesystem,
-which will be constructed in a similar way, but not be exactly identical.
+Um zu verstehen, was ein "Heimatverzeichnis" ist, schauen wir uns an, wie das
+Dateisystem als Ganzes organisiert ist. Für dieses Beispiel werden wir das Dateisystem
+auf dem Computer unserer Wissenschaftlerin Nelle darstellen. Nach dieser
+Veranschaulichung werden Sie Befehle lernen, um Ihr eigenes Dateisystem zu erforschen,
+das ähnlich aufgebaut sein wird, aber nicht exakt identisch ist.
 
-On Nelle's computer, the filesystem looks like this:
+Auf Nelle's Computer sieht das Dateisystem wie folgt aus:
 
-![](fig/filesystem.svg){alt='The file system is made up of a root directory that contains sub-directories titled bin, data, users, and tmp'}
+![](fig/filesystem.svg){alt="Das Dateisystem besteht aus einem Stammverzeichnis, das
+Unterverzeichnisse mit den Namen bin, data, users und tmp enthält"}
 
-The filesystem looks like an upside down tree. 
-The topmost directory  is the **root directory**
-that holds everything else.
-We refer to it using a slash character, `/`, on its own;
-this character is the leading slash in `/Users/nelle`.
+Das Dateisystem sieht aus wie ein auf dem Kopf stehender Baum. Das oberste Verzeichnis
+ist das **Wurzelverzeichnis**, das alles andere enthält. Wir verweisen auf es mit einem
+Schrägstrich, `/`, allein; dieses Zeichen ist der führende Schrägstrich in
+`/Users/nelle`.
 
-Inside that directory are several other directories:
-`bin` (which is where some built-in programs are stored),
-`data` (for miscellaneous data files),
-`Users` (where users' personal directories are located),
-`tmp` (for temporary files that don't need to be stored long-term),
-and so on.
+Innerhalb dieses Verzeichnisses gibt es mehrere andere Verzeichnisse: `bin` (in dem
+einige eingebaute Programme gespeichert werden), `data` (für verschiedene Datendateien),
+`Users` (in dem sich die persönlichen Verzeichnisse der Benutzer befinden), `tmp` (für
+temporäre Dateien, die nicht langfristig gespeichert werden müssen), und so weiter.
 
-We know that our current working directory `/Users/nelle` is stored inside `/Users`
-because `/Users` is the first part of its name.
-Similarly,
-we know that `/Users` is stored inside the root directory `/`
-because its name begins with `/`.
+Wir wissen, dass unser aktuelles Arbeitsverzeichnis `/Users/nelle` innerhalb von
+`/Users` gespeichert ist, weil `/Users` der erste Teil seines Namens ist. Ebenso wissen
+wir, dass `/Users` innerhalb des Stammverzeichnisses `/` gespeichert ist, weil sein Name
+mit `/` beginnt.
 
-:::::::::::::::::::::::::::::::::::::::::  callout
+::::::::::::::::::::::::::::::::::::::::: callout
 
-## Slashes
+## Schrägstriche
 
-Notice that there are two meanings for the `/` character.
-When it appears at the front of a file or directory name,
-it refers to the root directory. When it appears *inside* a path,
-it's just a separator.
+Beachten Sie, dass es zwei Bedeutungen für das Zeichen `/` gibt. Wenn es am Anfang eines
+Datei- oder Verzeichnisnamens erscheint, bezieht es sich auf das Stammverzeichnis. Wenn
+es *innerhalb* eines Pfades erscheint, ist es nur ein Trennzeichen.
 
 
 ::::::::::::::::::::::::::::::::::::::::::::::::::
 
-Underneath `/Users`,
-we find one directory for each user with an account on Nelle's machine,
-her colleagues *imhotep* and *larry*.
+Unterhalb von `/Users` finden wir ein Verzeichnis für jeden Benutzer mit einem Konto auf
+Nelles Rechner, ihre Kollegen *imhotep* und *larry*.
 
-![](fig/home-directories.svg){alt='Like other directories, home directories are sub-directories underneath "/Users" like "/Users/imhotep", "/Users/larry" or"/Users/nelle"'}
+![](fig/home-directories.svg){alt="Wie andere Verzeichnisse sind Home-Verzeichnisse
+Unterverzeichnisse unterhalb von "/Users" wie "/Users/imhotep", "/Users/larry"
+oder"/Users/nelle""}
 
-The user *imhotep*'s files are stored in `/Users/imhotep`,
-user *larry*'s in `/Users/larry`,
-and Nelle's in `/Users/nelle`. Nelle is the user in our
-examples here; therefore, we get `/Users/nelle` as our home directory.
-Typically, when you open a new command prompt, you will be in
-your home directory to start.
+Die Dateien des Benutzers *imhotep* werden in `/Users/imhotep` gespeichert, die des
+Benutzers *larry* in `/Users/larry` und die von Nelle in `/Users/nelle`. Nelle ist der
+Benutzer in unseren Beispielen hier; daher bekommen wir `/Users/nelle` als unser
+Heimatverzeichnis. Wenn Sie eine neue Eingabeaufforderung öffnen, befinden Sie sich
+normalerweise zunächst in Ihrem Heimatverzeichnis.
 
-Now let's learn the command that will let us see the contents of our
-own filesystem.  We can see what's in our home directory by running `ls`:
+Jetzt wollen wir den Befehl lernen, mit dem wir den Inhalt unseres eigenen Dateisystems
+sehen können. Wir können sehen, was sich in unserem Heimatverzeichnis befindet, indem
+wir `ls` ausführen:
 
 ```bash
 $ ls
@@ -149,21 +147,20 @@ Applications Documents    Library      Music        Public
 Desktop      Downloads    Movies       Pictures
 ```
 
-(Again, your results may be slightly different depending on your operating
-system and how you have customized your filesystem.)
+(Auch hier können die Ergebnisse leicht abweichen, je nachdem, wie Sie Ihr Dateisystem
+angepasst haben und unter welchem Betriebssystem Sie arbeiten)
 
-`ls` prints the names of the files and directories in the current directory.
-We can make its output more comprehensible by using the `-F` **option**
-which tells `ls` to classify the output
-by adding a marker to file and directory names to indicate what they are:
+`ls` gibt die Namen der Dateien und Verzeichnisse im aktuellen Verzeichnis aus. Wir
+können die Ausgabe verständlicher machen, indem wir die **Option** `-F` verwenden, die
+`ls` anweist, die Ausgabe zu klassifizieren, indem es den Datei- und Verzeichnisnamen
+eine Markierung hinzufügt, um anzuzeigen, worum es sich handelt:
 
-- a trailing `/` indicates that this is a directory
-- `@` indicates a link
-- `*` indicates an executable
+- ein nachgestelltes `/` zeigt an, dass dies ein Verzeichnis ist
+- `@` zeigt einen Link an
+- `*` zeigt eine ausführbare Datei an
 
-Depending on your shell's default settings,
-the shell might also use colors to indicate whether each entry is a file or
-directory.
+Abhängig von den Standardeinstellungen Ihrer Shell, kann die Shell auch Farben
+verwenden, um anzuzeigen, ob jeder Eintrag eine Datei oder ein Verzeichnis ist.
 
 ```bash
 $ ls -F
@@ -174,60 +171,61 @@ Applications/ Documents/    Library/      Music/        Public/
 Desktop/      Downloads/    Movies/       Pictures/
 ```
 
-Here,
-we can see that the home directory contains only **sub-directories**.
-Any names in the output that don't have a classification symbol
-are **files** in the current working directory.
+Hier können wir sehen, dass das Heimatverzeichnis nur **Unterverzeichnisse** enthält.
+Alle Namen in der Ausgabe, die kein Klassifizierungssymbol haben, sind **Dateien** im
+aktuellen Arbeitsverzeichnis.
 
-:::::::::::::::::::::::::::::::::::::::::  callout
+::::::::::::::::::::::::::::::::::::::::: callout
 
-## Clearing your terminal
+## Löschen des Terminals
 
-If your screen gets too cluttered, you can clear your terminal using the
-`clear` command. You can still access previous commands using <kbd>↑</kbd>
-and <kbd>↓</kbd> to move line-by-line, or by scrolling in your terminal.
+Wenn Ihr Bildschirm zu unübersichtlich wird, können Sie Ihr Terminal mit dem Befehl
+`clear` leeren. Du kannst immer noch auf vorherige Befehle zugreifen, indem du
+<kbd>↑</kbd> und <kbd>↓</kbd> verwendest, um dich Zeile für Zeile zu bewegen, oder indem
+du in deinem Terminal scrollst.
 
 
 ::::::::::::::::::::::::::::::::::::::::::::::::::
 
-### Getting help
+### Hilfe erhalten
 
-`ls` has lots of other **options**. There are two common ways to find out how
-to use a command and what options it accepts ---
-**depending on your environment, you might find that only one of these ways works:**
+`ls` hat eine Menge anderer **Optionen**. Es gibt zwei übliche Wege, um herauszufinden,
+wie man einen Befehl benutzt und welche Optionen er akzeptiert --- **Abhängig von Ihrer
+Umgebung könnten Sie feststellen, dass nur einer dieser Wege funktioniert:**
 
-1. We can pass a `--help` option to any command (available on Linux and Git Bash), for example:
-  
+1. Wir können die Option `--help` an jeden Befehl übergeben (verfügbar unter Linux und
+   Git Bash), zum Beispiel:
+
   ```bash
   $ ls --help
   ```
 
-2. We can read its manual with `man` (available on Linux and macOS):
-  
+2. Wir können sein Handbuch mit `man` lesen (verfügbar unter Linux und macOS):
+
   ```bash
   $ man ls
   ```
 
-We'll describe both ways next.
+Wir werden beide Möglichkeiten im Folgenden beschreiben.
 
-:::::::::::::::::::::::::::::::::::::::::  callout
+::::::::::::::::::::::::::::::::::::::::: callout
 
-## Help for built-in commands
+## Hilfe für eingebaute Befehle
 
-Some commands are built in to the Bash shell, rather than existing as separate
-programs on the filesystem. One example is the `cd` (change directory) command.
-If you get a message like `No manual entry for cd`, try `help cd` instead. The
-`help` command is how you get usage information for
-[Bash built-ins](https://www.gnu.org/software/bash/manual/html_node/Bash-Builtins.html).
+Einige Befehle sind in die Bash-Shell eingebaut, anstatt als separate Programme im
+Dateisystem zu existieren. Ein Beispiel ist der Befehl `cd` (Verzeichnis wechseln). Wenn
+Sie eine Meldung wie `No manual entry for cd` erhalten, versuchen Sie stattdessen `help
+cd`. Mit dem Befehl `help` erhalten Sie Nutzungsinformationen für [Bash
+built-ins](https://www.gnu.org/software/bash/manual/html_node/Bash-Builtins.html).
 
 
 ::::::::::::::::::::::::::::::::::::::::::::::::::
 
-#### The `--help` option
+#### Die `--help` Option
 
-Most bash commands and programs that people have written to be
-run from within bash, support a `--help` option that displays more
-information on how to use the command or program.
+Die meisten Bash-Befehle und -Programme, die für die Ausführung innerhalb der Bash
+geschrieben wurden, unterstützen eine Option `--help`, die weitere Informationen zur
+Verwendung des Befehls oder Programms anzeigt.
 
 ```bash
 $ ls --help
@@ -261,24 +259,24 @@ Mandatory arguments to long options are mandatory for short options, too.
 ...        ...        ...
 ```
 
-:::::::::::::::::::::::::::::::::::::::::  callout
+::::::::::::::::::::::::::::::::::::::::: callout
 
-### When to use short or long options
-When options exist as both short and long options:
+### Wann man kurze oder lange Optionen verwenden sollte
+Wenn Optionen sowohl als kurze als auch als lange Optionen existieren:
 
-- Use the short option when typing commands directly into the
-   shell to minimize keystrokes and get your task done faster.
-- Use the long option in scripts to provide clarity.
-  It will be read many times and typed once.
-  
+- Verwenden Sie die Option short, wenn Sie Befehle direkt in die Shell eingeben, um die
+  Anzahl der Tastenanschläge zu minimieren und Ihre Aufgabe schneller zu erledigen.
+- Verwenden Sie die Option long in Skripten, um Klarheit zu schaffen. Sie wird viele
+  Male gelesen und nur einmal eingegeben.
+
 ::::::::::::::::::::::::::::::::::::::::::::::::::
 
-:::::::::::::::::::::::::::::::::::::::::  callout
+::::::::::::::::::::::::::::::::::::::::: callout
 
-## Unsupported command-line options
+## Nicht unterstützte Kommandozeilenoptionen
 
-If you try to use an option that is not supported, `ls` and other commands
-will usually print an error message similar to:
+Wenn Sie versuchen, eine Option zu verwenden, die nicht unterstützt wird, geben `ls` und
+andere Befehle normalerweise eine Fehlermeldung ähnlich der folgenden aus:
 
 ```bash
 $ ls -j
@@ -291,65 +289,65 @@ Try 'ls --help' for more information.
 
 ::::::::::::::::::::::::::::::::::::::::::::::::::
 
-#### The `man` command
+#### Der `man` Befehl
 
-The other way to learn about `ls` is to type
+Die andere Möglichkeit, etwas über `ls` zu erfahren, ist die Eingabe von
 
 ```bash
 $ man ls
 ```
 
-This command will turn your terminal into a page with a description
-of the `ls` command and its options.
+Dieser Befehl verwandelt Ihr Terminal in eine Seite mit einer Beschreibung des Befehls
+`ls` und seiner Optionen.
 
-To navigate through the `man` pages,
-you may use <kbd>↑</kbd> and <kbd>↓</kbd> to move line-by-line,
-or try <kbd>b</kbd> and <kbd>Spacebar</kbd> to skip up and down by a full page.
-To search for a character or word in the `man` pages,
-use <kbd>/</kbd> followed by the character or word you are searching for.
-Sometimes a search will result in multiple hits.
-If so, you can move between hits using <kbd>N</kbd> (for moving forward) and
-<kbd>Shift</kbd>\+<kbd>N</kbd> (for moving backward).
+Um durch die `man`-Seiten zu navigieren, können Sie <kbd>↑</kbd> und <kbd>↓</kbd>
+benutzen, um sich zeilenweise zu bewegen, oder <kbd>b</kbd> und <kbd>Leertaste</kbd>
+ausprobieren, um eine ganze Seite vor- und zurückzuspringen. Um nach einem Zeichen oder
+Wort in den `man`-Seiten zu suchen, verwenden Sie <kbd>/</kbd>, gefolgt von dem Zeichen
+oder Wort, das Sie suchen. Manchmal führt eine Suche zu mehreren Treffern. In diesem
+Fall können Sie zwischen den Treffern mit <kbd>N</kbd> (vorwärts) und
+<kbd>Shift</kbd>\+<kbd>N</kbd> (rückwärts) wechseln.
 
-To **quit** the `man` pages, press <kbd>q</kbd>.
+Um die `man` Seiten zu **beenden**, drücken Sie <kbd>q</kbd>.
 
-:::::::::::::::::::::::::::::::::::::::::  callout
+::::::::::::::::::::::::::::::::::::::::: callout
 
 ## Manual pages on the web
 
-Of course, there is a third way to access help for commands:
-searching the internet via your web browser.
-When using internet search, including the phrase `unix man page` in your search
-query will help to find relevant results.
+Natürlich gibt es noch eine dritte Möglichkeit, auf die Hilfe für Befehle zuzugreifen:
+die Suche im Internet über Ihren Webbrowser. Wenn Sie die Internetsuche verwenden, hilft
+es, den Ausdruck `unix man page` in Ihre Suchanfrage aufzunehmen, um relevante
+Ergebnisse zu finden.
 
-GNU provides links to its
-[manuals](https://www.gnu.org/manual/manual.html) including the
-[core GNU utilities](https://www.gnu.org/software/coreutils/manual/coreutils.html),
-which covers many commands introduced within this lesson.
+GNU bietet Links zu seinen [Handbüchern](https://www.gnu.org/manual/manual.html),
+einschließlich der [core GNU
+utilities](https://www.gnu.org/software/coreutils/manual/coreutils.html), die viele in
+dieser Lektion vorgestellte Befehle abdeckt.
 
 
 ::::::::::::::::::::::::::::::::::::::::::::::::::
 
-:::::::::::::::::::::::::::::::::::::::  challenge
+::::::::::::::::::::::::::::::::::::::: challenge
 
-## Exploring More `ls` Options
+## Weitere `ls`-Optionen erforschen
 
-You can also use two options at the same time. What does the command `ls` do when used
-with the `-l` option? What about if you use both the `-l` and the `-h` option?
+Sie können auch zwei Optionen gleichzeitig verwenden. Was bewirkt der Befehl `ls`, wenn
+er mit der Option `-l` verwendet wird? Was ist, wenn Sie sowohl die Option `-l` als auch
+die Option `-h` verwenden?
 
-Some of its output is about properties that we do not cover in this lesson (such
-as file permissions and ownership), but the rest should be useful
-nevertheless.
+Ein Teil der Ausgabe bezieht sich auf Eigenschaften, die wir in dieser Lektion nicht
+behandeln (z.B. Dateiberechtigungen und Besitzverhältnisse), aber der Rest sollte
+trotzdem nützlich sein.
 
-:::::::::::::::  solution
+::::::::::::::: solution
 
-## Solution
+## Lösung
 
-The `-l` option makes `ls` use a **l**ong listing format, showing not only
-the file/directory names but also additional information, such as the file size
-and the time of its last modification. If you use both the `-h` option and the `-l` option,
-this makes the file size '**h**uman readable', i.e. displaying something like `5.3K`
-instead of `5369`.
+Die Option `-l` bewirkt, dass `ls` ein **l**langes Listenformat verwendet, das nicht nur
+die Datei-/Verzeichnisnamen, sondern auch zusätzliche Informationen wie die Dateigröße
+und den Zeitpunkt der letzten Änderung anzeigt. Wenn Sie sowohl die Option `-h` als auch
+die Option `-l` verwenden, macht dies die Dateigröße '**h**menschlich lesbar', d.h. es
+wird etwas wie `5.3K` statt `5369` angezeigt.
 
 
 
@@ -357,25 +355,24 @@ instead of `5369`.
 
 ::::::::::::::::::::::::::::::::::::::::::::::::::
 
-:::::::::::::::::::::::::::::::::::::::  challenge
+::::::::::::::::::::::::::::::::::::::: challenge
 
-## Listing in Reverse Chronological Order
+## Auflistung in umgekehrter chronologischer Reihenfolge
 
-By default, `ls` lists the contents of a directory in alphabetical
-order by name. The command `ls -t` lists items by time of last
-change instead of alphabetically. The command `ls -r` lists the
-contents of a directory in reverse order.
-Which file is displayed last when you combine the `-t` and `-r` options?
-Hint: You may need to use the `-l` option to see the
-last changed dates.
+Standardmäßig listet `ls` den Inhalt eines Verzeichnisses in alphabetischer Reihenfolge
+nach Namen auf. Der Befehl `ls -t` listet die Einträge nicht alphabetisch, sondern nach
+dem Zeitpunkt der letzten Änderung auf. Der Befehl `ls -r` listet den Inhalt eines
+Verzeichnisses in umgekehrter Reihenfolge auf. Welche Datei wird zuletzt angezeigt, wenn
+Sie die Optionen `-t` und `-r` kombinieren? Hinweis: Möglicherweise müssen Sie die
+Option `-l` verwenden, um das Datum der letzten Änderung zu sehen.
 
-:::::::::::::::  solution
+::::::::::::::: solution
 
-## Solution
+## Lösung
 
-The most recently changed file is listed last when using `-rt`. This
-can be very useful for finding your most recent edits or checking to
-see if a new output file was written.
+Die zuletzt geänderte Datei wird zuletzt aufgelistet, wenn `-rt` verwendet wird. Dies
+kann sehr nützlich sein, um die letzten Bearbeitungen zu finden oder um zu überprüfen,
+ob eine neue Ausgabedatei geschrieben wurde.
 
 
 
@@ -383,15 +380,14 @@ see if a new output file was written.
 
 ::::::::::::::::::::::::::::::::::::::::::::::::::
 
-### Exploring Other Directories
+### Andere Verzeichnisse erforschen
 
-Not only can we use `ls` on the current working directory,
-but we can use it to list the contents of a different directory.
-Let's take a look at our `Desktop` directory by running `ls -F Desktop`,
-i.e.,
-the command `ls` with the `-F` **option** and the [**argument**][Arguments]  `Desktop`.
-The argument `Desktop` tells `ls` that
-we want a listing of something other than our current working directory:
+Wir können `ls` nicht nur für das aktuelle Arbeitsverzeichnis verwenden, sondern auch,
+um den Inhalt eines anderen Verzeichnisses aufzulisten. Schauen wir uns unser
+`Desktop`-Verzeichnis an, indem wir `ls -F Desktop` ausführen, d.h. den Befehl `ls` mit
+der **Option** `-F` und dem [**Argument**][Argumente] `Desktop`. Das Argument `Desktop`
+sagt `ls`, dass wir eine Auflistung von etwas anderem als unserem aktuellen
+Arbeitsverzeichnis wollen:
 
 ```bash
 $ ls -F Desktop
@@ -401,26 +397,29 @@ $ ls -F Desktop
 shell-lesson-data/
 ```
 
-Note that if a directory named `Desktop` does not exist in your current working directory,
-this command will return an error. Typically, a `Desktop` directory exists in your
-home directory, which we assume is the current working directory of your bash shell.
+Beachten Sie, dass dieser Befehl einen Fehler zurückgibt, wenn ein Verzeichnis namens
+`Desktop` in Ihrem aktuellen Arbeitsverzeichnis nicht existiert. Normalerweise existiert
+ein `Desktop`-Verzeichnis in Ihrem Home-Verzeichnis, von dem wir annehmen, dass es das
+aktuelle Arbeitsverzeichnis Ihrer Bash-Shell ist.
 
-Your output should be a list of all the files and sub-directories in your
-Desktop directory, including the `shell-lesson-data` directory you downloaded at
-the [setup for this lesson](../learners/setup.md). (On most systems, the
-contents of the `Desktop` directory in the shell will show up as icons in a graphical
-user interface behind all the open windows. See if this is the case for you.)
+Ihre Ausgabe sollte eine Liste aller Dateien und Unterverzeichnisse in Ihrem
+Desktop-Verzeichnis sein, einschließlich des `shell-lesson-data`-Verzeichnisses, das Sie
+im [Setup für diese Lektion] (../learners/setup.md) heruntergeladen haben. (Auf den
+meisten Systemen wird der Inhalt des Verzeichnisses `Desktop` in der Shell als Symbole
+in einer grafischen Benutzeroberfläche hinter allen offenen Fenstern angezeigt. Prüfen
+Sie, ob dies bei Ihnen der Fall ist.)
 
-Organizing things hierarchically helps us keep track of our work. While it's
-possible to put hundreds of files in our home directory just as it's possible to
-pile hundreds of printed papers on our desk, it's much easier to find things when
-they've been organized into sensibly-named subdirectories.
+Die hierarchische Organisation von Dingen hilft uns, den Überblick über unsere Arbeit zu
+behalten. Es ist zwar möglich, Hunderte von Dateien in unserem Home-Verzeichnis
+abzulegen, so wie es möglich ist, Hunderte von gedruckten Papieren auf unserem
+Schreibtisch zu stapeln, aber es ist viel einfacher, Dinge zu finden, wenn sie in
+sinnvoll benannten Unterverzeichnissen organisiert sind.
 
-Now that we know the `shell-lesson-data` directory is located in our Desktop directory, we
-can do two things.
+Jetzt, da wir wissen, dass sich das Verzeichnis `shell-lesson-data` in unserem
+Desktop-Verzeichnis befindet, können wir zwei Dinge tun.
 
-First, using the same strategy as before, we can look at its contents by passing
-a directory name to `ls`:
+Zunächst können wir mit der gleichen Strategie wie zuvor seinen Inhalt betrachten, indem
+wir einen Verzeichnisnamen an `ls` übergeben:
 
 ```bash
 $ ls -F Desktop/shell-lesson-data
@@ -430,22 +429,20 @@ $ ls -F Desktop/shell-lesson-data
 exercise-data/  north-pacific-gyre/
 ```
 
-Second, we can actually change our location to a different directory, so
-we are no longer located in
-our home directory.
+Zweitens können wir unseren Standort in ein anderes Verzeichnis ändern, so dass wir uns
+nicht mehr in unserem Heimatverzeichnis befinden.
 
-The command to change locations is `cd` followed by a
-directory name to change our working directory.
-`cd` stands for 'change directory',
-which is a bit misleading.
-The command doesn't change the directory;
-it changes the shell's current working directory.
-In other words it changes the shell's settings for what directory we are in.
-The `cd` command is akin to double-clicking a folder in a graphical interface
-to get into that folder.
+Der Befehl zum Wechseln des Verzeichnisses lautet `cd`, gefolgt von einem
+Verzeichnisnamen, um das Arbeitsverzeichnis zu wechseln.`cd` steht für "Verzeichnis
+wechseln", was ein wenig irreführend ist. Der Befehl wechselt nicht das Verzeichnis,
+sondern das aktuelle Arbeitsverzeichnis der Shell. Mit anderen Worten, er ändert die
+Einstellungen der Shell, in welchem Verzeichnis wir uns befinden. Der Befehl `cd` ist
+vergleichbar mit einem Doppelklick auf einen Ordner in einer grafischen Oberfläche, um
+in diesen Ordner zu gelangen.
 
-Let's say we want to move into the `exercise-data` directory we saw above. We can
-use the following series of commands to get there:
+Nehmen wir an, wir wollen in das Verzeichnis `exercise-data` wechseln, das wir oben
+gesehen haben. Wir können die folgende Reihe von Befehlen verwenden, um dorthin zu
+gelangen:
 
 ```bash
 $ cd Desktop
@@ -453,16 +450,16 @@ $ cd shell-lesson-data
 $ cd exercise-data
 ```
 
-These commands will move us from our home directory into our Desktop directory, then into
-the `shell-lesson-data` directory, then into the `exercise-data` directory.
-You will notice that `cd` doesn't print anything. This is normal.
-Many shell commands will not output anything to the screen when successfully executed.
-But if we run `pwd` after it, we can see that we are now
-in `/Users/nelle/Desktop/shell-lesson-data/exercise-data`.
+Diese Befehle verschieben uns von unserem Home-Verzeichnis in unser Desktop-Verzeichnis,
+dann in das Verzeichnis `shell-lesson-data` und dann in das Verzeichnis `exercise-data`.
+Sie werden feststellen, dass `cd` nichts ausgibt. Das ist normal. Viele Shell-Befehle
+geben bei erfolgreicher Ausführung nichts auf dem Bildschirm aus. Wenn wir aber `pwd`
+danach ausführen, können wir sehen, dass wir jetzt in
+`/Users/nelle/Desktop/shell-lesson-data/exercise-data` sind.
 
-If we run `ls -F` without arguments now,
-it lists the contents of `/Users/nelle/Desktop/shell-lesson-data/exercise-data`,
-because that's where we now are:
+Wenn wir jetzt `ls -F` ohne Argumente ausführen, listet es den Inhalt von
+`/Users/nelle/Desktop/shell-lesson-data/exercise-data` auf, weil wir uns jetzt dort
+befinden:
 
 ```bash
 $ pwd
@@ -480,9 +477,10 @@ $ ls -F
 alkanes/  animal-counts/  creatures/  numbers.txt  writing/
 ```
 
-We now know how to go down the directory tree (i.e. how to go into a subdirectory),
-but how do we go up (i.e. how do we leave a directory and go into its parent directory)?
-We might try the following:
+Wir wissen jetzt, wie wir im Verzeichnisbaum nach unten gehen (d.h. wie wir in ein
+Unterverzeichnis gehen), aber wie gehen wir nach oben (d.h. wie verlassen wir ein
+Verzeichnis und gehen in sein übergeordnetes Verzeichnis)? Wir könnten das Folgende
+versuchen:
 
 ```bash
 $ cd shell-lesson-data
@@ -492,25 +490,23 @@ $ cd shell-lesson-data
 -bash: cd: shell-lesson-data: No such file or directory
 ```
 
-But we get an error! Why is this?
+Aber wir bekommen einen Fehler! Woran liegt das?
 
-With our methods so far,
-`cd` can only see sub-directories inside your current directory. There are
-different ways to see directories above your current location; we'll start
-with the simplest.
+Mit unseren bisherigen Methoden kann `cd` nur Unterverzeichnisse innerhalb deines
+aktuellen Verzeichnisses sehen. Es gibt verschiedene Möglichkeiten, Verzeichnisse
+oberhalb Ihres aktuellen Standorts zu sehen; wir beginnen mit der einfachsten.
 
-There is a shortcut in the shell to move up one directory level. It works as follows:
+Es gibt eine Abkürzung in der Shell, um eine Verzeichnisebene höher zu gehen. Es
+funktioniert wie folgt:
 
 ```bash
 $ cd ..
 ```
 
-`..` is a special directory name meaning
-"the directory containing this one",
-or more succinctly,
-the **parent** of the current directory.
-Sure enough,
-if we run `pwd` after running `cd ..`, we're back in `/Users/nelle/Desktop/shell-lesson-data`:
+`..` ist ein spezieller Verzeichnisname, der "das Verzeichnis, das dieses enthält"
+bedeutet, oder einfacher ausgedrückt, das **Elternteil** des aktuellen Verzeichnisses.
+Sicherlich, wenn wir `pwd` nach `cd ..` ausführen, sind wir wieder in
+`/Users/nelle/Desktop/shell-lesson-data`:
 
 ```bash
 $ pwd
@@ -520,8 +516,9 @@ $ pwd
 /Users/nelle/Desktop/shell-lesson-data
 ```
 
-The special directory `..` doesn't usually show up when we run `ls`. If we want
-to display it, we can add the `-a` option to `ls -F`:
+Das spezielle Verzeichnis `..` wird normalerweise nicht angezeigt, wenn wir `ls`
+ausführen. Wenn wir es anzeigen wollen, können wir die Option `-a` zu `ls -F`
+hinzufügen:
 
 ```bash
 $ ls -F -a
@@ -531,44 +528,42 @@ $ ls -F -a
 ./  ../  exercise-data/  north-pacific-gyre/
 ```
 
-`-a` stands for 'show all' (including hidden files);
-it forces `ls` to show us file and directory names that begin with `.`,
-such as `..` (which, if we're in `/Users/nelle`, refers to the `/Users` directory).
-As you can see,
-it also displays another special directory that's just called `.`,
-which means 'the current working directory'.
-It may seem redundant to have a name for it,
-but we'll see some uses for it soon.
+`-a` steht für 'show all' (einschließlich versteckter Dateien); es zwingt `ls` dazu, uns
+Datei- und Verzeichnisnamen zu zeigen, die mit `.` beginnen, wie z.B. `..` (was sich,
+wenn wir in `/Users/nelle` sind, auf das Verzeichnis `/Users` bezieht). Wie Sie sehen
+können, zeigt es auch ein anderes spezielles Verzeichnis an, das einfach `.` heißt, was
+"das aktuelle Arbeitsverzeichnis" bedeutet. Es mag überflüssig erscheinen, einen Namen
+dafür zu haben, aber wir werden bald einige Anwendungen dafür sehen.
 
-Note that in most command line tools, multiple options can be combined
-with a single `-` and no spaces between the options; `ls -F -a` is
-equivalent to `ls -Fa`.
+Beachten Sie, dass in den meisten Kommandozeilen-Tools mehrere Optionen mit einem
+einzigen `-` und ohne Leerzeichen zwischen den Optionen kombiniert werden können; `ls -F
+-a` ist äquivalent zu `ls -Fa`.
 
-:::::::::::::::::::::::::::::::::::::::::  callout
+::::::::::::::::::::::::::::::::::::::::: callout
 
-## Other Hidden Files
+## Andere versteckte Dateien
 
-In addition to the hidden directories `..` and `.`, you may also see a file
-called `.bash_profile`. This file usually contains shell configuration
-settings. You may also see other files and directories beginning
-with `.`. These are usually files and directories that are used to configure
-different programs on your computer. The prefix `.` is used to prevent these
-configuration files from cluttering the terminal when a standard `ls` command
-is used.
+Zusätzlich zu den versteckten Verzeichnissen `..` und `.` sehen Sie möglicherweise auch
+eine Datei namens `.bash_profile`. Diese Datei enthält normalerweise Einstellungen für
+die Shell-Konfiguration. Sie können auch andere Dateien und Verzeichnisse sehen, die mit
+`.` beginnen. Dies sind normalerweise Dateien und Verzeichnisse, die zur Konfiguration
+verschiedener Programme auf Ihrem Computer verwendet werden. Das Präfix `.` wird
+verwendet, um zu verhindern, dass diese Konfigurationsdateien das Terminal überladen,
+wenn ein Standardbefehl `ls` verwendet wird.
 
 
 ::::::::::::::::::::::::::::::::::::::::::::::::::
 
-These three commands are the basic commands for navigating the filesystem on your computer:
-`pwd`, `ls`, and `cd`. Let's explore some variations on those commands. What happens
-if you type `cd` on its own, without giving
-a directory?
+Diese drei Befehle sind die grundlegenden Befehle zum Navigieren im Dateisystem Ihres
+Computers: `pwd`, `ls`, und `cd`. Lassen Sie uns einige Variationen dieser Befehle
+untersuchen. Was passiert, wenn Sie `cd` allein eingeben, ohne ein Verzeichnis
+anzugeben?
 
 ```bash
 $ cd
 ```
 
-How can you check what happened? `pwd` gives us the answer!
+Wie kann man überprüfen, was passiert ist? `pwd` gibt uns die Antwort!
 
 ```bash
 $ pwd
@@ -578,38 +573,40 @@ $ pwd
 /Users/nelle
 ```
 
-It turns out that `cd` without an argument will return you to your home directory,
-which is great if you've got lost in your own filesystem.
+Es hat sich herausgestellt, dass `cd` ohne ein Argument Sie zu Ihrem Heimatverzeichnis
+zurückbringt, was großartig ist, wenn Sie sich in Ihrem eigenen Dateisystem verirrt
+haben.
 
-Let's try returning to the `exercise-data` directory from before. Last time, we used
-three commands, but we can actually string together the list of directories
-to move to `exercise-data` in one step:
+Versuchen wir, zu dem Verzeichnis `exercise-data` von vorhin zurückzukehren. Letztes Mal
+haben wir drei Befehle benutzt, aber wir können die Liste der Verzeichnisse, die wir
+nach `exercise-data` verschieben wollen, in einem Schritt zusammenstellen:
 
 ```bash
 $ cd Desktop/shell-lesson-data/exercise-data
 ```
 
-Check that we've moved to the right place by running `pwd` and `ls -F`.
+Überprüfen Sie, ob wir an den richtigen Ort umgezogen sind, indem Sie `pwd` und `ls -F`
+ausführen.
 
-If we want to move up one level from the data directory, we could use `cd ..`.  But
-there is another way to move to any directory, regardless of your
-current location.
+Wenn wir vom Datenverzeichnis eine Ebene nach oben gehen wollen, können wir `cd ..`
+verwenden. Es gibt aber auch eine andere Möglichkeit, in ein beliebiges Verzeichnis zu
+wechseln, unabhängig davon, wo Sie sich gerade befinden.
 
-So far, when specifying directory names, or even a directory path (as above),
-we have been using **relative paths**.  When you use a relative path with a command
-like `ls` or `cd`, it tries to find that location from where we are,
-rather than from the root of the file system.
+Bislang haben wir bei der Angabe von Verzeichnisnamen oder sogar eines Verzeichnispfades
+(wie oben) **relative Pfade** verwendet. Wenn Sie einen relativen Pfad mit einem Befehl
+wie `ls` oder `cd` verwenden, wird versucht, diesen Ort von der Stelle aus zu finden, an
+der wir uns befinden, und nicht von der Wurzel des Dateisystems.
 
-However, it is possible to specify the **absolute path** to a directory by
-including its entire path from the root directory, which is indicated by a
-leading slash. The leading `/` tells the computer to follow the path from
-the root of the file system, so it always refers to exactly one directory,
-no matter where we are when we run the command.
+Es ist jedoch möglich, den **absoluten Pfad** zu einem Verzeichnis anzugeben, indem man
+den gesamten Pfad vom Stammverzeichnis aus einbezieht, was durch einen führenden
+Schrägstrich angezeigt wird. Der führende Schrägstrich sagt dem Computer, dass er den
+Pfad vom Stammverzeichnis des Dateisystems aus verfolgen soll, so dass er sich immer auf
+genau ein Verzeichnis bezieht, egal wo wir uns befinden, wenn wir den Befehl ausführen.
 
-This allows us to move to our `shell-lesson-data` directory from anywhere on
-the filesystem (including from inside `exercise-data`). To find the absolute path
-we're looking for, we can use `pwd` and then extract the piece we need
-to move to `shell-lesson-data`.
+So können wir von überall im Dateisystem in unser `shell-lesson-data`-Verzeichnis
+wechseln (auch innerhalb von `exercise-data`). Um den absoluten Pfad zu finden, den wir
+suchen, können wir `pwd` verwenden und dann das Stück extrahieren, das wir nach
+`shell-lesson-data` verschieben wollen.
 
 ```bash
 $ pwd
@@ -623,61 +620,62 @@ $ pwd
 $ cd /Users/nelle/Desktop/shell-lesson-data
 ```
 
-Run `pwd` and `ls -F` to ensure that we're in the directory we expect.
+Führen Sie `pwd` und `ls -F` aus, um sicherzustellen, dass wir uns in dem Verzeichnis
+befinden, das wir erwarten.
 
-:::::::::::::::::::::::::::::::::::::::::  callout
+::::::::::::::::::::::::::::::::::::::::: callout
 
-## Two More Shortcuts
+## Zwei weitere Abkürzungen
 
-The shell interprets a tilde (`~`) character at the start of a path to
-mean "the current user's home directory". For example, if Nelle's home
-directory is `/Users/nelle`, then `~/data` is equivalent to
-`/Users/nelle/data`. This only works if it is the first character in the
-path; `here/there/~/elsewhere` is *not* `here/there/Users/nelle/elsewhere`.
+Die Shell interpretiert eine Tilde (`~`) am Anfang eines Pfades als "das
+Heimatverzeichnis des aktuellen Benutzers". Wenn zum Beispiel das Heimatverzeichnis von
+Nelle `/Users/nelle` ist, dann ist `~/data` äquivalent zu `/Users/nelle/data`. Das
+funktioniert nur, wenn es das erste Zeichen im Pfad ist; `here/there/~/elsewhere` ist
+*nicht* `here/there/Users/nelle/elsewhere`.
 
-Another shortcut is the `-` (dash) character. `cd` will translate `-` into
-*the previous directory I was in*, which is faster than having to remember,
-then type, the full path.  This is a *very* efficient way of moving
-*back and forth between two directories* -- i.e. if you execute `cd -` twice,
-you end up back in the starting directory.
+Eine weitere Abkürzung ist das Zeichen `-` (Bindestrich).`cd` übersetzt`-` in *das
+vorherige Verzeichnis, in dem ich mich befand*, was schneller ist, als sich an den
+vollständigen Pfad zu erinnern und ihn dann einzugeben. Dies ist ein *sehr* effizienter
+Weg, um *zwischen zwei Verzeichnissen hin und her zu wechseln* -- d.h. wenn Sie `cd -`
+zweimal ausführen, landen Sie wieder im Ausgangsverzeichnis.
 
-The difference between `cd ..` and `cd -` is
-that the former brings you *up*, while the latter brings you *back*.
+Der Unterschied zwischen `cd ..` und `cd -` ist, dass ersteres Sie *nach oben* bringt,
+während letzteres Sie *zurück* bringt.
 
 ***
 
-Try it!
-First navigate to `~/Desktop/shell-lesson-data` (you should already be there).
+Versuchen Sie es! Navigieren Sie zuerst zu `~/Desktop/shell-lesson-data` (Sie sollten
+bereits dort sein).
 
 ```bash
 $ cd ~/Desktop/shell-lesson-data
 ```
 
-Then `cd` into the `exercise-data/creatures` directory
+Dann `cd` in das `exercise-data/creatures` Verzeichnis
 
 ```bash
 $ cd exercise-data/creatures
 ```
 
-Now if you run
+Wenn Sie nun folgendes ausführen
 
 ```bash
 $ cd -
 ```
 
-you'll see you're back in `~/Desktop/shell-lesson-data`.
-Run `cd -` again and you're back in `~/Desktop/shell-lesson-data/exercise-data/creatures`
+Sie werden sehen, dass Sie sich wieder in `~/Desktop/shell-lesson-data` befinden. Führen
+Sie `cd -` erneut aus und Sie befinden sich wieder in
+`~/Desktop/shell-lesson-data/exercise-data/creatures`
 
 
 ::::::::::::::::::::::::::::::::::::::::::::::::::
 
-:::::::::::::::::::::::::::::::::::::::  challenge
+::::::::::::::::::::::::::::::::::::::: challenge
 
-## Absolute vs Relative Paths
+## Absolute vs. Relative Pfade
 
-Starting from `/Users/nelle/data`,
-which of the following commands could Nelle use to navigate to her home directory,
-which is `/Users/nelle`?
+Welchen der folgenden Befehle könnte Nelle ausgehend von `/Users/nelle/data` verwenden,
+um zu ihrem Heimatverzeichnis zu navigieren, das `/Users/nelle` ist?
 
 1. `cd .`
 2. `cd /`
@@ -689,125 +687,123 @@ which is `/Users/nelle`?
 8. `cd`
 9. `cd ..`
 
-:::::::::::::::  solution
+::::::::::::::: solution
 
-## Solution
+## Lösung
 
-1. No: `.` stands for the current directory.
-2. No: `/` stands for the root directory.
-3. No: Nelle's home directory is `/Users/nelle`.
-4. No: this command goes up two levels, i.e. ends in `/Users`.
-5. Yes: `~` stands for the user's home directory, in this case `/Users/nelle`.
-6. No: this command would navigate into a directory `home` in the current directory
-  if it exists.
-7. Yes: unnecessarily complicated, but correct.
-8. Yes: shortcut to go back to the user's home directory.
-9. Yes: goes up one level.
-  
-  
+1. Nein: `.` steht für das aktuelle Verzeichnis.
+2. Nein: `/` steht für das Stammverzeichnis.
+3. Nein: Nelle's Heimatverzeichnis ist `/Users/nelle`.
+4. Nein: Dieser Befehl geht zwei Ebenen nach oben, d.h. er endet mit `/Users`.
+5. Ja: `~` steht für das Heimatverzeichnis des Benutzers, in diesem Fall `/Users/nelle`.
+6. Nein: Dieser Befehl würde in ein Verzeichnis `home` im aktuellen Verzeichnis
+   navigieren, wenn es existiert.
+7. Ja: unnötig kompliziert, aber korrekt.
+8. Ja: Abkürzung, um zum Heimatverzeichnis des Benutzers zurückzukehren.
+9. Ja: geht eine Ebene höher.
 
 :::::::::::::::::::::::::
 
 ::::::::::::::::::::::::::::::::::::::::::::::::::
 
-:::::::::::::::::::::::::::::::::::::::  challenge
+::::::::::::::::::::::::::::::::::::::: challenge
 
-## Relative Path Resolution
+## Relative Pfadauflösung
 
-Using the filesystem diagram below, if `pwd` displays `/Users/thing`,
-what will `ls -F ../backup` display?
+Wenn `pwd` `/Users/thing` anzeigt, was zeigt dann `ls -F ../backup` im untenstehenden
+Dateisystemdiagramm an?
 
 1. `../backup: No such file or directory`
 2. `2012-12-01 2013-01-08 2013-01-27`
 3. `2012-12-01/ 2013-01-08/ 2013-01-27/`
 4. `original/ pnas_final/ pnas_sub/`
 
-![](fig/filesystem-challenge.svg){alt='A directory tree below the Users directory where "/Users" contains the directories "backup" and "thing"; "/Users/backup" contains "original","pnas\_final" and "pnas\_sub"; "/Users/thing" contains "backup"; and"/Users/thing/backup" contains "2012-12-01", "2013-01-08" and"2013-01-27"'}
+![](fig/filesystem-challenge.svg){alt="Ein Verzeichnisbaum unterhalb des
+Users-Verzeichnisses, in dem "/Users" die Verzeichnisse "backup" und "thing" enthält;
+"/Users/backup" enthält "original", "pnas\_final" und "pnas\_sub"; "/Users/thing"
+enthält "backup"; und "/Users/thing/backup" enthält "2012-12-01", "2013-01-08" und
+"2013-01-27""}
 
-:::::::::::::::  solution
+::::::::::::::: solution
 
-## Solution
+## Lösung
 
-1. No: there *is* a directory `backup` in `/Users`.
-2. No: this is the content of `Users/thing/backup`,
-  but with `..`, we asked for one level further up.
-3. No: see previous explanation.
-4. Yes: `../backup/` refers to `/Users/backup/`.
-  
-  
+1. Nein: Es *gibt* ein Verzeichnis `backup` in `/Users`.
+2. Nein: das ist der Inhalt von `Users/thing/backup`, aber mit `..` haben wir nach einer
+   Ebene weiter oben gefragt.
+3. Nein: siehe vorherige Erklärung.
+4. Ja: `../backup/` verweist auf `/Users/backup/`.
 
 :::::::::::::::::::::::::
 
 ::::::::::::::::::::::::::::::::::::::::::::::::::
 
-:::::::::::::::::::::::::::::::::::::::  challenge
+::::::::::::::::::::::::::::::::::::::: challenge
 
 ## `ls` Reading Comprehension
 
-Using the filesystem diagram below,
-if `pwd` displays `/Users/backup`,
-and `-r` tells `ls` to display things in reverse order,
-what command(s) will result in the following output:
+Wenn `pwd` `/Users/backup` anzeigt und `-r` `ls` anweist, die Dinge in umgekehrter
+Reihenfolge anzuzeigen, welche(r) Befehl(e) führt/führen dann zu folgender Ausgabe?
 
 ```output
 pnas_sub/ pnas_final/ original/
 ```
 
-![](fig/filesystem-challenge.svg){alt='A directory tree below the Users directory where "/Users" contains the directories "backup" and "thing"; "/Users/backup" contains "original","pnas\_final" and "pnas\_sub"; "/Users/thing" contains "backup"; and"/Users/thing/backup" contains "2012-12-01", "2013-01-08" and"2013-01-27"'}
+![](fig/filesystem-challenge.svg){alt="Ein Verzeichnisbaum unterhalb des
+Users-Verzeichnisses, in dem "/Users" die Verzeichnisse "backup" und "thing" enthält;
+"/Users/backup" enthält "original", "pnas\_final" und "pnas\_sub"; "/Users/thing"
+enthält "backup"; und "/Users/thing/backup" enthält "2012-12-01", "2013-01-08" und
+"2013-01-27""}
 
 1. `ls pwd`
 2. `ls -r -F`
 3. `ls -r -F /Users/backup`
 
-:::::::::::::::  solution
+::::::::::::::: solution
 
-## Solution
+## Lösung
 
-1. No: `pwd` is not the name of a directory.
-2. Yes: `ls` without directory argument lists files and directories
-  in the current directory.
-3. Yes: uses the absolute path explicitly.
-  
-  
+1. Nein: `pwd` ist nicht der Name eines Verzeichnisses.
+2. Ja: `ls` ohne Verzeichnisargument listet Dateien und Verzeichnisse im aktuellen
+   Verzeichnis auf.
+3. Ja: verwendet explizit den absoluten Pfad.
 
 :::::::::::::::::::::::::
 
 ::::::::::::::::::::::::::::::::::::::::::::::::::
 
-## General Syntax of a Shell Command
+## Allgemeine Syntax eines Shell-Befehls
 
-We have now encountered commands, options, and arguments,
-but it is perhaps useful to formalise some terminology.
+Wir haben nun Befehle, Optionen und Argumente kennengelernt, aber es ist vielleicht
+sinnvoll, einige Begriffe zu formalisieren.
 
-Consider the command below as a general example of a command,
-which we will dissect into its component parts:
+Betrachten Sie den folgenden Befehl als ein allgemeines Beispiel für einen Befehl, den
+wir in seine Bestandteile zerlegen werden:
 
 ```bash
 $ ls -F /
 ```
 
-![](fig/shell_command_syntax.svg){alt='General syntax of a shell command'}
+![](fig/shell_command_syntax.svg){alt="Allgemeine Syntax eines Shell-Befehls"}
 
-`ls` is the **command**, with an **option** `-F` and an
-**argument** `/`.
-We've already encountered options  which
-either start with a single dash (`-`), known as **short options**,
-or two dashes (`--`), known as **long options**.
-[Options] change the behavior of a command and
-[Arguments] tell the command what to operate on (e.g. files and directories).
-Sometimes options and arguments are referred to as **parameters**.
-A command can be called with more than one option and more than one argument, but a
-command doesn't always require an argument or an option.
+`ls` ist der **Befehl**, mit einer **Option** `-F` und einem **Argument** `/`. Wir haben
+bereits Optionen kennengelernt, die entweder mit einem einzelnen Bindestrich beginnen
+(`-`), bekannt als **kurze Optionen**, oder mit zwei Bindestrichen (`--`), bekannt als
+**lange Optionen**. [Optionen] ändern das Verhalten eines Befehls und Argumente] sagen
+dem Befehl, womit er arbeiten soll (z.B. Dateien und Verzeichnisse). Manchmal werden
+Optionen und Argumente auch als **Parameter** bezeichnet. Ein Befehl kann mit mehr als
+einer Option und mehr als einem Argument aufgerufen werden, aber ein Befehl benötigt
+nicht immer ein Argument oder eine Option.
 
-You might sometimes see options being referred to as **switches** or **flags**,
-especially for options that take no argument. In this lesson we will stick with
-using the term *option*.
+Manchmal sieht man, dass Optionen als **Schalter** oder **Flags** bezeichnet werden,
+besonders bei Optionen, die kein Argument benötigen. In dieser Lektion werden wir bei
+dem Begriff *Option* bleiben.
 
-Each part is separated by spaces. If you omit the space
-between `ls` and `-F` the shell will look for a command called `ls-F`, which
-doesn't exist. Also, capitalization can be important.
-For example, `ls -s` will display the size of files and directories alongside the names,
-while `ls -S` will sort the files and directories by size, as shown below:
+Jeder Teil ist durch Leerzeichen getrennt. Wenn Sie das Leerzeichen zwischen `ls` und
+`-F` weglassen, wird die Shell nach einem Befehl namens `ls-F` suchen, den es nicht
+gibt. Auch die Großschreibung kann wichtig sein. Zum Beispiel zeigt `ls -s` die Größe
+von Dateien und Verzeichnissen neben den Namen an, während `ls -S` die Dateien und
+Verzeichnisse nach Größe sortiert, wie unten gezeigt:
 
 ```bash
 $ cd ~/Desktop/shell-lesson-data
@@ -819,9 +815,9 @@ total 28
  4 animal-counts   4 creatures  12 numbers.txt   4 alkanes   4 writing
 ```
 
-Note that the sizes returned by `ls -s` are in *blocks*.
-As these are defined differently for different operating systems,
-you may not obtain the same figures as in the example.
+Beachten Sie, dass die von `ls -s` zurückgegebenen Größen in *Blöcken* angegeben sind.
+Da diese für verschiedene Betriebssysteme unterschiedlich definiert sind, erhalten Sie
+möglicherweise nicht die gleichen Zahlen wie im Beispiel.
 
 ```bash
 $ ls -S exercise-data
@@ -831,9 +827,9 @@ $ ls -S exercise-data
 animal-counts  creatures  alkanes  writing  numbers.txt
 ```
 
-Putting all that together, our command `ls -F /` above gives us a listing
-of files and directories in the root directory `/`.
-An example of the output you might get from the above command is given below:
+Wenn man das alles zusammennimmt, gibt uns der obige Befehl `ls -F /` eine Liste der
+Dateien und Verzeichnisse im Stammverzeichnis `/`. Ein Beispiel für die Ausgabe, die Sie
+mit dem obigen Befehl erhalten könnten, finden Sie unten:
 
 ```bash
 $ ls -F /
@@ -845,69 +841,64 @@ Library/              Users/
 Network/              Volumes/
 ```
 
-### Nelle's Pipeline: Organizing Files
+### Nelle's Pipeline: Organisieren von Dateien
 
-Knowing this much about files and directories,
-Nelle is ready to organize the files that the protein assay machine will create.
+Mit diesem Wissen über Dateien und Verzeichnisse ist Nelle bereit, die Dateien zu
+organisieren, die die Protein-Assay-Maschine erstellen wird.
 
-She creates a directory called `north-pacific-gyre`
-(to remind herself where the data came from),
-which will contain the data files from the assay machine
-and her data processing scripts.
+Sie erstellt ein Verzeichnis mit dem Namen `north-pacific-gyre` (um sich daran zu
+erinnern, woher die Daten stammen), das die Datendateien von der Testmaschine und ihre
+Datenverarbeitungsskripte enthalten wird.
 
-Each of her physical samples is labelled according to her lab's convention
-with a unique ten-character ID,
-such as 'NENE01729A'.
-This ID is what she used in her collection log
-to record the location, time, depth, and other characteristics of the sample,
-so she decides to use it within the filename of each data file.
-Since the output of the assay machine is plain text,
-she will call her files `NENE01729A.txt`, `NENE01812A.txt`, and so on.
-All 1520 files will go into the same directory.
+Jede ihrer physischen Proben ist gemäß der Konvention ihres Labors mit einer eindeutigen
+zehnstelligen ID gekennzeichnet, z. B. "NENE01729A". Diese ID hat sie in ihrem
+Entnahmeprotokoll verwendet, um den Ort, die Zeit, die Tiefe und andere Merkmale der
+Probe aufzuzeichnen, daher beschließt sie, sie im Dateinamen jeder Datendatei zu
+verwenden. Da die Ausgabe des Prüfgeräts im Klartext erfolgt, nennt sie ihre Dateien
+`NENE01729A.txt`, `NENE01812A.txt` usw. Alle 1520 Dateien werden im selben Verzeichnis
+gespeichert.
 
-Now in her current directory `shell-lesson-data`,
-Nelle can see what files she has using the command:
+Jetzt kann Nelle in ihrem aktuellen Verzeichnis `shell-lesson-data` sehen, welche
+Dateien sie hat, indem sie den Befehl benutzt:
 
 ```bash
 $ ls north-pacific-gyre/
 ```
 
-This command is a lot to type,
-but she can let the shell do most of the work through what is called **tab completion**.
-If she types:
+Dieser Befehl ist eine Menge zu tippen, aber sie kann die Shell die meiste Arbeit durch
+die sogenannte **Tab-Vervollständigung** erledigen lassen. Wenn sie tippt:
 
 ```bash
 $ ls nor
 ```
 
-and then presses <kbd>Tab</kbd> (the tab key on her keyboard),
-the shell automatically completes the directory name for her:
+und drückt dann <kbd>Tab</kbd> (die Tabulator-Taste auf ihrer Tastatur), vervollständigt
+die Shell automatisch den Verzeichnisnamen für sie:
 
 ```bash
 $ ls north-pacific-gyre/
 ```
 
-Pressing <kbd>Tab</kbd> again does nothing,
-since there are multiple possibilities;
-pressing <kbd>Tab</kbd> twice brings up a list of all the files.
+Erneutes Drücken von <kbd>Tab</kbd> bringt nichts, da es mehrere Möglichkeiten gibt;
+zweimaliges Drücken von <kbd>Tab</kbd> führt zu einer Liste aller Dateien.
 
-If Nelle then presses <kbd>G</kbd> and then presses <kbd>Tab</kbd> again,
-the shell will append 'goo' since all files that start with 'g' share
-the first three characters 'goo'.
+Wenn Nelle dann <kbd>G</kbd> drückt und dann wieder <kbd>Tab</kbd> drückt, wird die
+Shell 'goo' anhängen, da alle Dateien, die mit 'g' beginnen, die ersten drei Zeichen
+'goo' gemeinsam haben.
 
 ```bash
 $ ls north-pacific-gyre/goo
 ```
 
-To see all of those files, she can press <kbd>Tab</kbd> twice more.
+Um alle diese Dateien zu sehen, kann sie <kbd>Tab</kbd> noch zweimal drücken.
 
 ```bash
 ls north-pacific-gyre/goo
 goodiff.sh   goostats.sh
 ```
 
-This is called **tab completion**,
-and we will see it in many other tools as we go on.
+Dies wird **Tab-Vervollständigung** genannt, und wir werden es im weiteren Verlauf in
+vielen anderen Tools sehen.
 
 
 
@@ -916,19 +907,25 @@ and we will see it in many other tools as we go on.
 
 :::::::::::::::::::::::::::::::::::::::: keypoints
 
-- The file system is responsible for managing information on the disk.
-- Information is stored in files, which are stored in directories (folders).
-- Directories can also store other directories, which then form a directory tree.
-- `pwd` prints the user's current working directory.
-- `ls [path]` prints a listing of a specific file or directory; `ls` on its own lists the current working directory.
-- `cd [path]` changes the current working directory.
-- Most commands take options that begin with a single `-`.
-- Directory names in a path are separated with `/` on Unix, but `\` on Windows.
-- `/` on its own is the root directory of the whole file system.
-- An absolute path specifies a location from the root of the file system.
-- A relative path specifies a location starting from the current location.
-- `.` on its own means 'the current directory'; `..` means 'the directory above the current one'.
+- Das Dateisystem ist für die Verwaltung von Informationen auf der Festplatte zuständig.
+- Informationen werden in Dateien gespeichert, die wiederum in Verzeichnissen (Ordnern)
+  abgelegt sind.
+- Verzeichnisse können auch andere Verzeichnisse speichern, die dann einen
+  Verzeichnisbaum bilden.
+- `pwd` gibt das aktuelle Arbeitsverzeichnis des Benutzers aus.
+- `ls [path]` gibt eine Auflistung einer bestimmten Datei oder eines bestimmten
+  Verzeichnisses aus; `ls` allein listet das aktuelle Arbeitsverzeichnis auf.
+- `cd [path]` ändert das aktuelle Arbeitsverzeichnis.
+- Die meisten Befehle nehmen Optionen an, die mit einem einzelnen `-` beginnen.
+- Verzeichnisnamen in einem Pfad werden unter Unix mit `/` getrennt, unter Windows
+  jedoch mit `\`.
+- `/` allein ist das Stammverzeichnis des gesamten Dateisystems.
+- Ein absoluter Pfad gibt einen Ort an, der von der Wurzel des Dateisystems ausgeht.
+- Ein relativer Pfad gibt einen Ort an, der vom aktuellen Ort ausgeht.
+- `.` allein bedeutet 'das aktuelle Verzeichnis'; `..` bedeutet 'das Verzeichnis über
+  dem aktuellen'.
 
 ::::::::::::::::::::::::::::::::::::::::::::::::::
+
 
 

@@ -1,51 +1,55 @@
 ---
-title: Loops
+title: Schleifen
 teaching: 40
 exercises: 10
 ---
 
+
 ::::::::::::::::::::::::::::::::::::::: objectives
 
-- Write a loop that applies one or more commands separately to each file in a set of files.
-- Trace the values taken on by a loop variable during execution of the loop.
-- Explain the difference between a variable's name and its value.
-- Explain why spaces and some punctuation characters shouldn't be used in file names.
-- Demonstrate how to see what commands have recently been executed.
-- Re-run recently executed commands without retyping them.
+- Schreiben Sie eine Schleife, die einen oder mehrere Befehle separat auf jede Datei in
+  einer Gruppe von Dateien anwendet.
+- Verfolgen Sie die Werte, die eine Schleifenvariable während der Ausführung der
+  Schleife annimmt.
+- Erkläre den Unterschied zwischen dem Namen einer Variablen und ihrem Wert.
+- Erkläre, warum Leerzeichen und einige Satzzeichen nicht in Dateinamen verwendet werden
+  sollten.
+- Demonstrieren Sie, wie Sie sehen können, welche Befehle kürzlich ausgeführt worden
+  sind.
+- Wiederholung kürzlich ausgeführter Befehle, ohne sie neu zu tippen.
 
 ::::::::::::::::::::::::::::::::::::::::::::::::::
 
 :::::::::::::::::::::::::::::::::::::::: questions
 
-- How can I perform the same actions on many different files?
+- Wie kann ich die gleichen Aktionen für viele verschiedene Dateien durchführen?
 
 ::::::::::::::::::::::::::::::::::::::::::::::::::
 
-**Loops** are a programming construct which allow us to repeat a command or set of commands
-for each item in a list.
-As such they are key to productivity improvements through automation.
-Similar to wildcards and tab completion, using loops also reduces the
-amount of typing required (and hence reduces the number of typing mistakes).
+**Schleifen** sind ein Programmierkonstrukt, das es uns ermöglicht, einen Befehl oder
+eine Reihe von Befehlen für jedes Element in einer Liste zu wiederholen. Als solche sind
+sie der Schlüssel zur Produktivitätssteigerung durch Automatisierung. Ähnlich wie bei
+Platzhaltern und der Tabulatorvervollständigung reduziert die Verwendung von Schleifen
+auch die Anzahl der erforderlichen Eingaben (und damit die Anzahl der Tippfehler).
 
-Suppose we have several hundred genome data files named `basilisk.dat`, `minotaur.dat`, and
-`unicorn.dat`.
-For this example, we'll use the `exercise-data/creatures` directory which only has three
-example files,
-but the principles can be applied to many many more files at once.
+Angenommen, wir haben mehrere hundert Genomdateien mit den Namen `basilisk.dat`,
+`minotaur.dat` und `unicorn.dat`. Für dieses Beispiel verwenden wir das Verzeichnis
+`exercise-data/creatures`, das nur drei Beispieldateien enthält, aber die Prinzipien
+können auf viele weitere Dateien gleichzeitig angewendet werden.
 
-The structure of these files is the same: the common name, classification, and updated date are
-presented on the first three lines, with DNA sequences on the following lines.
-Let's look at the files:
+Die Struktur dieser Dateien ist die gleiche: der gemeinsame Name, die Klassifizierung
+und das Aktualisierungsdatum werden in den ersten drei Zeilen angegeben, die
+DNA-Sequenzen in den folgenden Zeilen. Schauen wir uns die Dateien an:
 
 ```bash
 $ head -n 5 basilisk.dat minotaur.dat unicorn.dat
 ```
 
-We would like to print out the classification for each species, which is given on the second
-line of each file.
-For each file, we would need to execute the command `head -n 2` and pipe this to `tail -n 1`.
-We'll use a loop to solve this problem, but first let's look at the general form of a loop,
-using the pseudo-code below:
+Wir möchten die Klassifizierung für jede Art ausgeben, die in der zweiten Zeile jeder
+Datei angegeben ist. Für jede Datei müssten wir den Befehl `head -n 2` ausführen und
+diesen an `tail -n 1` weiterleiten. Wir werden eine Schleife verwenden, um dieses
+Problem zu lösen, aber sehen wir uns zunächst die allgemeine Form einer Schleife an,
+indem wir den folgenden Pseudocode verwenden:
 
 ```bash
 # The word "for" indicates the start of a "For-loop" command
@@ -58,7 +62,7 @@ do
 done  
 ```
 
-and we can apply this to our example like this:
+und wir können dies auf unser Beispiel wie folgt anwenden:
 
 ```bash
 $ for filename in basilisk.dat minotaur.dat unicorn.dat
@@ -77,74 +81,69 @@ unicorn.dat
 CLASSIFICATION: equus monoceros
 ```
 
-:::::::::::::::::::::::::::::::::::::::::  callout
+::::::::::::::::::::::::::::::::::::::::: callout
 
-## Follow the Prompt
+## Folgen Sie der Eingabeaufforderung
 
-The shell prompt changes from `$` to `>` and back again as we were
-typing in our loop. The second prompt, `>`, is different to remind
-us that we haven't finished typing a complete command yet. A semicolon, `;`,
-can be used to separate two commands written on a single line.
-
-
-::::::::::::::::::::::::::::::::::::::::::::::::::
-
-When the shell sees the keyword `for`,
-it knows to repeat a command (or group of commands) once for each item in a list.
-Each time the loop runs (called an iteration), an item in the list is assigned in sequence to
-the **variable**, and the commands inside the loop are executed, before moving on to
-the next item in the list.
-Inside the loop,
-we call for the variable's value by putting `$` in front of it.
-The `$` tells the shell interpreter to treat
-the variable as a variable name and substitute its value in its place,
-rather than treat it as text or an external command.
-
-In this example, the list is three filenames: `basilisk.dat`, `minotaur.dat`, and `unicorn.dat`.
-Each time the loop iterates, we first use `echo` to print the value that the variable
-`$filename` currently holds. This is not necessary for the result, but beneficial for us here to
-have an easier time to follow along.
-Next, we will run the `head` command on the file currently referred to by `$filename`.
-The first time through the loop, `$filename` is `basilisk.dat`.
-The interpreter runs the command `head` on `basilisk.dat`
-and pipes the first two lines to the `tail` command,
-which then prints the second line of `basilisk.dat`.
-For the second iteration, `$filename` becomes
-`minotaur.dat`. This time, the shell runs `head` on `minotaur.dat`
-and pipes the first two lines to the `tail` command,
-which then prints the second line of `minotaur.dat`.
-For the third iteration, `$filename` becomes
-`unicorn.dat`, so the shell runs the `head` command on that file,
-and `tail` on the output of that.
-Since the list was only three items, the shell exits the `for` loop.
-
-:::::::::::::::::::::::::::::::::::::::::  callout
-
-## Same Symbols, Different Meanings
-
-Here we see `>` being used as a shell prompt, whereas `>` is also
-used to redirect output.
-Similarly, `$` is used as a shell prompt, but, as we saw earlier,
-it is also used to ask the shell to get the value of a variable.
-
-If the *shell* prints `>` or `$` then it expects you to type something,
-and the symbol is a prompt.
-
-If *you* type `>` or `$` yourself, it is an instruction from you that
-the shell should redirect output or get the value of a variable.
+Der Shell-Prompt wechselt von `$` zu `>` und wieder zurück, während wir in unserer
+Schleife tippen. Der zweite Prompt, `>`, ist anders, um uns daran zu erinnern, dass wir
+noch nicht mit der Eingabe eines kompletten Befehls fertig sind. Ein Semikolon, `;`,
+kann verwendet werden, um zwei Befehle zu trennen, die in einer einzigen Zeile stehen.
 
 
 ::::::::::::::::::::::::::::::::::::::::::::::::::
 
-When using variables it is also
-possible to put the names into curly braces to clearly delimit the variable
-name: `$filename` is equivalent to `${filename}`, but is different from
-`${file}name`. You may find this notation in other people's programs.
+Wenn die Shell das Schlüsselwort `for` sieht, weiß sie, dass sie einen Befehl (oder eine
+Gruppe von Befehlen) für jedes Element in einer Liste einmal wiederholen muss. Jedes
+Mal, wenn die Schleife läuft (Iteration genannt), wird ein Eintrag in der Liste der
+Reihe nach der **Variablen** zugewiesen, und die Befehle innerhalb der Schleife werden
+ausgeführt, bevor zum nächsten Eintrag in der Liste übergegangen wird. Innerhalb der
+Schleife fragen wir den Wert der Variable ab, indem wir ihr `$` voranstellen. Das `$`
+weist den Shell-Interpreter an, die Variable als Variablennamen zu behandeln und ihren
+Wert an ihrer Stelle zu ersetzen, anstatt sie als Text oder externen Befehl zu
+behandeln.
 
-We have called the variable in this loop `filename`
-in order to make its purpose clearer to human readers.
-The shell itself doesn't care what the variable is called;
-if we wrote this loop as:
+In diesem Beispiel besteht die Liste aus drei Dateinamen: `basilisk.dat`,
+`minotaur.dat`, und `unicorn.dat`. Jedes Mal, wenn die Schleife durchläuft, verwenden
+wir zunächst `echo`, um den Wert auszugeben, den die Variable `$filename` gerade hat.
+Dies ist für das Ergebnis nicht notwendig, aber für uns hier von Vorteil, um leichter
+folgen zu können. Als Nächstes führen wir den Befehl `head` in der Datei aus, auf die
+`$filename` gerade verweist. Beim ersten Durchlauf der Schleife ist `$filename`
+`basilisk.dat`. Der Interpreter führt den Befehl `head` auf `basilisk.dat` aus und
+leitet die ersten beiden Zeilen an den Befehl `tail` weiter, der dann die zweite Zeile
+von `basilisk.dat` ausgibt. Bei der zweiten Iteration wird `$filename` zu
+`minotaur.dat`. Dieses Mal lässt die Shell `head` auf `minotaur.dat` laufen und leitet
+die ersten beiden Zeilen an den Befehl `tail` weiter, der dann die zweite Zeile von
+`minotaur.dat` ausgibt. Bei der dritten Iteration wird `$filename` zu `unicorn.dat`,
+also führt die Shell den Befehl `head` auf dieser Datei aus, und `tail` auf der Ausgabe
+davon. Da die Liste nur drei Einträge enthielt, verlässt die Shell die `for`-Schleife.
+
+::::::::::::::::::::::::::::::::::::::::: callout
+
+## Gleiche Symbole, unterschiedliche Bedeutungen
+
+Hier sehen wir, dass `>` als Shell-Prompt verwendet wird, während `>` auch zur Umleitung
+der Ausgabe verwendet wird. In ähnlicher Weise wird `$` als Shell-Prompt benutzt, aber,
+wie wir zuvor gesehen haben, wird es auch benutzt, um die Shell zu bitten, den Wert
+einer Variablen zu erhalten.
+
+Wenn die *Shell* `>` oder `$` ausgibt, erwartet sie, dass Sie etwas eingeben, und das
+Symbol ist ein Prompt.
+
+Wenn *Sie* selbst `>` oder `$` eintippen, ist das eine Anweisung von Ihnen, dass die
+Shell die Ausgabe umleiten oder den Wert einer Variablen holen soll.
+
+
+::::::::::::::::::::::::::::::::::::::::::::::::::
+
+Bei der Verwendung von Variablen ist es auch möglich, die Namen in geschweifte Klammern
+zu setzen, um den Variablennamen klar abzugrenzen: `$filename` entspricht `${filename}`,
+ist aber anders als `${file}name`. Diese Schreibweise finden Sie vielleicht auch in
+anderen Programmen.
+
+Wir haben die Variable in dieser Schleife `filename` genannt, um ihren Zweck für den
+menschlichen Leser zu verdeutlichen. Der Shell selbst ist es egal, wie die Variable
+genannt wird; wenn wir diese Schleife so schreiben würden:
 
 ```bash
 $ for x in basilisk.dat minotaur.dat unicorn.dat
@@ -153,7 +152,7 @@ $ for x in basilisk.dat minotaur.dat unicorn.dat
 > done
 ```
 
-or:
+oder:
 
 ```bash
 $ for temperature in basilisk.dat minotaur.dat unicorn.dat
@@ -162,28 +161,27 @@ $ for temperature in basilisk.dat minotaur.dat unicorn.dat
 > done
 ```
 
-it would work exactly the same way.
-*Don't do this.*
-Programs are only useful if people can understand them,
-so meaningless names (like `x`) or misleading names (like `temperature`)
-increase the odds that the program won't do what its readers think it does.
+Es würde genau so funktionieren. *Tun Sie das nicht.* Programme sind nur dann nützlich,
+wenn die Leute sie verstehen können, daher erhöhen bedeutungslose Namen (wie `x`) oder
+irreführende Namen (wie `temperature`) die Wahrscheinlichkeit, dass das Programm nicht
+das tut, was seine Leser denken, dass es tut.
 
-In the above examples, the variables (`thing`, `filename`, `x` and `temperature`)
-could have been given any other name, as long as it is meaningful to both the person
-writing the code and the person reading it.
+In den obigen Beispielen hätte man den Variablen (`thing`, `filename`, `x` und
+`temperature`) jeden anderen Namen geben können, solange er sowohl für die Person, die
+den Code schreibt, als auch für die Person, die ihn liest, sinnvoll ist.
 
-Note also that loops can be used for other things than filenames, like a list of numbers
-or a subset of data.
+Beachten Sie auch, dass Schleifen für andere Dinge als Dateinamen verwendet werden
+können, wie z.B. eine Liste von Zahlen oder eine Teilmenge von Daten.
 
-:::::::::::::::::::::::::::::::::::::::  challenge
+::::::::::::::::::::::::::::::::::::::: challenge
 
-## Write your own loop
+## Schreiben Sie Ihre eigene Schleife
 
-How would you write a loop that echoes all 10 numbers from 0 to 9?
+Wie würden Sie eine Schleife schreiben, die alle 10 Zahlen von 0 bis 9 als Echo ausgibt?
 
-:::::::::::::::  solution
+::::::::::::::: solution
 
-## Solution
+## Lösung
 
 ```bash
 $ for loop_variable in 0 1 2 3 4 5 6 7 8 9
@@ -209,18 +207,18 @@ $ for loop_variable in 0 1 2 3 4 5 6 7 8 9
 
 ::::::::::::::::::::::::::::::::::::::::::::::::::
 
-:::::::::::::::::::::::::::::::::::::::  challenge
+::::::::::::::::::::::::::::::::::::::: challenge
 
-## Variables in Loops
+## Variablen in Schleifen
 
-This exercise refers to the `shell-lesson-data/exercise-data/alkanes` directory.
-`ls *.pdb` gives the following output:
+Diese Übung bezieht sich auf das Verzeichnis `shell-lesson-data/exercise-data/alkanes`.
+`ls *.pdb` gibt die folgende Ausgabe:
 
 ```output
 cubane.pdb  ethane.pdb  methane.pdb  octane.pdb  pentane.pdb  propane.pdb
 ```
 
-What is the output of the following code?
+Was ist die Ausgabe des folgenden Codes?
 
 ```bash
 $ for datafile in *.pdb
@@ -229,7 +227,7 @@ $ for datafile in *.pdb
 > done
 ```
 
-Now, what is the output of the following code?
+Wie lautet nun die Ausgabe des folgenden Codes?
 
 ```bash
 $ for datafile in *.pdb
@@ -238,18 +236,16 @@ $ for datafile in *.pdb
 > done
 ```
 
-Why do these two loops give different outputs?
+Warum geben diese beiden Schleifen unterschiedliche Ergebnisse aus?
 
-:::::::::::::::  solution
+::::::::::::::: solution
 
-## Solution
+## Lösung
 
-The first code block gives the same output on each iteration through
-the loop.
-Bash expands the wildcard `*.pdb` within the loop body (as well as
-before the loop starts) to match all files ending in `.pdb`
-and then lists them using `ls`.
-The expanded loop would look like this:
+Der erste Codeblock gibt bei jeder Iteration der Schleife die gleiche Ausgabe. Bash
+erweitert den Platzhalter `*.pdb` innerhalb des Schleifenkörpers (sowie vor dem Start
+der Schleife), um alle Dateien zu finden, die auf `.pdb` enden, und listet sie dann mit
+`ls` auf. Die erweiterte Schleife würde wie folgt aussehen:
 
 ```bash
 $ for datafile in cubane.pdb  ethane.pdb  methane.pdb  octane.pdb  pentane.pdb  propane.pdb
@@ -267,9 +263,8 @@ cubane.pdb  ethane.pdb  methane.pdb  octane.pdb  pentane.pdb  propane.pdb
 cubane.pdb  ethane.pdb  methane.pdb  octane.pdb  pentane.pdb  propane.pdb
 ```
 
-The second code block lists a different file on each loop iteration.
-The value of the `datafile` variable is evaluated using `$datafile`,
-and then listed using `ls`.
+Der zweite Codeblock listet bei jeder Schleifeniteration eine andere Datei auf. Der Wert
+der Variable `datafile` wird mit `$datafile` ausgewertet und dann mit `ls` aufgelistet.
 
 ```output
 cubane.pdb
@@ -284,12 +279,12 @@ propane.pdb
 
 ::::::::::::::::::::::::::::::::::::::::::::::::::
 
-:::::::::::::::::::::::::::::::::::::::  challenge
+::::::::::::::::::::::::::::::::::::::: challenge
 
-## Limiting Sets of Files
+## Begrenzung von Dateimengen
 
-What would be the output of running the following loop in the
-`shell-lesson-data/exercise-data/alkanes` directory?
+Was wäre die Ausgabe, wenn die folgende Schleife im Verzeichnis
+`shell-lesson-data/exercise-data/alkanes` ausgeführt würde?
 
 ```bash
 $ for filename in c*
@@ -298,22 +293,24 @@ $ for filename in c*
 > done
 ```
 
-1. No files are listed.
-2. All files are listed.
-3. Only `cubane.pdb`, `octane.pdb` and `pentane.pdb` are listed.
-4. Only `cubane.pdb` is listed.
+1. Es sind keine Dateien aufgelistet.
+2. Alle Dateien sind aufgelistet.
+3. Nur `cubane.pdb`, `octane.pdb` und `pentane.pdb` sind aufgeführt.
+4. Nur `cubane.pdb` ist aufgeführt.
 
-:::::::::::::::  solution
+::::::::::::::: solution
 
-## Solution
+## Lösung
 
-4 is the correct answer. `*` matches zero or more characters, so any file name starting with
-the letter c, followed by zero or more other characters will be matched.
+4 ist die richtige Antwort.`*` passt auf null oder mehr Zeichen, so dass jeder
+Dateiname, der mit dem Buchstaben c beginnt, gefolgt von null oder mehr anderen Zeichen,
+gefunden wird.
 
 
 :::::::::::::::::::::::::
 
-How would the output differ from using this command instead?
+Wie würde sich die Ausgabe unterscheiden, wenn stattdessen dieser Befehl verwendet
+würde?
 
 ```bash
 $ for filename in *c*
@@ -322,18 +319,19 @@ $ for filename in *c*
 > done
 ```
 
-1. The same files would be listed.
-2. All the files are listed this time.
-3. No files are listed this time.
-4. The files `cubane.pdb` and `octane.pdb` will be listed.
-5. Only the file `octane.pdb` will be listed.
+1. Die gleichen Dateien würden aufgelistet werden.
+2. Diesmal werden alle Dateien aufgelistet.
+3. Diesmal werden keine Dateien aufgelistet.
+4. Die Dateien `cubane.pdb` und `octane.pdb` werden aufgelistet.
+5. Es wird nur die Datei `octane.pdb` aufgelistet.
 
-:::::::::::::::  solution
+::::::::::::::: solution
 
-## Solution
+## Lösung
 
-4 is the correct answer. `*` matches zero or more characters, so a file name with zero or more
-characters before a letter c and zero or more characters after the letter c will be matched.
+4 ist die richtige Antwort.`*` passt auf null oder mehr Zeichen, also wird ein Dateiname
+mit null oder mehr Zeichen vor dem Buchstaben c und null oder mehr Zeichen nach dem
+Buchstaben c gefunden.
 
 
 
@@ -341,11 +339,12 @@ characters before a letter c and zero or more characters after the letter c will
 
 ::::::::::::::::::::::::::::::::::::::::::::::::::
 
-:::::::::::::::::::::::::::::::::::::::  challenge
+::::::::::::::::::::::::::::::::::::::: challenge
 
-## Saving to a File in a Loop - Part One
+## Speichern in einer Datei in einer Schleife - Teil eins
 
-In the `shell-lesson-data/exercise-data/alkanes` directory, what is the effect of this loop?
+Was ist die Auswirkung dieser Schleife im Verzeichnis
+`shell-lesson-data/exercise-data/alkanes`?
 
 ```bash
 for alkanes in *.pdb
@@ -355,35 +354,33 @@ do
 done
 ```
 
-1. Prints `cubane.pdb`, `ethane.pdb`, `methane.pdb`, `octane.pdb`, `pentane.pdb` and
-  `propane.pdb`, and the text from `propane.pdb` will be saved to a file called `alkanes.pdb`.
-2. Prints `cubane.pdb`, `ethane.pdb`, and `methane.pdb`, and the text from all three files
-  would be concatenated and saved to a file called `alkanes.pdb`.
-3. Prints `cubane.pdb`, `ethane.pdb`, `methane.pdb`, `octane.pdb`, and `pentane.pdb`,
-  and the text from `propane.pdb` will be saved to a file called `alkanes.pdb`.
-4. None of the above.
+1. Druckt `cubane.pdb`, `ethane.pdb`, `methane.pdb`, `octane.pdb`, `pentane.pdb` und
+   `propane.pdb`, und der Text von `propane.pdb` wird in einer Datei namens
+   `alkanes.pdb` gespeichert.
+2. Druckt `cubane.pdb`, `ethane.pdb` und `methane.pdb`, und der Text aus allen drei
+   Dateien wird zusammengefügt und in einer Datei namens `alkanes.pdb` gespeichert.
+3. Druckt `cubane.pdb`, `ethane.pdb`, `methane.pdb`, `octane.pdb`, und `pentane.pdb`,
+   und der Text von `propane.pdb` wird in einer Datei namens `alkanes.pdb` gespeichert.
+4. Keine der oben genannten.
 
-:::::::::::::::  solution
+::::::::::::::: solution
 
-## Solution
+## Lösung
 
-1. The text from each file in turn gets written to the `alkanes.pdb` file.
-  However, the file gets overwritten on each loop iteration, so the final content of
-  `alkanes.pdb`
-  is the text from the `propane.pdb` file.
-  
-  
+1. Der Text aus jeder Datei wird der Reihe nach in die Datei `alkanes.pdb` geschrieben.
+   Allerdings wird die Datei bei jedem Schleifendurchlauf überschrieben, so dass der
+   endgültige Inhalt von `alkanes.pdb` der Text aus der Datei `propane.pdb` ist.
 
 :::::::::::::::::::::::::
 
 ::::::::::::::::::::::::::::::::::::::::::::::::::
 
-:::::::::::::::::::::::::::::::::::::::  challenge
+::::::::::::::::::::::::::::::::::::::: challenge
 
-## Saving to a File in a Loop - Part Two
+## Speichern in einer Datei in einer Schleife - Teil Zwei
 
-Also in the `shell-lesson-data/exercise-data/alkanes` directory,
-what would be the output of the following loop?
+Was wäre die Ausgabe der folgenden Schleife, ebenfalls im Verzeichnis
+`shell-lesson-data/exercise-data/alkanes`?
 
 ```bash
 for datafile in *.pdb
@@ -392,21 +389,23 @@ do
 done
 ```
 
-1. All of the text from `cubane.pdb`, `ethane.pdb`, `methane.pdb`, `octane.pdb`, and
-  `pentane.pdb` would be concatenated and saved to a file called `all.pdb`.
-2. The text from `ethane.pdb` will be saved to a file called `all.pdb`.
-3. All of the text from `cubane.pdb`, `ethane.pdb`, `methane.pdb`, `octane.pdb`, `pentane.pdb`
-  and `propane.pdb` would be concatenated and saved to a file called `all.pdb`.
-4. All of the text from `cubane.pdb`, `ethane.pdb`, `methane.pdb`, `octane.pdb`, `pentane.pdb`
-  and `propane.pdb` would be printed to the screen and saved to a file called `all.pdb`.
+1. Der gesamte Text von `cubane.pdb`, `ethane.pdb`, `methane.pdb`, `octane.pdb` und
+   `pentane.pdb` würde verkettet und in einer Datei namens `all.pdb` gespeichert.
+2. Der Text von `ethane.pdb` wird in einer Datei namens `all.pdb` gespeichert.
+3. Der gesamte Text von `cubane.pdb`, `ethane.pdb`, `methane.pdb`, `octane.pdb`,
+   `pentane.pdb` und `propane.pdb` würde konkateniert und in einer Datei namens
+   `all.pdb` gespeichert.
+4. Der gesamte Text von `cubane.pdb`, `ethane.pdb`, `methane.pdb`, `octane.pdb`,
+   `pentane.pdb` und `propane.pdb` würde auf dem Bildschirm ausgegeben und in einer
+   Datei namens `all.pdb` gespeichert.
 
-:::::::::::::::  solution
+::::::::::::::: solution
 
-## Solution
+## Lösung
 
-3 is the correct answer. `>>` appends to a file, rather than overwriting it with the redirected
-output from a command.
-Given the output from the `cat` command has been redirected, nothing is printed to the screen.
+3 ist die richtige Antwort. `>>` hängt an eine Datei an, anstatt sie mit der
+umgeleiteten Ausgabe eines Befehls zu überschreiben. Da die Ausgabe des Befehls `cat`
+umgeleitet wurde, wird nichts auf dem Bildschirm ausgegeben.
 
 
 
@@ -414,8 +413,9 @@ Given the output from the `cat` command has been redirected, nothing is printed 
 
 ::::::::::::::::::::::::::::::::::::::::::::::::::
 
-Let's continue with our example in the `shell-lesson-data/exercise-data/creatures` directory.
-Here's a slightly more complicated loop:
+Lassen Sie uns mit unserem Beispiel im Verzeichnis
+`shell-lesson-data/exercise-data/creatures` fortfahren. Hier ist eine etwas
+kompliziertere Schleife:
 
 ```bash
 $ for filename in *.dat
@@ -425,26 +425,24 @@ $ for filename in *.dat
 > done
 ```
 
-The shell starts by expanding `*.dat` to create the list of files it will process.
-The **loop body**
-then executes two commands for each of those files.
-The first command, `echo`, prints its command-line arguments to standard output.
-For example:
+Die Shell beginnt mit der Expansion von `*.dat`, um die Liste der zu verarbeitenden
+Dateien zu erstellen. Der **Schleifenkörper** führt dann zwei Befehle für jede dieser
+Dateien aus. Der erste Befehl, `echo`, gibt seine Befehlszeilenargumente auf der
+Standardausgabe aus. Zum Beispiel:
 
 ```bash
 $ echo hello there
 ```
 
-prints:
+druckt:
 
 ```output
 hello there
 ```
 
-In this case,
-since the shell expands `$filename` to be the name of a file,
-`echo $filename` prints the name of the file.
-Note that we can't write this as:
+Da die Shell in diesem Fall `$filename` als Name einer Datei expandiert, gibt `echo
+$filename` den Namen der Datei aus. Beachten Sie, dass wir dies nicht so schreiben
+können:
 
 ```bash
 $ for filename in *.dat
@@ -454,30 +452,27 @@ $ for filename in *.dat
 > done
 ```
 
-because then the first time through the loop,
-when `$filename` expanded to `basilisk.dat`, the shell would try to run `basilisk.dat` as
-a program.
-Finally,
-the `head` and `tail` combination selects lines 81-100
-from whatever file is being processed
-(assuming the file has at least 100 lines).
+weil dann beim ersten Durchlauf der Schleife, wenn `$filename` zu `basilisk.dat`
+expandiert, die Shell versuchen würde, `basilisk.dat` als Programm auszuführen.
+Schließlich wählt die Kombination `head` und `tail` die Zeilen 81-100 aus der zu
+verarbeitenden Datei aus (vorausgesetzt, die Datei hat mindestens 100 Zeilen).
 
-:::::::::::::::::::::::::::::::::::::::::  callout
+::::::::::::::::::::::::::::::::::::::::: callout
 
-## Spaces in Names
+## Leerzeichen in Namen
 
-Spaces are used to separate the elements of the list
-that we are going to loop over. If one of those elements
-contains a space character, we need to surround it with
-quotes, and do the same thing to our loop variable.
-Suppose our data files are named:
+Leerzeichen werden verwendet, um die Elemente der Liste zu trennen, über die wir eine
+Schleife laufen lassen wollen. Wenn eines dieser Elemente ein Leerzeichen enthält,
+müssen wir es mit Anführungszeichen umgeben und dasselbe mit unserer Schleifenvariablen
+tun. Angenommen, unsere Datendateien sind benannt:
 
 ```source
 red dragon.dat
 purple unicorn.dat
 ```
 
-To loop over these files, we would need to add double quotes like so:
+Um eine Schleife über diese Dateien zu ziehen, müssten wir doppelte Anführungszeichen
+wie folgt hinzufügen:
 
 ```bash
 $ for filename in "red dragon.dat" "purple unicorn.dat"
@@ -486,20 +481,21 @@ $ for filename in "red dragon.dat" "purple unicorn.dat"
 > done
 ```
 
-It is simpler to avoid using spaces (or other special characters) in filenames.
+Es ist einfacher, Leerzeichen (oder andere Sonderzeichen) in Dateinamen zu vermeiden.
 
-The files above don't exist, so if we run the above code, the `head` command will be unable
-to find them; however, the error message returned will show the name of the files it is
-expecting:
+Die obigen Dateien existieren nicht, wenn wir also den obigen Code ausführen, kann der
+Befehl `head` sie nicht finden; die zurückgegebene Fehlermeldung zeigt jedoch den Namen
+der erwarteten Dateien an:
 
 ```error
 head: cannot open ‘red dragon.dat' for reading: No such file or directory
 head: cannot open ‘purple unicorn.dat' for reading: No such file or directory
 ```
 
-Try removing the quotes around `$filename` in the loop above to see the effect of the quote
-marks on spaces. Note that we get a result from the loop command for unicorn.dat
-when we run this code in the `creatures` directory:
+Versuchen Sie, die Anführungszeichen um `$filename` in der obigen Schleife zu entfernen,
+um den Effekt der Anführungszeichen auf Leerzeichen zu sehen. Beachten Sie, dass wir ein
+Ergebnis des Schleifenbefehls für unicorn.dat erhalten, wenn wir diesen Code im
+Verzeichnis `creatures` ausführen:
 
 ```output
 head: cannot open ‘red' for reading: No such file or directory
@@ -513,31 +509,33 @@ CAAGTGTTCC
 
 ::::::::::::::::::::::::::::::::::::::::::::::::::
 
-We would like to modify each of the files in `shell-lesson-data/exercise-data/creatures`,
-but also save a version of the original files. We want to copy the original files to new
-files named `original-basilisk.dat` and `original-unicorn.dat`, for example. We can't use:
+Wir möchten jede der Dateien in `shell-lesson-data/exercise-data/creatures` ändern, aber
+auch eine Version der Originaldateien speichern. Wir wollen die Originaldateien in neue
+Dateien mit den Namen `original-basilisk.dat` und `original-unicorn.dat` kopieren. Wir
+können nicht verwenden:
 
 ```bash
 $ cp *.dat original-*.dat
 ```
 
-because that would expand to:
+aus, denn das würde expandieren zu:
 
 ```bash
 $ cp basilisk.dat minotaur.dat unicorn.dat original-*.dat
 ```
 
-This wouldn't back up our files, instead we get an error:
+Dies würde unsere Dateien nicht sichern, stattdessen bekommen wir einen Fehler:
 
 ```error
 cp: target `original-*.dat' is not a directory
 ```
 
-This problem arises when `cp` receives more than two inputs. When this happens, it expects the
-last input to be a directory where it can copy all the files it was passed. Since there is
-no directory named `original-*.dat` in the `creatures` directory, we get an error.
+Dieses Problem tritt auf, wenn `cp` mehr als zwei Eingaben erhält. Wenn das passiert,
+erwartet es, dass die letzte Eingabe ein Verzeichnis ist, in das es alle Dateien
+kopieren kann, die ihm übergeben wurden. Da es im Verzeichnis `creatures` kein
+Verzeichnis namens `original-*.dat` gibt, erhalten wir einen Fehler.
 
-Instead, we can use a loop:
+Stattdessen können wir eine Schleife verwenden:
 
 ```bash
 $ for filename in *.dat
@@ -546,53 +544,59 @@ $ for filename in *.dat
 > done
 ```
 
-This loop runs the `cp` command once for each filename.
-The first time,
-when `$filename` expands to `basilisk.dat`,
-the shell executes:
+Diese Schleife führt den Befehl `cp` einmal für jeden Dateinamen aus. Beim ersten Mal,
+wenn sich `$filename` zu `basilisk.dat` ausdehnt, führt die Shell ihn aus:
 
 ```bash
 cp basilisk.dat original-basilisk.dat
 ```
 
-The second time, the command is:
+Das zweite Mal lautet der Befehl:
 
 ```bash
 cp minotaur.dat original-minotaur.dat
 ```
 
-The third and last time, the command is:
+Das dritte und letzte Mal lautet der Befehl:
 
 ```bash
 cp unicorn.dat original-unicorn.dat
 ```
 
-Since the `cp` command does not normally produce any output, it's hard to check
-that the loop is working correctly. However, we learned earlier how to print strings
-using `echo`, and we can modify the loop to use `echo` to print our commands without
-actually executing them. As such we can check what commands *would be* run in the
-unmodified loop.
+Da der Befehl `cp` normalerweise keine Ausgabe erzeugt, ist es schwer zu überprüfen, ob
+die Schleife korrekt funktioniert. Wir haben jedoch bereits gelernt, wie man
+Zeichenketten mit `echo` ausgibt, und wir können die Schleife so modifizieren, dass sie
+`echo` verwendet, um unsere Befehle auszugeben, ohne sie tatsächlich auszuführen. So
+können wir prüfen, welche Befehle in der unveränderten Schleife ausgeführt werden
+*würden*.
 
-The following diagram
-shows what happens when the modified loop is executed and demonstrates how the
-judicious use of `echo` is a good debugging technique.
+Das folgende Diagramm zeigt, was passiert, wenn die geänderte Schleife ausgeführt wird,
+und demonstriert, dass die vernünftige Verwendung von `echo` eine gute Debugging-Technik
+ist.
 
-![](fig/shell_script_for_loop_flow_chart.svg){alt='The for loop "for filename in .dat; do echo cp $filename original-$filename;done" will successively assign the names of all ".dat" files in your currentdirectory to the variable "$filename" and then execute the command. With thefiles "basilisk.dat", "minotaur.dat" and "unicorn.dat" in the current directorythe loop will successively call the echo command three times and print threelines: "cp basislisk.dat original-basilisk.dat", then "cp minotaur.datoriginal-minotaur.dat" and finally "cp unicorn.datoriginal-unicorn.dat"'}
+![](fig/shell_script_for_loop_flow_chart.svg){alt="Die for-Schleife "for filename in
+.dat; do echo cp $filename original-$filename;done" weist der Variablen "$filename"
+nacheinander die Namen aller ".dat"-Dateien in Ihrem aktuellen Verzeichnis zu und führt
+dann den Befehl aus. Mit den Dateien "basilisk.dat", "minotaur.dat" und "unicorn.dat" im
+aktuellen Verzeichnis wird die Schleife nacheinander dreimal den Befehl echo aufrufen
+und drei Zeilen ausgeben: "cp basislisk.dat original-basilisk.dat", dann "cp
+minotaur.datoriginal-minotaur.dat" und schließlich "cp
+unicorn.datoriginal-unicorn.dat""}
 
-## Nelle's Pipeline: Processing Files
+## Nelle's Pipeline: Verarbeitung von Dateien
 
-Nelle is now ready to process her data files using `goostats.sh` ---
-a shell script written by her supervisor. This calculates some statistics from a
-protein sample file and takes two arguments:
+Nelle ist nun bereit, ihre Datendateien mit Hilfe von `goostats.sh` --- einem von ihrem
+Betreuer geschriebenen Shell-Skript zu verarbeiten. Dieses Skript berechnet einige
+Statistiken aus einer Protein-Probendatei und nimmt zwei Argumente entgegen:
 
-1. an input file (containing the raw data)
-2. an output file (to store the calculated statistics)
+1. eine Eingabedatei (die die Rohdaten enthält)
+2. eine Ausgabedatei (um die berechneten Statistiken zu speichern)
 
-Since she's still learning how to use the shell,
-she decides to build up the required commands in stages.
-Her first step is to make sure that she can select the right input files --- remember,
-these are ones whose names end in 'A' or 'B', rather than 'Z'.
-Moving to the `north-pacific-gyre` directory, Nelle types:
+Da sie immer noch lernt, wie man die Shell benutzt, beschließt sie, die benötigten
+Befehle schrittweise aufzubauen. Ihr erster Schritt ist es, sicherzustellen, dass sie
+die richtigen Eingabedateien auswählen kann --- erinnern Sie sich, das sind diejenigen,
+deren Namen auf 'A' oder 'B' enden, und nicht auf 'Z'. Nelle wechselt in das Verzeichnis
+`north-pacific-gyre` und tippt:
 
 ```bash
 $ cd
@@ -613,10 +617,10 @@ NENE02040B.txt
 NENE02043B.txt
 ```
 
-Her next step is to decide
-what to call the files that the `goostats.sh` analysis program will create.
-Prefixing each input file's name with 'stats' seems simple,
-so she modifies her loop to do that:
+Ihr nächster Schritt besteht darin, zu entscheiden, wie die Dateien heißen sollen, die
+das Analyseprogramm `goostats.sh` erstellen wird. Es scheint einfach zu sein, den Namen
+jeder Eingabedatei mit "stats" voranzustellen, also modifiziert sie ihre Schleife, um
+dies zu tun:
 
 ```bash
 $ for datafile in NENE*A.txt NENE*B.txt
@@ -634,55 +638,50 @@ NENE02040B.txt stats-NENE02040B.txt
 NENE02043B.txt stats-NENE02043B.txt
 ```
 
-She hasn't actually run `goostats.sh` yet,
-but now she's sure she can select the right files and generate the right output filenames.
+Sie hat `goostats.sh` noch nicht wirklich ausgeführt, aber jetzt ist sie sicher, dass
+sie die richtigen Dateien auswählen und die richtigen Ausgabedateinamen erzeugen kann.
 
-Typing in commands over and over again is becoming tedious,
-though,
-and Nelle is worried about making mistakes,
-so instead of re-entering her loop,
-she presses <kbd>↑</kbd>.
-In response,
-the shell redisplays the whole loop on one line
-(using semi-colons to separate the pieces):
+Das wiederholte Eingeben von Befehlen wird jedoch mühsam, und Nelle hat Angst, Fehler zu
+machen, also drückt sie, anstatt ihre Schleife erneut einzugeben, <kbd>↑</kbd>.
+Daraufhin gibt die Shell die gesamte Schleife in einer Zeile wieder (mit Semikolons zur
+Trennung der Teile):
 
 ```bash
 $ for datafile in NENE*A.txt NENE*B.txt; do echo $datafile stats-$datafile; done
 ```
 
-Using the <kbd>←</kbd>,
-Nelle navigates to the `echo` command and changes it to `bash goostats.sh`:
+Mit Hilfe des <kbd>←</kbd> navigiert Nelle zu dem Befehl `echo` und ändert ihn in `bash
+goostats.sh`:
 
 ```bash
 $ for datafile in NENE*A.txt NENE*B.txt; do bash goostats.sh $datafile stats-$datafile; done
 ```
 
-When she presses <kbd>Enter</kbd>,
-the shell runs the modified command.
-However, nothing appears to happen --- there is no output.
-After a moment, Nelle realizes that since her script doesn't print anything to the screen
-any longer, she has no idea whether it is running, much less how quickly.
-She kills the running command by typing <kbd>Ctrl</kbd>\+<kbd>C</kbd>,
-uses <kbd>↑</kbd> to repeat the command,
-and edits it to read:
+Wenn sie <kbd>Enter</kbd> drückt, führt die Shell den geänderten Befehl aus. Es scheint
+jedoch nichts zu passieren - es gibt keine Ausgabe. Nach einem Moment wird Nelle klar,
+dass sie, da ihr Skript nichts mehr auf dem Bildschirm ausgibt, keine Ahnung hat, ob es
+läuft, geschweige denn wie schnell. Sie beendet den laufenden Befehl, indem sie
+<kbd>Strg</kbd>\+<kbd>C</kbd> eintippt, verwendet <kbd>↑</kbd>, um den Befehl zu
+wiederholen, und ändert ihn so ab, dass er lautet:
 
 ```bash
 $ for datafile in NENE*A.txt NENE*B.txt; do echo $datafile;
 bash goostats.sh $datafile stats-$datafile; done
 ```
 
-:::::::::::::::::::::::::::::::::::::::::  callout
+::::::::::::::::::::::::::::::::::::::::: callout
 
-## Beginning and End
+## Anfang und Ende
 
-We can move to the beginning of a line in the shell by typing <kbd>Ctrl</kbd>\+<kbd>A</kbd>
-and to the end using <kbd>Ctrl</kbd>\+<kbd>E</kbd>.
+Wir können an den Anfang einer Zeile in der Shell gehen, indem wir
+<kbd>Strg</kbd>\+<kbd>A</kbd> eingeben und an das Ende mit
+<kbd>Strg</kbd>\+<kbd>E</kbd>.
 
 
 ::::::::::::::::::::::::::::::::::::::::::::::::::
 
-When she runs her program now,
-it produces one line of output every five seconds or so:
+Wenn sie ihr Programm jetzt ausführt, produziert es alle fünf Sekunden oder so eine
+Zeile an Ausgabe:
 
 ```output
 NENE01729A.txt
@@ -691,25 +690,20 @@ NENE01751A.txt
 ...
 ```
 
-1518 times 5 seconds,
-divided by 60,
-tells her that her script will take about two hours to run.
-As a final check,
-she opens another terminal window,
-goes into `north-pacific-gyre`,
-and uses `cat stats-NENE01729B.txt`
-to examine one of the output files.
-It looks good,
-so she decides to get some coffee and catch up on her reading.
+1518 mal 5 Sekunden, geteilt durch 60, sagt ihr, dass ihr Skript etwa zwei Stunden für
+die Ausführung brauchen wird. Als letzte Kontrolle öffnet sie ein weiteres
+Terminalfenster, geht in `north-pacific-gyre` und benutzt `cat stats-NENE01729B.txt`, um
+eine der Ausgabedateien zu untersuchen. Es sieht gut aus, also beschließt sie, sich
+einen Kaffee zu holen und ihre Lektüre fortzusetzen.
 
-:::::::::::::::::::::::::::::::::::::::::  callout
+::::::::::::::::::::::::::::::::::::::::: callout
 
-## Those Who Know History Can Choose to Repeat It
+## Diejenigen, die die Geschichte kennen, können wählen, sie zu wiederholen
 
-Another way to repeat previous work is to use the `history` command to
-get a list of the last few hundred commands that have been executed, and
-then to use `!123` (where '123' is replaced by the command number) to
-repeat one of those commands. For example, if Nelle types this:
+Eine andere Möglichkeit, frühere Arbeiten zu wiederholen, ist die Verwendung des Befehls
+`history`, um eine Liste der letzten paar hundert Befehle zu erhalten, die ausgeführt
+wurden, und dann `!123` (wobei '123' durch die Befehlsnummer ersetzt wird) zu verwenden,
+um einen dieser Befehle zu wiederholen. Wenn Nelle zum Beispiel dies tippt:
 
 ```bash
 $ history | tail -n 5
@@ -724,44 +718,44 @@ stats-$datafile; done
 460  history | tail -n 5
 ```
 
-then she can re-run `goostats.sh` on the files simply by typing
-`!459`.
+dann kann sie `goostats.sh` auf den Dateien erneut ausführen, indem sie einfach `!459`
+eingibt.
 
 
 ::::::::::::::::::::::::::::::::::::::::::::::::::
 
-:::::::::::::::::::::::::::::::::::::::::  callout
+::::::::::::::::::::::::::::::::::::::::: callout
 
-## Other History Commands
+## Andere History-Befehle
 
-There are a number of other shortcut commands for getting at the history.
+Es gibt eine Reihe anderer Kurzbefehle, um auf die Historie zuzugreifen.
 
-- <kbd>Ctrl</kbd>\+<kbd>R</kbd> enters a history search mode 'reverse-i-search' and finds the
-  most recent command in your history that matches the text you enter next.
-  Press <kbd>Ctrl</kbd>\+<kbd>R</kbd> one or more additional times to search for earlier matches.
-  You can then use the left and right arrow keys to choose that line and edit
-  it then hit <kbd>Return</kbd> to run the command.
-- `!!` retrieves the immediately preceding command
-  (you may or may not find this more convenient than using <kbd>↑</kbd>)
-- `!$` retrieves the last word of the last command.
-  That's useful more often than you might expect: after
-  `bash goostats.sh NENE01729B.txt stats-NENE01729B.txt`, you can type
-  `less !$` to look at the file `stats-NENE01729B.txt`, which is
-  quicker than doing <kbd>↑</kbd> and editing the command-line.
-  
+- <kbd>Strg</kbd>\+<kbd>R</kbd> schaltet in den History-Suchmodus 'reverse-i-search' und
+  findet den letzten Befehl in Ihrer History, der mit dem Text übereinstimmt, den Sie
+  als nächstes eingeben. Drücken Sie <kbd>Strg</kbd>\+<kbd>R</kbd> ein oder mehrere
+  Male, um nach früheren Übereinstimmungen zu suchen. Sie können dann mit der linken und
+  rechten Pfeiltaste diese Zeile auswählen und bearbeiten und dann <kbd>Return</kbd>
+  drücken, um den Befehl auszuführen.
+- `!!` ruft den unmittelbar vorhergehenden Befehl auf (Sie können dies bequemer finden
+  als <kbd>↑</kbd>)
+- `!$` holt das letzte Wort des letzten Befehls. Das ist öfter nützlich als man denkt:
+  nach `bash goostats.sh NENE01729B.txt stats-NENE01729B.txt` kann man `less !$`
+  eingeben, um sich die Datei `stats-NENE01729B.txt` anzusehen, was schneller ist als
+  <kbd>↑</kbd> und die Befehlszeile zu bearbeiten.
 
 ::::::::::::::::::::::::::::::::::::::::::::::::::
 
-:::::::::::::::::::::::::::::::::::::::  challenge
+::::::::::::::::::::::::::::::::::::::: challenge
 
-## Doing a Dry Run
+## Durchführung eines Trockenlaufs
 
-A loop is a way to do many things at once --- or to make many mistakes at
-once if it does the wrong thing. One way to check what a loop *would* do
-is to `echo` the commands it would run instead of actually running them.
+Eine Schleife ist eine Möglichkeit, viele Dinge auf einmal zu tun --- oder viele Fehler
+auf einmal zu machen, wenn sie das Falsche tut. Eine Möglichkeit zu überprüfen, was eine
+Schleife tun *würde*, ist, die Befehle, die sie ausführen würde, zu `echo`, anstatt sie
+tatsächlich auszuführen.
 
-Suppose we want to preview the commands the following loop will execute
-without actually running those commands:
+Angenommen, wir wollen eine Vorschau auf die Befehle, die die folgende Schleife
+ausführen wird, ohne diese Befehle tatsächlich auszuführen:
 
 ```bash
 $ for datafile in *.pdb
@@ -770,8 +764,8 @@ $ for datafile in *.pdb
 > done
 ```
 
-What is the difference between the two loops below, and which one would we
-want to run?
+Was ist der Unterschied zwischen den beiden Schleifen unten, und welche würden wir
+ausführen wollen?
 
 ```bash
 # Version 1
@@ -789,23 +783,22 @@ $ for datafile in *.pdb
 > done
 ```
 
-:::::::::::::::  solution
+::::::::::::::: solution
 
-## Solution
+## Lösung
 
-The second version is the one we want to run.
-This prints to screen everything enclosed in the quote marks, expanding the
-loop variable name because we have prefixed it with a dollar sign.
-It also *does not* modify nor create the file `all.pdb`, as the `>>`
-is treated literally as part of a string rather than as a
-redirection instruction.
+Die zweite Version ist die, die wir ausführen wollen. Sie gibt alles, was in den
+Anführungszeichen steht, auf dem Bildschirm aus, wobei der Name der Schleifenvariablen
+erweitert wird, da wir ihm ein Dollarzeichen vorangestellt haben. Sie *verändert* auch
+nicht die Datei `all.pdb`, da `>>` wörtlich als Teil einer Zeichenkette und nicht als
+Umleitungsanweisung behandelt wird.
 
-The first version appends the output from the command `echo cat $datafile`
-to the file, `all.pdb`. This file will just contain the list;
-`cat cubane.pdb`, `cat ethane.pdb`, `cat methane.pdb` etc.
+Die erste Version hängt die Ausgabe des Befehls `echo cat $datafile` an die Datei
+`all.pdb` an. Diese Datei enthält nur die Liste; `cat cubane.pdb`, `cat ethane.pdb`,
+`cat methane.pdb` usw.
 
-Try both versions for yourself to see the output! Be sure to open the
-`all.pdb` file to view its contents.
+Probieren Sie beide Versionen aus, um die Ausgabe zu sehen! Öffnen Sie unbedingt die
+Datei `all.pdb`, um ihren Inhalt zu sehen.
 
 
 
@@ -813,14 +806,13 @@ Try both versions for yourself to see the output! Be sure to open the
 
 ::::::::::::::::::::::::::::::::::::::::::::::::::
 
-:::::::::::::::::::::::::::::::::::::::  challenge
+::::::::::::::::::::::::::::::::::::::: challenge
 
-## Nested Loops
+## Verschachtelte Schleifen
 
-Suppose we want to set up a directory structure to organize
-some experiments measuring reaction rate constants with different compounds
-*and* different temperatures.  What would be the
-result of the following code:
+Angenommen, wir wollen eine Verzeichnisstruktur einrichten, um einige Experimente zur
+Messung der Reaktionsgeschwindigkeitskonstanten mit verschiedenen Verbindungen *und*
+verschiedenen Temperaturen zu organisieren. Was wäre das Ergebnis des folgenden Codes:
 
 ```bash
 $ for species in cubane ethane methane
@@ -832,15 +824,17 @@ $ for species in cubane ethane methane
 > done
 ```
 
-:::::::::::::::  solution
+::::::::::::::: solution
 
-## Solution
+## Lösung
 
-We have a nested loop, i.e. contained within another loop, so for each species
-in the outer loop, the inner loop (the nested loop) iterates over the list of
-temperatures, and creates a new directory for each combination.
+Wir haben eine geschachtelte Schleife, d.h. innerhalb einer anderen Schleife, so dass
+für jede Art in der äußeren Schleife die innere Schleife (die geschachtelte Schleife)
+über die Liste der Temperaturen iteriert und für jede Kombination ein neues Verzeichnis
+erstellt.
 
-Try running the code for yourself to see which directories are created!
+Versuchen Sie, den Code selbst auszuführen, um zu sehen, welche Verzeichnisse erstellt
+werden!
 
 
 
@@ -852,15 +846,23 @@ Try running the code for yourself to see which directories are created!
 
 :::::::::::::::::::::::::::::::::::::::: keypoints
 
-- A `for` loop repeats commands once for every thing in a list.
-- Every `for` loop needs a variable to refer to the thing it is currently operating on.
-- Use `$name` to expand a variable (i.e., get its value). `${name}` can also be used.
-- Do not use spaces, quotes, or wildcard characters such as '\*' or '?' in filenames, as it complicates variable expansion.
-- Give files consistent names that are easy to match with wildcard patterns to make it easy to select them for looping.
-- Use the up-arrow key to scroll up through previous commands to edit and repeat them.
-- Use <kbd>Ctrl</kbd>\+<kbd>R</kbd> to search through the previously entered commands.
-- Use `history` to display recent commands, and `![number]` to repeat a command by number.
+- Eine `for`-Schleife wiederholt die Befehle einmal für jedes Ding in einer Liste.
+- Jede `for`-Schleife braucht eine Variable, die auf das Ding verweist, mit dem sie
+  gerade arbeitet.
+- Verwenden Sie `$name`, um eine Variable zu expandieren (d.h. ihren Wert zu erhalten).
+  auch `${name}` kann verwendet werden.
+- Verwenden Sie keine Leerzeichen, Anführungszeichen oder Platzhalterzeichen wie '\*'
+  oder '?' in Dateinamen, da dies die Variablenexpansion erschwert.
+- Geben Sie den Dateien konsistente Namen, die leicht mit Wildcard-Mustern
+  übereinstimmen, um die Auswahl für die Schleife zu vereinfachen.
+- Benutzen Sie die Pfeil-nach-oben-Taste, um durch die vorherigen Befehle zu blättern
+  und sie zu bearbeiten und zu wiederholen.
+- Verwenden Sie <kbd>Strg</kbd>\+<kbd>R</kbd>, um die zuvor eingegebenen Befehle zu
+  durchsuchen.
+- Verwenden Sie `history`, um die letzten Befehle anzuzeigen, und `![number]`, um einen
+  Befehl nach Nummer zu wiederholen.
 
 ::::::::::::::::::::::::::::::::::::::::::::::::::
+
 
 
