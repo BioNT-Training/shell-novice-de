@@ -329,7 +329,7 @@
       </div>
       <hr></nav><main id="main-content" class="main-content"><div class="container lesson-content">
         <h1>Arbeiten mit Dateien und Verzeichnissen</h1>
-        <p>Zuletzt aktualisiert am 2025-03-23 |
+        <p>Zuletzt aktualisiert am 2025-10-23 |
 
         <a href="https://github.com/swcarpentry/shell-novice/edit/main/episodes/03-create.md" class="external-link">Diese Seite bearbeiten <i aria-hidden="true" data-feather="edit"></i></a></p>
 
@@ -415,9 +415,10 @@ dem Befehl <code>mkdir thesis</code> (der keine Ausgabe hat):</p>
 <pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" tabindex="-1"></a><span class="ex">$</span> mkdir thesis</span></code></pre>
 </div>
 <p>Wie der Name schon vermuten lässt, bedeutet <code>mkdir</code> ‘make
-directory’. Da <code>thesis</code> ein relativer Pfad ist (d.h. keinen
-führenden Schrägstrich hat, wie <code>/what/ever/thesis</code>), wird
-das neue Verzeichnis im aktuellen Arbeitsverzeichnis erstellt:</p>
+directory’ (‘Verzeichnis erstellen’). Da <code>thesis</code> ein
+relativer Pfad ist (d.h. keinen führenden Schrägstrich hat, wie
+<code>/what/ever/thesis</code>), wird das neue Verzeichnis im aktuellen
+Arbeitsverzeichnis erstellt:</p>
 <div class="codewrapper sourceCode" id="cb6">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
@@ -592,10 +593,10 @@ verschiedene Möglichkeiten, die Verwendung der Steuerungstaste zu
 beschreiben. Zum Beispiel können Sie eine Anweisung sehen, die
 <kbd>Steuertaste</kbd> zu drücken und, während Sie sie gedrückt halten,
 die <kbd>X</kbd>-Taste zu drücken, die wie folgt beschrieben wird:</p>
-<ul><li><code>Control-X</code></li>
-<li><code>Control+X</code></li>
-<li><code>Ctrl-X</code></li>
-<li><code>Ctrl+X</code></li>
+<ul><li><code>Strg-X</code></li>
+<li><code>Strg+X</code></li>
+<li><code>Strg-X</code></li>
+<li><code>Strg+X</code></li>
 <li><code>^X</code></li>
 <li><code>C-x</code></li>
 </ul><p>In nano sehen Sie am unteren Rand des Bildschirms
@@ -740,13 +741,13 @@ diesem Fall, wenn jemand in einem Dateiexplorer-Programm auf
 <p>In unserem <code>thesis</code> Verzeichnis haben wir eine Datei
 <code>draft.txt</code>, was kein besonders informativer Name ist, also
 ändern wir den Namen der Datei mit <code>mv</code>, was kurz für ‘move’
-ist:</p>
+(‘verschieben’) ist:</p>
 <div class="codewrapper sourceCode" id="cb18">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
 <pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb18-1"><a href="#cb18-1" tabindex="-1"></a><span class="ex">$</span> mv thesis/draft.txt thesis/quotes.txt</span></code></pre>
 </div>
-<p>Das erste Argument gibt an, was wir ‘verschieben’, während das zweite
+<p>Das erste Argument gibt an, was wir verschieben, während das zweite
 angibt, wohin es gehen soll. In diesem Fall verschieben wir
 <code>thesis/draft.txt</code> nach <code>thesis/quotes.txt</code>, was
 den gleichen Effekt hat wie das Umbenennen der Datei. Sicherlich zeigt
@@ -1689,7 +1690,7 @@ leistungsfähigeren Texteditor als Nano.</li>
   "url": "https://swcarpentry.github.io/shell-novice/03-create.html",
   "identifier": "https://swcarpentry.github.io/shell-novice/03-create.html",
   "dateCreated": "2014-10-22",
-  "dateModified": "2025-03-23",
+  "dateModified": "2025-10-23",
   "datePublished": "2025-10-23"
 }
 
