@@ -64,7 +64,7 @@ keine Ausgabe hat):
 $ mkdir thesis
 ```
 
-Wie der Name schon vermuten lässt, bedeutet `mkdir` 'make directory'. Da `thesis` ein
+Wie der Name schon vermuten lässt, bedeutet `mkdir` 'make directory' ('Verzeichnis erstellen'). Da `thesis` ein
 relativer Pfad ist (d.h. keinen führenden Schrägstrich hat, wie `/what/ever/thesis`),
 wird das neue Verzeichnis im aktuellen Arbeitsverzeichnis erstellt:
 
@@ -229,10 +229,10 @@ Möglichkeiten, die Verwendung der Steuerungstaste zu beschreiben. Zum Beispiel 
 Sie eine Anweisung sehen, die <kbd>Steuertaste</kbd> zu drücken und, während Sie sie
 gedrückt halten, die <kbd>X</kbd>-Taste zu drücken, die wie folgt beschrieben wird:
 
-- `Control-X`
-- `Control+X`
-- `Ctrl-X`
-- `Ctrl+X`
+- `Strg-X`
+- `Strg+X`
+- `Strg-X`
+- `Strg+X`
 - `^X`
 - `C-x`
 
@@ -339,14 +339,14 @@ $ cd ~/Desktop/shell-lesson-data/exercise-data/writing
 ```
 
 In unserem `thesis` Verzeichnis haben wir eine Datei `draft.txt`, was kein besonders
-informativer Name ist, also ändern wir den Namen der Datei mit `mv`, was kurz für 'move'
+informativer Name ist, also ändern wir den Namen der Datei mit `mv`, was kurz für 'move' ('verschieben')
 ist:
 
 ```bash
 $ mv thesis/draft.txt thesis/quotes.txt
 ```
 
-Das erste Argument gibt an, was wir 'verschieben', während das zweite angibt, wohin es
+Das erste Argument gibt an, was wir verschieben, während das zweite angibt, wohin es
 gehen soll. In diesem Fall verschieben wir `thesis/draft.txt` nach `thesis/quotes.txt`,
 was den gleichen Effekt hat wie das Umbenennen der Datei. Sicherlich zeigt uns `ls`,
 dass `thesis` nun eine Datei namens `quotes.txt` enthält:
