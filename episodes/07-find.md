@@ -300,7 +300,7 @@ tatsächliches 'o' passt.
 
 ::::::::::::::::::::::::::::::::::::::: challenge
 
-## Verfolgung einer Spezies
+## Nachverfolgung einer Spezies
 
 Leah hat mehrere hundert Datendateien in einem Verzeichnis gespeichert, von denen jede
 wie folgt formatiert ist:
@@ -372,7 +372,7 @@ $ bash count-species.sh bear .
 
 ::::::::::::::::::::::::::::::::::::::: challenge
 
-## Kleine Frauen
+## Little Women
 
 Sie und Ihr Freund, der gerade *Little Women* von Louisa May Alcott gelesen hat,
 streiten sich. Von den vier Schwestern im Buch, Jo, Meg, Beth und Amy, meint Ihr Freund,
