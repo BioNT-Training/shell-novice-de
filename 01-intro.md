@@ -113,7 +113,7 @@ nicht von diesen zusätzlichen Informationen ab, und sie sollten Ihnen auch nich
 stehen. Der einzige wichtige Punkt, auf den Sie sich konzentrieren sollten, ist das
 Zeichen `$ ` selbst, und wir werden später sehen, warum.
 
-Versuchen wir es also mit unserem ersten Befehl, `ls`, was kurz für listing ist. Dieser
+Versuchen wir es also mit unserem ersten Befehl, `ls`, was kurz für listing (also "auflisten") ist. Dieser
 Befehl listet den Inhalt des aktuellen Verzeichnisses auf:
 
 ```bash
@@ -191,9 +191,8 @@ Um ihre Aufgabe zu erfüllen, muss Nelle wissen, wie man:
 - Diese Lektion verwendet Bash, die Standard-Shell in vielen Unix-Implementierungen.
 - Programme können in der Bash durch Eingabe von Befehlen an der Eingabeaufforderung
   ausgeführt werden.
-- Die Hauptvorteile der Shell sind ihr hohes Verhältnis von Aktion zu Tastendruck, ihre
-  Unterstützung bei der Automatisierung von sich wiederholenden Aufgaben und ihre
-  Fähigkeit, auf vernetzte Maschinen zuzugreifen.
+- Die Hauptvorteile der Shell sind ihr hohes Verhältnis von ausgeführten Aktionen zu Tasteneingaben,
+  ihre Unterstützung bei der Automatisierung wiederkehrender Aufgaben und ihre Fähigkeit, auf vernetzte Rechner zuzugreifen.
 - Eine große Herausforderung bei der Verwendung der Shell kann darin bestehen, zu
   wissen, welche Befehle ausgeführt werden müssen und wie sie auszuführen sind.
 
