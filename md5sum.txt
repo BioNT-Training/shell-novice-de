@@ -12,6 +12,6 @@
 "episodes/07-find.md" "2d8f07603bbdae2daac7aa3dc93f01d9" "site/built/07-find.md" "2025-03-23"
 "instructors/instructor-notes.md" "268c22e48c8232538898bc35bad4ff0f" "site/built/instructor-notes.md" "2025-10-23"
 "learners/discuss.md" "7e657ac767b4123743fa63f3cdd20059" "site/built/discuss.md" "2025-03-23"
-"learners/reference.md" "1643f4e35d38023bbe6f6a7f9e294d6c" "site/built/reference.md" "2025-03-23"
+"learners/reference.md" "e611ea3d976514a22e1d8c68b39146c3" "site/built/reference.md" "2025-10-23"
 "learners/setup.md" "19d7360b77bee1f863cdd02db0fbace6" "site/built/setup.md" "2025-03-23"
 "profiles/learner-profiles.md" "b6deac741c56f07a60e0aeb11c0f638a" "site/built/learner-profiles.md" "2025-03-23"
