@@ -95,7 +95,7 @@ Anzahl der Zeichen bzw. die Anzahl der Wörter anzuzeigen.
 
 ::::::::::::::::::::::::::::::::::::::::: callout
 
-## Why Isn't Doing Anything?
+## Warum passiert nichts?
 
 Was passiert, wenn ein Befehl eine Datei verarbeiten soll, wir ihm aber keinen
 Dateinamen geben? Zum Beispiel, was passiert, wenn wir eingeben:
@@ -492,7 +492,7 @@ um ihre Leistung zu vervielfachen.
 
 ::::::::::::::::::::::::::::::::::::::: challenge
 
-## Pipe Reading Comprehension
+## Pipe Verständnisabfrage 
 
 Eine Datei namens `animals.csv` (im Ordner
 `shell-lesson-data/exercise-data/animal-counts`) enthält die folgenden Daten:
