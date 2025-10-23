@@ -66,7 +66,7 @@ Windows verwenden, nicht auf Hindernisse stoßen wie:
 
 - nicht herausfinden können, wo ihr Home-Verzeichnis ist (besonders wenn sie Cygwin
   benutzen);
-- nicht in der Lage, einen einfachen Texteditor auszuführen; und
+- nicht in der Lage sind, einen einfachen Texteditor auszuführen; und
 - die Shell weigert sich, Skripte auszuführen, die DOS-Zeilenenden enthalten.
 
 ## Vorbereitung auf den Unterricht
