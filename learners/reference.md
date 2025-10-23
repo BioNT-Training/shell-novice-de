@@ -7,13 +7,13 @@ title: Zusammenfassung der grundlegenden Befehle
 
 | Action       | Files | Folders      |
 | ------------ | ----- | ------------ |
-| Inspect      | ls    | ls           |
-| View content | cat   | ls           |
-| Navigate to  |       | cd           |
-| Move         | mv    | mv           |
-| Copy         | cp    | cp -r        |
-| Create       | nano  | mkdir        |
-| Delete       | rm    | rmdir, rm -r |
+| Inspizieren      | ls    | ls           |
+| Inhalt anzeigen | cat   | ls           |
+| In Verzeichnis navigieren  |       | cd           |
+| Verschieben        | mv    | mv           |
+| Kopieren         | cp    | cp -r        |
+| Erstellen       | nano  | mkdir        |
+| Löschen       | rm    | rmdir, rm -r |
 
 ## Dateisystem-Hierarchie
 
