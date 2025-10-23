@@ -325,7 +325,7 @@
       </div>
       <hr></nav><main id="main-content" class="main-content"><div class="container lesson-content">
         <h1>Schleifen</h1>
-        <p>Zuletzt aktualisiert am 2025-03-23 |
+        <p>Zuletzt aktualisiert am 2025-10-23 |
 
         <a href="https://github.com/swcarpentry/shell-novice/edit/main/episodes/05-loop.md" class="external-link">Diese Seite bearbeiten <i aria-hidden="true" data-feather="edit"></i></a></p>
 
@@ -404,13 +404,13 @@ verwenden:</p>
 <div class="codewrapper sourceCode" id="cb2">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" tabindex="-1"></a><span class="co"># The word "for" indicates the start of a "For-loop" command</span></span>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" tabindex="-1"></a><span class="co"># Das Wort „for“ kennzeichnet den Beginn eines „For-Schleifen“-Befehls.</span></span>
 <span id="cb2-2"><a href="#cb2-2" tabindex="-1"></a><span class="cf">for</span> thing <span class="kw">in</span> list_of_things </span>
-<span id="cb2-3"><a href="#cb2-3" tabindex="-1"></a><span class="co">#The word "do" indicates the start of job execution list</span></span>
+<span id="cb2-3"><a href="#cb2-3" tabindex="-1"></a><span class="co"># Das Wort „do“ kennzeichnet den Beginn der Jobausführungsliste.</span></span>
 <span id="cb2-4"><a href="#cb2-4" tabindex="-1"></a><span class="cf">do</span> </span>
-<span id="cb2-5"><a href="#cb2-5" tabindex="-1"></a>    <span class="co"># Indentation within the loop is not required, but aids legibility</span></span>
-<span id="cb2-6"><a href="#cb2-6" tabindex="-1"></a>    <span class="ex">operation_using/command</span> <span class="va">$thing</span> </span>
-<span id="cb2-7"><a href="#cb2-7" tabindex="-1"></a><span class="co"># The word "done" indicates the end of a loop</span></span>
+<span id="cb2-5"><a href="#cb2-5" tabindex="-1"></a>    <span class="co"># Einrückungen innerhalb der Schleife sind nicht erforderlich, verbessern jedoch die Lesbarkeit.</span></span>
+<span id="cb2-6"><a href="#cb2-6" tabindex="-1"></a>    <span class="ex">operation</span> oder command welches <span class="va">$thing</span> verwendet</span>
+<span id="cb2-7"><a href="#cb2-7" tabindex="-1"></a><span class="co"># Das Wort „done“ kennzeichnet das Ende einer Schleife.</span></span>
 <span id="cb2-8"><a href="#cb2-8" tabindex="-1"></a><span class="cf">done</span>  </span></code></pre>
 </div>
 <p>und wir können dies auf unser Beispiel wie folgt anwenden:</p>
@@ -566,7 +566,7 @@ Teilmenge von Daten.</p>
   Lösung
   </h4>
 </button>
-<div id="collapseSolution1" class="accordion-collapse collapse" aria-labelledby="headingSolution1" data-bs-parent="#accordionSolution1">
+<div id="collapseSolution1" class="accordion-collapse collapse" data-bs-parent="#accordionSolution1" aria-labelledby="headingSolution1">
 <div class="accordion-body">
 <div class="codewrapper sourceCode" id="cb7">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -640,7 +640,7 @@ aus?</p>
   Lösung
   </h4>
 </button>
-<div id="collapseSolution2" class="accordion-collapse collapse" aria-labelledby="headingSolution2" data-bs-parent="#accordionSolution2">
+<div id="collapseSolution2" class="accordion-collapse collapse" data-bs-parent="#accordionSolution2" aria-labelledby="headingSolution2">
 <div class="accordion-body">
 <p>Der erste Codeblock gibt bei jeder Iteration der Schleife die gleiche
 Ausgabe. Bash erweitert den Platzhalter <code>*.pdb</code> innerhalb des
@@ -718,7 +718,7 @@ würde?</p>
   Lösung
   </h4>
 </button>
-<div id="collapseSolution3" class="accordion-collapse collapse" aria-labelledby="headingSolution3" data-bs-parent="#accordionSolution3">
+<div id="collapseSolution3" class="accordion-collapse collapse" data-bs-parent="#accordionSolution3" aria-labelledby="headingSolution3">
 <div class="accordion-body">
 <p>4 ist die richtige Antwort.<code>*</code> passt auf null oder mehr
 Zeichen, so dass jeder Dateiname, der mit dem Buchstaben c beginnt,
@@ -763,7 +763,7 @@ werden aufgelistet.</li>
   Lösung
   </h4>
 </button>
-<div id="collapseSolution4" class="accordion-collapse collapse" aria-labelledby="headingSolution4" data-bs-parent="#accordionSolution4">
+<div id="collapseSolution4" class="accordion-collapse collapse" data-bs-parent="#accordionSolution4" aria-labelledby="headingSolution4">
 <div class="accordion-body">
 <p>4 ist die richtige Antwort.<code>*</code> passt auf null oder mehr
 Zeichen, also wird ein Dateiname mit null oder mehr Zeichen vor dem
@@ -817,7 +817,7 @@ in einer Datei namens <code>alkanes.pdb</code> gespeichert.</li>
   Lösung
   </h4>
 </button>
-<div id="collapseSolution5" class="accordion-collapse collapse" aria-labelledby="headingSolution5" data-bs-parent="#accordionSolution5">
+<div id="collapseSolution5" class="accordion-collapse collapse" data-bs-parent="#accordionSolution5" aria-labelledby="headingSolution5">
 <div class="accordion-body">
 <ol style="list-style-type: decimal"><li>Der Text aus jeder Datei wird der Reihe nach in die Datei
 <code>alkanes.pdb</code> geschrieben. Allerdings wird die Datei bei
@@ -873,7 +873,7 @@ einer Datei namens <code>all.pdb</code> gespeichert.</li>
   Lösung
   </h4>
 </button>
-<div id="collapseSolution6" class="accordion-collapse collapse" aria-labelledby="headingSolution6" data-bs-parent="#accordionSolution6">
+<div id="collapseSolution6" class="accordion-collapse collapse" data-bs-parent="#accordionSolution6" aria-labelledby="headingSolution6">
 <div class="accordion-body">
 <p>3 ist die richtige Antwort. <code>&gt;&gt;</code> hängt an eine Datei
 an, anstatt sie mit der umgeleiteten Ausgabe eines Befehls zu
@@ -1189,8 +1189,8 @@ holen und ihre Lektüre fortzusetzen.</p>
 </div>
 <span class="callout-header">Wichtig</span>
 <div id="diejenigen-die-die-geschichte-kennen-können-wählen-sie-zu-wiederholen" class="callout-inner">
-<h3 class="callout-title">Diejenigen, die die Geschichte kennen, können
-wählen, sie zu wiederholen</h3>
+<h3 class="callout-title">Diejenigen, die die “Geschichte” kennen,
+können wählen, sie zu wiederholen</h3>
 <div class="callout-content">
 <p>Eine andere Möglichkeit, frühere Arbeiten zu wiederholen, ist die
 Verwendung des Befehls <code>history</code>, um eine Liste der letzten
@@ -1303,7 +1303,7 @@ welche würden wir ausführen wollen?</p>
   Lösung
   </h4>
 </button>
-<div id="collapseSolution7" class="accordion-collapse collapse" aria-labelledby="headingSolution7" data-bs-parent="#accordionSolution7">
+<div id="collapseSolution7" class="accordion-collapse collapse" data-bs-parent="#accordionSolution7" aria-labelledby="headingSolution7">
 <div class="accordion-body">
 <p>Die zweite Version ist die, die wir ausführen wollen. Sie gibt alles,
 was in den Anführungszeichen steht, auf dem Bildschirm aus, wobei der
@@ -1355,7 +1355,7 @@ organisieren. Was wäre das Ergebnis des folgenden Codes:</p>
   Lösung
   </h4>
 </button>
-<div id="collapseSolution8" class="accordion-collapse collapse" aria-labelledby="headingSolution8" data-bs-parent="#accordionSolution8">
+<div id="collapseSolution8" class="accordion-collapse collapse" data-bs-parent="#accordionSolution8" aria-labelledby="headingSolution8">
 <div class="accordion-body">
 <p>Wir haben eine geschachtelte Schleife, d.h. innerhalb einer anderen
 Schleife, so dass für jede Art in der äußeren Schleife die innere
@@ -1455,7 +1455,7 @@ wiederholen.</li>
   "url": "https://swcarpentry.github.io/shell-novice/instructor/05-loop.html",
   "identifier": "https://swcarpentry.github.io/shell-novice/instructor/05-loop.html",
   "dateCreated": "2014-10-22",
-  "dateModified": "2025-03-23",
+  "dateModified": "2025-10-23",
   "datePublished": "2025-10-23"
 }
 
