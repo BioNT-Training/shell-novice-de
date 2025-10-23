@@ -621,7 +621,7 @@ auszuführen sind.</li>
 </div>
 </section></section><section id="aio-02-filedir"><p>Content from <a href="02-filedir.html">Dateien und Verzeichnisse durchsuchen</a></p>
 <hr>
-<p>Zuletzt aktualisiert am 2025-03-23 |
+<p>Zuletzt aktualisiert am 2025-10-23 |
 
         <a href="https://github.com/swcarpentry/shell-novice/edit/main/episodes/02-filedir.md" class="external-link">Diese Seite bearbeiten <i aria-hidden="true" data-feather="edit"></i></a></p>
 <div class="text-end">
@@ -693,17 +693,17 @@ befinden:</p>
 </div>
 <p>Hier ist die Antwort des Computers <code>/Users/nelle</code>, was
 Nelles <strong>Home-Verzeichnis</strong> ist:</p>
-<div id="variation-des-heimatverzeichnisses" class="callout">
+<div id="variation-des-homeverzeichnisses" class="callout">
 <div class="callout-square">
 <i class="callout-icon" data-feather="bell"></i>
 </div>
 <span class="callout-header">Wichtig</span>
-<div id="variation-des-heimatverzeichnisses" class="callout-inner">
-<h3 class="callout-title">Variation des Heimatverzeichnisses</h3>
+<div id="variation-des-homeverzeichnisses" class="callout-inner">
+<h3 class="callout-title">Variation des Homeverzeichnisses</h3>
 <div class="callout-content">
-<p>Der Pfad zum Heimatverzeichnis sieht auf verschiedenen
-Betriebssystemen unterschiedlich aus. Unter Linux kann er wie
-<code>/home/nelle</code> aussehen, und unter Windows wird er ähnlich wie
+<p>Der Pfad zum Homeverzeichnis sieht auf verschiedenen Betriebssystemen
+unterschiedlich aus. Unter Linux kann er wie <code>/home/nelle</code>
+aussehen, und unter Windows wird er ähnlich wie
 <code>C:\Documents and Settings\nelle</code> oder
 <code>C:\Users\nelle</code> sein. (Beachten Sie, dass es bei
 verschiedenen Windows-Versionen etwas anders aussehen kann.) In den
@@ -711,15 +711,15 @@ zukünftigen Beispielen haben wir die Mac-Ausgabe als Standard verwendet
 - die Linux- und Windows-Ausgabe kann leicht abweichen, sollte aber im
 Allgemeinen ähnlich sein.</p>
 <p>Wir nehmen auch an, dass Ihr <code>pwd</code>-Befehl das
-Heimatverzeichnis Ihres Benutzers zurückgibt. Wenn <code>pwd</code>
-etwas anderes zurückgibt, müssen Sie möglicherweise mit <code>cd</code>
+Homeverzeichnis Ihres Benutzers zurückgibt. Wenn <code>pwd</code> etwas
+anderes zurückgibt, müssen Sie möglicherweise mit <code>cd</code>
 dorthin navigieren, oder einige Befehle in dieser Lektion werden nicht
 wie geschrieben funktionieren. Siehe <a href="#exploring-other-directories">Andere Verzeichnisse erforschen</a>
 für weitere Details über den <code>cd</code> Befehl.</p>
 </div>
 </div>
 </div>
-<p>Um zu verstehen, was ein “Heimatverzeichnis” ist, schauen wir uns an,
+<p>Um zu verstehen, was ein “Homeverzeichnis” ist, schauen wir uns an,
 wie das Dateisystem als Ganzes organisiert ist. Für dieses Beispiel
 werden wir das Dateisystem auf dem Computer unserer Wissenschaftlerin
 Nelle darstellen. Nach dieser Veranschaulichung werden Sie Befehle
@@ -727,8 +727,8 @@ lernen, um Ihr eigenes Dateisystem zu erforschen, das ähnlich aufgebaut
 sein wird, aber nicht exakt identisch ist.</p>
 <p>Auf Nelle’s Computer sieht das Dateisystem wie folgt aus:</p>
 <figure><img src="fig/filesystem.svg" alt="Das Dateisystem besteht aus einem Stammverzeichnis, das Unterverzeichnisse mit den Namen bin, data, users und tmp enthält" class="figure mx-auto d-block"></figure><p>Das Dateisystem sieht aus wie ein auf dem Kopf stehender Baum. Das
-oberste Verzeichnis ist das <strong>Wurzelverzeichnis</strong>, das
-alles andere enthält. Wir verweisen auf es mit einem Schrägstrich,
+oberste Verzeichnis ist das <strong>Rootverzeichnis</strong>, das alles
+andere enthält. Wir verweisen auf es mit einem Schrägstrich,
 <code>/</code>, allein; dieses Zeichen ist der führende Schrägstrich in
 <code>/Users/nelle</code>.</p>
 <p>Innerhalb dieses Verzeichnisses gibt es mehrere andere Verzeichnisse:
@@ -769,11 +769,11 @@ sind Home-Verzeichnisse Unterverzeichnisse unterhalb von”/Users” wie
 <em>larry</em> in <code>/Users/larry</code> und die von Nelle in
 <code>/Users/nelle</code>. Nelle ist der Benutzer in unseren Beispielen
 hier; daher bekommen wir <code>/Users/nelle</code> als unser
-Heimatverzeichnis. Wenn Sie eine neue Eingabeaufforderung öffnen,
-befinden Sie sich normalerweise zunächst in Ihrem Heimatverzeichnis.</p>
+Homeverzeichnis. Wenn Sie eine neue Eingabeaufforderung öffnen, befinden
+Sie sich normalerweise zunächst in Ihrem Homeverzeichnis.</p>
 <p>Jetzt wollen wir den Befehl lernen, mit dem wir den Inhalt unseres
 eigenen Dateisystems sehen können. Wir können sehen, was sich in unserem
-Heimatverzeichnis befindet, indem wir <code>ls</code> ausführen:</p>
+Homeverzeichnis befindet, indem wir <code>ls</code> ausführen:</p>
 <div class="codewrapper sourceCode" id="cb3">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
@@ -816,7 +816,7 @@ ein Verzeichnis ist.</p>
 <pre class="output" tabindex="0"><code>Applications/ Documents/    Library/      Music/        Public/
 Desktop/      Downloads/    Movies/       Pictures/</code></pre>
 </div>
-<p>Hier können wir sehen, dass das Heimatverzeichnis nur
+<p>Hier können wir sehen, dass das Homeverzeichnis nur
 <strong>Unterverzeichnisse</strong> enthält. Alle Namen in der Ausgabe,
 die kein Klassifizierungssymbol haben, sind <strong>Dateien</strong> im
 aktuellen Arbeitsverzeichnis.</p>
@@ -1148,7 +1148,7 @@ Inhalt betrachten, indem wir einen Verzeichnisnamen an <code>ls</code>
 <pre class="output" tabindex="0"><code>exercise-data/  north-pacific-gyre/</code></pre>
 </div>
 <p>Zweitens können wir unseren Standort in ein anderes Verzeichnis
-ändern, so dass wir uns nicht mehr in unserem Heimatverzeichnis
+ändern, so dass wir uns nicht mehr in unserem Homeverzeichnis
 befinden.</p>
 <p>Der Befehl zum Wechseln des Verzeichnisses lautet <code>cd</code>,
 gefolgt von einem Verzeichnisnamen, um das Arbeitsverzeichnis zu
@@ -1316,7 +1316,7 @@ die Antwort!</p>
 <pre class="output" tabindex="0"><code>/Users/nelle</code></pre>
 </div>
 <p>Es hat sich herausgestellt, dass <code>cd</code> ohne ein Argument
-Sie zu Ihrem Heimatverzeichnis zurückbringt, was großartig ist, wenn Sie
+Sie zu Ihrem Homeverzeichnis zurückbringt, was großartig ist, wenn Sie
 sich in Ihrem eigenen Dateisystem verirrt haben.</p>
 <p>Versuchen wir, zu dem Verzeichnis <code>exercise-data</code> von
 vorhin zurückzukehren. Letztes Mal haben wir drei Befehle benutzt, aber
@@ -1339,7 +1339,7 @@ eines Verzeichnispfades (wie oben) <strong>relative Pfade</strong>
 verwendet. Wenn Sie einen relativen Pfad mit einem Befehl wie
 <code>ls</code> oder <code>cd</code> verwenden, wird versucht, diesen
 Ort von der Stelle aus zu finden, an der wir uns befinden, und nicht von
-der Wurzel des Dateisystems.</p>
+der Root des Dateisystems.</p>
 <p>Es ist jedoch möglich, den <strong>absoluten Pfad</strong> zu einem
 Verzeichnis anzugeben, indem man den gesamten Pfad vom Stammverzeichnis
 aus einbezieht, was durch einen führenden Schrägstrich angezeigt wird.
@@ -1380,8 +1380,8 @@ erwarten.</p>
 <h3 class="callout-title">Zwei weitere Abkürzungen</h3>
 <div class="callout-content">
 <p>Die Shell interpretiert eine Tilde (<code>~</code>) am Anfang eines
-Pfades als “das Heimatverzeichnis des aktuellen Benutzers”. Wenn zum
-Beispiel das Heimatverzeichnis von Nelle <code>/Users/nelle</code> ist,
+Pfades als “das Homeverzeichnis des aktuellen Benutzers”. Wenn zum
+Beispiel das Homeverzeichnis von Nelle <code>/Users/nelle</code> ist,
 dann ist <code>~/data</code> äquivalent zu
 <code>/Users/nelle/data</code>. Das funktioniert nur, wenn es das erste
 Zeichen im Pfad ist; <code>here/there/~/elsewhere</code> ist
@@ -1435,8 +1435,8 @@ Verzeichnis</p>
 <h3 class="callout-title">Absolute vs. Relative Pfade</h3>
 <div class="callout-content">
 <p>Welchen der folgenden Befehle könnte Nelle ausgehend von
-<code>/Users/nelle/data</code> verwenden, um zu ihrem Heimatverzeichnis
-zu navigieren, das <code>/Users/nelle</code> ist?</p>
+<code>/Users/nelle/data</code> verwenden, um zu ihrem Homeverzeichnis zu
+navigieren, das <code>/Users/nelle</code> ist?</p>
 <ol style="list-style-type: decimal">
 <li><code>cd .</code></li>
 <li><code>cd /</code></li>
@@ -1461,15 +1461,15 @@ zu navigieren, das <code>/Users/nelle</code> ist?</p>
 <ol style="list-style-type: decimal">
 <li>Nein: <code>.</code> steht für das aktuelle Verzeichnis.</li>
 <li>Nein: <code>/</code> steht für das Stammverzeichnis.</li>
-<li>Nein: Nelle’s Heimatverzeichnis ist <code>/Users/nelle</code>.</li>
+<li>Nein: Nelle’s Homeverzeichnis ist <code>/Users/nelle</code>.</li>
 <li>Nein: Dieser Befehl geht zwei Ebenen nach oben, d.h. er endet mit
 <code>/Users</code>.</li>
-<li>Ja: <code>~</code> steht für das Heimatverzeichnis des Benutzers, in
+<li>Ja: <code>~</code> steht für das Homeverzeichnis des Benutzers, in
 diesem Fall <code>/Users/nelle</code>.</li>
 <li>Nein: Dieser Befehl würde in ein Verzeichnis <code>home</code> im
 aktuellen Verzeichnis navigieren, wenn es existiert.</li>
 <li>Ja: unnötig kompliziert, aber korrekt.</li>
-<li>Ja: Abkürzung, um zum Heimatverzeichnis des Benutzers
+<li>Ja: Abkürzung, um zum Homeverzeichnis des Benutzers
 zurückzukehren.</li>
 <li>Ja: geht eine Ebene höher.</li>
 </ol>
@@ -1523,14 +1523,14 @@ mit <code>..</code> haben wir nach einer Ebene weiter oben gefragt.</li>
 </div>
 </div>
 </div>
-<div id="ls-reading-comprehension" class="callout challenge">
+<div id="einsichten-in-ls" class="callout challenge">
 <div class="callout-square">
 <i class="callout-icon" data-feather="zap"></i>
 </div>
 <span class="callout-header">Aufgabe</span>
-<div id="ls-reading-comprehension" class="callout-inner">
-<h3 class="callout-title">
-<code>ls</code> Reading Comprehension</h3>
+<div id="einsichten-in-ls" class="callout-inner">
+<h3 class="callout-title">Einsichten in <code>ls</code>
+</h3>
 <div class="callout-content">
 <p>Wenn <code>pwd</code> <code>/Users/backup</code> anzeigt und
 <code>-r</code> <code>ls</code> anweist, die Dinge in umgekehrter
@@ -1745,7 +1745,7 @@ getrennt, unter Windows jedoch mit <code>\</code>.</li>
 <li>
 <code>/</code> allein ist das Stammverzeichnis des gesamten
 Dateisystems.</li>
-<li>Ein absoluter Pfad gibt einen Ort an, der von der Wurzel des
+<li>Ein absoluter Pfad gibt einen Ort an, der von der Root des
 Dateisystems ausgeht.</li>
 <li>Ein relativer Pfad gibt einen Ort an, der vom aktuellen Ort
 ausgeht.</li>
@@ -4281,7 +4281,7 @@ Teilmenge von Daten.</p>
   Lösung
   </h4>
 </button>
-<div id="collapseSolution1" class="accordion-collapse collapse" aria-labelledby="headingSolution1" data-bs-parent="#accordionSolution1">
+<div id="collapseSolution1" class="accordion-collapse collapse" data-bs-parent="#accordionSolution1" aria-labelledby="headingSolution1">
 <div class="accordion-body">
 <div class="codewrapper sourceCode" id="cb7">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -4355,7 +4355,7 @@ aus?</p>
   Lösung
   </h4>
 </button>
-<div id="collapseSolution2" class="accordion-collapse collapse" aria-labelledby="headingSolution2" data-bs-parent="#accordionSolution2">
+<div id="collapseSolution2" class="accordion-collapse collapse" data-bs-parent="#accordionSolution2" aria-labelledby="headingSolution2">
 <div class="accordion-body">
 <p>Der erste Codeblock gibt bei jeder Iteration der Schleife die gleiche
 Ausgabe. Bash erweitert den Platzhalter <code>*.pdb</code> innerhalb des
@@ -4435,7 +4435,7 @@ würde?</p>
   Lösung
   </h4>
 </button>
-<div id="collapseSolution3" class="accordion-collapse collapse" aria-labelledby="headingSolution3" data-bs-parent="#accordionSolution3">
+<div id="collapseSolution3" class="accordion-collapse collapse" data-bs-parent="#accordionSolution3" aria-labelledby="headingSolution3">
 <div class="accordion-body">
 <p>4 ist die richtige Antwort.<code>*</code> passt auf null oder mehr
 Zeichen, so dass jeder Dateiname, der mit dem Buchstaben c beginnt,
@@ -4482,7 +4482,7 @@ werden aufgelistet.</li>
   Lösung
   </h4>
 </button>
-<div id="collapseSolution4" class="accordion-collapse collapse" aria-labelledby="headingSolution4" data-bs-parent="#accordionSolution4">
+<div id="collapseSolution4" class="accordion-collapse collapse" data-bs-parent="#accordionSolution4" aria-labelledby="headingSolution4">
 <div class="accordion-body">
 <p>4 ist die richtige Antwort.<code>*</code> passt auf null oder mehr
 Zeichen, also wird ein Dateiname mit null oder mehr Zeichen vor dem
@@ -4538,7 +4538,7 @@ in einer Datei namens <code>alkanes.pdb</code> gespeichert.</li>
   Lösung
   </h4>
 </button>
-<div id="collapseSolution5" class="accordion-collapse collapse" aria-labelledby="headingSolution5" data-bs-parent="#accordionSolution5">
+<div id="collapseSolution5" class="accordion-collapse collapse" data-bs-parent="#accordionSolution5" aria-labelledby="headingSolution5">
 <div class="accordion-body">
 <ol style="list-style-type: decimal">
 <li>Der Text aus jeder Datei wird der Reihe nach in die Datei
@@ -4598,7 +4598,7 @@ einer Datei namens <code>all.pdb</code> gespeichert.</li>
   Lösung
   </h4>
 </button>
-<div id="collapseSolution6" class="accordion-collapse collapse" aria-labelledby="headingSolution6" data-bs-parent="#accordionSolution6">
+<div id="collapseSolution6" class="accordion-collapse collapse" data-bs-parent="#accordionSolution6" aria-labelledby="headingSolution6">
 <div class="accordion-body">
 <p>3 ist die richtige Antwort. <code>&gt;&gt;</code> hängt an eine Datei
 an, anstatt sie mit der umgeleiteten Ausgabe eines Befehls zu
@@ -5034,7 +5034,7 @@ welche würden wir ausführen wollen?</p>
   Lösung
   </h4>
 </button>
-<div id="collapseSolution7" class="accordion-collapse collapse" aria-labelledby="headingSolution7" data-bs-parent="#accordionSolution7">
+<div id="collapseSolution7" class="accordion-collapse collapse" data-bs-parent="#accordionSolution7" aria-labelledby="headingSolution7">
 <div class="accordion-body">
 <p>Die zweite Version ist die, die wir ausführen wollen. Sie gibt alles,
 was in den Anführungszeichen steht, auf dem Bildschirm aus, wobei der
@@ -5086,7 +5086,7 @@ organisieren. Was wäre das Ergebnis des folgenden Codes:</p>
   Lösung
   </h4>
 </button>
-<div id="collapseSolution8" class="accordion-collapse collapse" aria-labelledby="headingSolution8" data-bs-parent="#accordionSolution8">
+<div id="collapseSolution8" class="accordion-collapse collapse" data-bs-parent="#accordionSolution8" aria-labelledby="headingSolution8">
 <div class="accordion-body">
 <p>Wir haben eine geschachtelte Schleife, d.h. innerhalb einer anderen
 Schleife, so dass für jede Art in der äußeren Schleife die innere
