@@ -52,13 +52,13 @@ Problem zu lösen, aber sehen wir uns zunächst die allgemeine Form einer Schlei
 indem wir den folgenden Pseudocode verwenden:
 
 ```bash
-# The word "for" indicates the start of a "For-loop" command
+# Das Wort „for“ kennzeichnet den Beginn eines „For-Schleifen“-Befehls.
 for thing in list_of_things 
-#The word "do" indicates the start of job execution list
+# Das Wort „do“ kennzeichnet den Beginn der Jobausführungsliste.
 do 
-    # Indentation within the loop is not required, but aids legibility
-    operation_using/command $thing 
-# The word "done" indicates the end of a loop
+    # Einrückungen innerhalb der Schleife sind nicht erforderlich, verbessern jedoch die Lesbarkeit.
+    operation oder command welches $thing verwendet
+# Das Wort „done“ kennzeichnet das Ende einer Schleife.
 done  
 ```
 
@@ -698,7 +698,7 @@ einen Kaffee zu holen und ihre Lektüre fortzusetzen.
 
 ::::::::::::::::::::::::::::::::::::::::: callout
 
-## Diejenigen, die die Geschichte kennen, können wählen, sie zu wiederholen
+## Diejenigen, die die "Geschichte" kennen, können wählen, sie zu wiederholen
 
 Eine andere Möglichkeit, frühere Arbeiten zu wiederholen, ist die Verwendung des Befehls
 `history`, um eine Liste der letzten paar hundert Befehle zu erhalten, die ausgeführt
