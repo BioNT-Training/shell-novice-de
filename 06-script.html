@@ -325,7 +325,7 @@
       </div>
       <hr></nav><main id="main-content" class="main-content"><div class="container lesson-content">
         <h1>Shell-Skripte</h1>
-        <p>Zuletzt aktualisiert am 2025-03-23 |
+        <p>Zuletzt aktualisiert am 2025-10-23 |
 
         <a href="https://github.com/swcarpentry/shell-novice/edit/main/episodes/06-script.md" class="external-link">Diese Seite bearbeiten <i aria-hidden="true" data-feather="edit"></i></a></p>
 
@@ -562,8 +562,8 @@ was es tut. Wir können unser Skript verbessern, indem wir einige
 </h3>
 <pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb17-1"><a href="#cb17-1" tabindex="-1"></a><span class="ex">$</span> nano middle.sh</span></code></pre>
 </div>
-<pre class="source"><code># Select lines from the middle of a file.
-# Usage: bash middle.sh filename end_line num_lines
+<pre class="source"><code># Zeilen aus der Mitte einer Datei auswählen.
+# Verwendung: bash middle.sh Dateiname Endzeile Anzahl_Zeilen
 head -n "$2" "$1" | tail -n "$3"</code></pre>
 <p>Ein Kommentar beginnt mit einem <code>#</code>-Zeichen und läuft bis
 zum Ende der Zeile. Der Computer ignoriert Kommentare, aber sie sind von
@@ -664,19 +664,19 @@ vorkommen.</p>
   Lösung
   </h4>
 </button>
-<div id="collapseSolution1" class="accordion-collapse collapse" aria-labelledby="headingSolution1" data-bs-parent="#accordionSolution1">
+<div id="collapseSolution1" class="accordion-collapse collapse" data-bs-parent="#accordionSolution1" aria-labelledby="headingSolution1">
 <div class="accordion-body">
 <div class="codewrapper sourceCode" id="cb25">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb25-1"><a href="#cb25-1" tabindex="-1"></a><span class="co"># Script to find unique species in csv files where species is the second data field</span></span>
-<span id="cb25-2"><a href="#cb25-2" tabindex="-1"></a><span class="co"># This script accepts any number of file names as command line arguments</span></span>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb25-1"><a href="#cb25-1" tabindex="-1"></a><span class="co"># Skript zum Auffinden einzigartiger Arten in CSV-Dateien, wobei „species“ das zweite Datenfeld ist.</span></span>
+<span id="cb25-2"><a href="#cb25-2" tabindex="-1"></a><span class="co"># Dieses Skript akzeptiert eine beliebige Anzahl von Dateinamen als Befehlszeilenargumente.</span></span>
 <span id="cb25-3"><a href="#cb25-3" tabindex="-1"></a></span>
-<span id="cb25-4"><a href="#cb25-4" tabindex="-1"></a><span class="co"># Loop over all files</span></span>
+<span id="cb25-4"><a href="#cb25-4" tabindex="-1"></a><span class="co"># Über alle Dateien iterieren  </span></span>
 <span id="cb25-5"><a href="#cb25-5" tabindex="-1"></a><span class="cf">for</span> file <span class="kw">in</span> <span class="va">$@</span></span>
 <span id="cb25-6"><a href="#cb25-6" tabindex="-1"></a><span class="cf">do</span></span>
-<span id="cb25-7"><a href="#cb25-7" tabindex="-1"></a>    <span class="bu">echo</span> <span class="st">"Unique species in </span><span class="va">$file</span><span class="st">:"</span></span>
-<span id="cb25-8"><a href="#cb25-8" tabindex="-1"></a>    <span class="co"># Extract species names</span></span>
+<span id="cb25-7"><a href="#cb25-7" tabindex="-1"></a>    <span class="bu">echo</span> <span class="st">"Einzigartige Arten in </span><span class="va">$file</span><span class="st">:"</span></span>
+<span id="cb25-8"><a href="#cb25-8" tabindex="-1"></a>    <span class="co"># Artennamen extrahieren</span></span>
 <span id="cb25-9"><a href="#cb25-9" tabindex="-1"></a>    <span class="fu">cut</span> <span class="at">-d</span> , <span class="at">-f</span> 2 <span class="va">$file</span> <span class="kw">|</span> <span class="fu">sort</span> <span class="kw">|</span> <span class="fu">uniq</span></span>
 <span id="cb25-10"><a href="#cb25-10" tabindex="-1"></a><span class="cf">done</span></span></code></pre>
 </div>
@@ -735,7 +735,7 @@ werden. Warum, glauben Sie, tut sie das?</p>
   Lösung
   </h4>
 </button>
-<div id="collapseSolution2" class="accordion-collapse collapse" aria-labelledby="headingSolution2" data-bs-parent="#accordionSolution2">
+<div id="collapseSolution2" class="accordion-collapse collapse" data-bs-parent="#accordionSolution2" aria-labelledby="headingSolution2">
 <div class="accordion-body">
 <p>Wenn ein Befehl zu einem Absturz oder einem Hänger führt, könnte es
 nützlich sein, zu wissen, was dieser Befehl war, um das Problem zu
@@ -774,7 +774,7 @@ einem Skript festzuhalten.</p>
 <div class="codewrapper sourceCode" id="cb31">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb31-1"><a href="#cb31-1" tabindex="-1"></a><span class="co"># Calculate stats for data files.</span></span>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb31-1"><a href="#cb31-1" tabindex="-1"></a><span class="co"># Berechnen Sie Statistiken für Datendateien.</span></span>
 <span id="cb31-2"><a href="#cb31-2" tabindex="-1"></a><span class="cf">for</span> datafile <span class="kw">in</span> <span class="st">"</span><span class="va">$@</span><span class="st">"</span></span>
 <span id="cb31-3"><a href="#cb31-3" tabindex="-1"></a><span class="cf">do</span></span>
 <span id="cb31-4"><a href="#cb31-4" tabindex="-1"></a>    <span class="bu">echo</span> <span class="va">$datafile</span></span>
@@ -803,7 +803,7 @@ verarbeitet werden sollen. Sie hätte es auch so schreiben können:</p>
 <div class="codewrapper sourceCode" id="cb34">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb34-1"><a href="#cb34-1" tabindex="-1"></a><span class="co"># Calculate stats for Site A and Site B data files.</span></span>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb34-1"><a href="#cb34-1" tabindex="-1"></a><span class="co"># Berechnen Sie die Statistiken für die Datendateien von Standort A und Standort B.</span></span>
 <span id="cb34-2"><a href="#cb34-2" tabindex="-1"></a><span class="cf">for</span> datafile <span class="kw">in</span> NENE<span class="pp">*</span>A.txt NENE<span class="pp">*</span>B.txt</span>
 <span id="cb34-3"><a href="#cb34-3" tabindex="-1"></a><span class="cf">do</span></span>
 <span id="cb34-4"><a href="#cb34-4" tabindex="-1"></a>    <span class="bu">echo</span> <span class="va">$datafile</span></span>
@@ -865,7 +865,7 @@ die auf <code>.pdb</code> im Verzeichnis <code>alkanes</code> endet</li>
   Lösung
   </h4>
 </button>
-<div id="collapseSolution3" class="accordion-collapse collapse" aria-labelledby="headingSolution3" data-bs-parent="#accordionSolution3">
+<div id="collapseSolution3" class="accordion-collapse collapse" data-bs-parent="#accordionSolution3" aria-labelledby="headingSolution3">
 <div class="accordion-body">
 <p>Die richtige Antwort ist 2.</p>
 <p>Die speziellen Variablen <code>$1</code>, <code>$2</code> und
@@ -923,16 +923,16 @@ z.B.</p>
   Lösung
   </h4>
 </button>
-<div id="collapseSolution4" class="accordion-collapse collapse" aria-labelledby="headingSolution4" data-bs-parent="#accordionSolution4">
+<div id="collapseSolution4" class="accordion-collapse collapse" data-bs-parent="#accordionSolution4" aria-labelledby="headingSolution4">
 <div class="accordion-body">
 <div class="codewrapper sourceCode" id="cb40">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb40-1"><a href="#cb40-1" tabindex="-1"></a><span class="co"># Shell script which takes two arguments:</span></span>
-<span id="cb40-2"><a href="#cb40-2" tabindex="-1"></a><span class="co">#    1. a directory name</span></span>
-<span id="cb40-3"><a href="#cb40-3" tabindex="-1"></a><span class="co">#    2. a file extension</span></span>
-<span id="cb40-4"><a href="#cb40-4" tabindex="-1"></a><span class="co"># and prints the name of the file in that directory</span></span>
-<span id="cb40-5"><a href="#cb40-5" tabindex="-1"></a><span class="co"># with the most lines which matches the file extension.</span></span>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb40-1"><a href="#cb40-1" tabindex="-1"></a><span class="co"># Shell-Skript, das zwei Argumente akzeptiert:</span></span>
+<span id="cb40-2"><a href="#cb40-2" tabindex="-1"></a><span class="co">#    1. einen Verzeichnisnamen</span></span>
+<span id="cb40-3"><a href="#cb40-3" tabindex="-1"></a><span class="co">#    2. eine Dateierweiterung</span></span>
+<span id="cb40-4"><a href="#cb40-4" tabindex="-1"></a><span class="co"># und den Namen der Datei in diesem Verzeichnis ausgibt,</span></span>
+<span id="cb40-5"><a href="#cb40-5" tabindex="-1"></a><span class="co"># die die meisten Zeilen enthält, die mit der Dateierweiterung übereinstimmen.</span></span>
 <span id="cb40-6"><a href="#cb40-6" tabindex="-1"></a></span>
 <span id="cb40-7"><a href="#cb40-7" tabindex="-1"></a><span class="fu">wc</span> <span class="at">-l</span> <span class="va">$1</span>/<span class="pp">*</span>.<span class="va">$2</span> <span class="kw">|</span> <span class="fu">sort</span> <span class="at">-n</span> <span class="kw">|</span> <span class="fu">tail</span> <span class="at">-n</span> 2 <span class="kw">|</span> <span class="fu">head</span> <span class="at">-n</span> 1</span></code></pre>
 </div>
@@ -997,7 +997,7 @@ Skripte tun würde, wenn es als <code>bash script1.sh *.pdb</code>,
   Lösungen
   </h4>
 </button>
-<div id="collapseSolution5" class="accordion-collapse collapse" aria-labelledby="headingSolution5" data-bs-parent="#accordionSolution5">
+<div id="collapseSolution5" class="accordion-collapse collapse" data-bs-parent="#accordionSolution5" aria-labelledby="headingSolution5">
 <div class="accordion-body">
 <p>In jedem Fall expandiert die Shell den Platzhalter in
 <code>*.pdb</code>, bevor sie die resultierende Liste von Dateinamen als
@@ -1036,7 +1036,7 @@ von Nelle gespeichert:</p>
 <div class="codewrapper sourceCode" id="cb45">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb45-1"><a href="#cb45-1" tabindex="-1"></a><span class="co"># Calculate stats for data files.</span></span>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb45-1"><a href="#cb45-1" tabindex="-1"></a><span class="co"># Berechnen Sie Statistiken für Datendateien.</span></span>
 <span id="cb45-2"><a href="#cb45-2" tabindex="-1"></a><span class="cf">for</span> datafile <span class="kw">in</span> <span class="st">"</span><span class="va">$@</span><span class="st">"</span></span>
 <span id="cb45-3"><a href="#cb45-3" tabindex="-1"></a><span class="cf">do</span></span>
 <span id="cb45-4"><a href="#cb45-4" tabindex="-1"></a>    <span class="bu">echo</span> <span class="va">$datfile</span></span>
@@ -1069,7 +1069,7 @@ verantwortlich?</p>
   Lösung
   </h4>
 </button>
-<div id="collapseSolution6" class="accordion-collapse collapse" aria-labelledby="headingSolution6" data-bs-parent="#accordionSolution6">
+<div id="collapseSolution6" class="accordion-collapse collapse" data-bs-parent="#accordionSolution6" aria-labelledby="headingSolution6">
 <div class="accordion-body">
 <p>Die Option <code>-x</code> bewirkt, dass <code>bash</code> im
 Debug-Modus läuft. Dadurch wird jeder Befehl während seiner Ausführung
@@ -1166,7 +1166,7 @@ eingebauten Unix-Befehlen.</li>
   "url": "https://swcarpentry.github.io/shell-novice/06-script.html",
   "identifier": "https://swcarpentry.github.io/shell-novice/06-script.html",
   "dateCreated": "2014-10-22",
-  "dateModified": "2025-03-23",
+  "dateModified": "2025-10-23",
   "datePublished": "2025-10-23"
 }
 
