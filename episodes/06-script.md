@@ -211,8 +211,8 @@ $ nano middle.sh
 ```
 
 ```source
-# Select lines from the middle of a file.
-# Usage: bash middle.sh filename end_line num_lines
+# Zeilen aus der Mitte einer Datei auswählen.
+# Verwendung: bash middle.sh Dateiname Endzeile Anzahl_Zeilen
 head -n "$2" "$1" | tail -n "$3"
 ```
 
@@ -306,14 +306,14 @@ separat vorkommen.
 ## Lösung
 
 ```bash
-# Script to find unique species in csv files where species is the second data field
-# This script accepts any number of file names as command line arguments
+# Skript zum Auffinden einzigartiger Arten in CSV-Dateien, wobei „species“ das zweite Datenfeld ist.
+# Dieses Skript akzeptiert eine beliebige Anzahl von Dateinamen als Befehlszeilenargumente.
 
-# Loop over all files
+# Über alle Dateien iterieren  
 for file in $@
 do
-    echo "Unique species in $file:"
-    # Extract species names
+    echo "Einzigartige Arten in $file:"
+    # Artennamen extrahieren
     cut -d , -f 2 $file | sort | uniq
 done
 ```
@@ -404,7 +404,7 @@ $ nano do-stats.sh
 ...die folgendes enthält:
 
 ```bash
-# Calculate stats for data files.
+# Berechnen Sie Statistiken für Datendateien.
 for datafile in "$@"
 do
     echo $datafile
@@ -433,7 +433,7 @@ ausführt, entscheiden lässt, welche Dateien verarbeitet werden sollen. Sie hä
 so schreiben können:
 
 ```bash
-# Calculate stats for Site A and Site B data files.
+# Berechnen Sie die Statistiken für die Datendateien von Standort A und Standort B.
 for datafile in NENE*A.txt NENE*B.txt
 do
     echo $datafile
@@ -528,11 +528,11 @@ $ bash longest.sh shell-lesson-data/exercise-data/writing txt
 ## Lösung
 
 ```bash
-# Shell script which takes two arguments:
-#    1. a directory name
-#    2. a file extension
-# and prints the name of the file in that directory
-# with the most lines which matches the file extension.
+# Shell-Skript, das zwei Argumente akzeptiert:
+#    1. einen Verzeichnisnamen
+#    2. eine Dateierweiterung
+# und den Namen der Datei in diesem Verzeichnis ausgibt,
+# die die meisten Zeilen enthält, die mit der Dateierweiterung übereinstimmen.
 
 wc -l $1/*.$2 | sort -n | tail -n 2 | head -n 1
 ```
@@ -614,7 +614,7 @@ Angenommen, Sie haben das folgende Skript in einer Datei namens `do-errors.sh` i
 Verzeichnis `north-pacific-gyre` von Nelle gespeichert:
 
 ```bash
-# Calculate stats for data files.
+# Berechnen Sie Statistiken für Datendateien.
 for datafile in "$@"
 do
     echo $datfile
