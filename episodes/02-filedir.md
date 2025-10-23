@@ -66,16 +66,16 @@ Hier ist die Antwort des Computers `/Users/nelle`, was Nelles **Home-Verzeichnis
 
 ::::::::::::::::::::::::::::::::::::::::: callout
 
-## Variation des Heimatverzeichnisses
+## Variation des Homeverzeichnisses
 
-Der Pfad zum Heimatverzeichnis sieht auf verschiedenen Betriebssystemen unterschiedlich
+Der Pfad zum Homeverzeichnis sieht auf verschiedenen Betriebssystemen unterschiedlich
 aus. Unter Linux kann er wie `/home/nelle` aussehen, und unter Windows wird er ähnlich
 wie `C:\Documents and Settings\nelle` oder `C:\Users\nelle` sein. (Beachten Sie, dass es
 bei verschiedenen Windows-Versionen etwas anders aussehen kann.) In den zukünftigen
 Beispielen haben wir die Mac-Ausgabe als Standard verwendet - die Linux- und
 Windows-Ausgabe kann leicht abweichen, sollte aber im Allgemeinen ähnlich sein.
 
-Wir nehmen auch an, dass Ihr `pwd`-Befehl das Heimatverzeichnis Ihres Benutzers
+Wir nehmen auch an, dass Ihr `pwd`-Befehl das Homeverzeichnis Ihres Benutzers
 zurückgibt. Wenn `pwd` etwas anderes zurückgibt, müssen Sie möglicherweise mit `cd`
 dorthin navigieren, oder einige Befehle in dieser Lektion werden nicht wie geschrieben
 funktionieren. Siehe [Andere Verzeichnisse erforschen](#exploring-other-directories) für
@@ -84,7 +84,7 @@ weitere Details über den `cd` Befehl.
 
 ::::::::::::::::::::::::::::::::::::::::::::::::::
 
-Um zu verstehen, was ein "Heimatverzeichnis" ist, schauen wir uns an, wie das
+Um zu verstehen, was ein "Homeverzeichnis" ist, schauen wir uns an, wie das
 Dateisystem als Ganzes organisiert ist. Für dieses Beispiel werden wir das Dateisystem
 auf dem Computer unserer Wissenschaftlerin Nelle darstellen. Nach dieser
 Veranschaulichung werden Sie Befehle lernen, um Ihr eigenes Dateisystem zu erforschen,
@@ -96,7 +96,7 @@ Auf Nelle's Computer sieht das Dateisystem wie folgt aus:
 Unterverzeichnisse mit den Namen bin, data, users und tmp enthält"}
 
 Das Dateisystem sieht aus wie ein auf dem Kopf stehender Baum. Das oberste Verzeichnis
-ist das **Wurzelverzeichnis**, das alles andere enthält. Wir verweisen auf es mit einem
+ist das **Rootverzeichnis**, das alles andere enthält. Wir verweisen auf es mit einem
 Schrägstrich, `/`, allein; dieses Zeichen ist der führende Schrägstrich in
 `/Users/nelle`.
 
@@ -131,11 +131,11 @@ oder"/Users/nelle""}
 Die Dateien des Benutzers *imhotep* werden in `/Users/imhotep` gespeichert, die des
 Benutzers *larry* in `/Users/larry` und die von Nelle in `/Users/nelle`. Nelle ist der
 Benutzer in unseren Beispielen hier; daher bekommen wir `/Users/nelle` als unser
-Heimatverzeichnis. Wenn Sie eine neue Eingabeaufforderung öffnen, befinden Sie sich
-normalerweise zunächst in Ihrem Heimatverzeichnis.
+Homeverzeichnis. Wenn Sie eine neue Eingabeaufforderung öffnen, befinden Sie sich
+normalerweise zunächst in Ihrem Homeverzeichnis.
 
 Jetzt wollen wir den Befehl lernen, mit dem wir den Inhalt unseres eigenen Dateisystems
-sehen können. Wir können sehen, was sich in unserem Heimatverzeichnis befindet, indem
+sehen können. Wir können sehen, was sich in unserem Homeverzeichnis befindet, indem
 wir `ls` ausführen:
 
 ```bash
@@ -171,7 +171,7 @@ Applications/ Documents/    Library/      Music/        Public/
 Desktop/      Downloads/    Movies/       Pictures/
 ```
 
-Hier können wir sehen, dass das Heimatverzeichnis nur **Unterverzeichnisse** enthält.
+Hier können wir sehen, dass das Homeverzeichnis nur **Unterverzeichnisse** enthält.
 Alle Namen in der Ausgabe, die kein Klassifizierungssymbol haben, sind **Dateien** im
 aktuellen Arbeitsverzeichnis.
 
@@ -430,7 +430,7 @@ exercise-data/  north-pacific-gyre/
 ```
 
 Zweitens können wir unseren Standort in ein anderes Verzeichnis ändern, so dass wir uns
-nicht mehr in unserem Heimatverzeichnis befinden.
+nicht mehr in unserem Homeverzeichnis befinden.
 
 Der Befehl zum Wechseln des Verzeichnisses lautet `cd`, gefolgt von einem
 Verzeichnisnamen, um das Arbeitsverzeichnis zu wechseln.`cd` steht für "Verzeichnis
@@ -573,7 +573,7 @@ $ pwd
 /Users/nelle
 ```
 
-Es hat sich herausgestellt, dass `cd` ohne ein Argument Sie zu Ihrem Heimatverzeichnis
+Es hat sich herausgestellt, dass `cd` ohne ein Argument Sie zu Ihrem Homeverzeichnis
 zurückbringt, was großartig ist, wenn Sie sich in Ihrem eigenen Dateisystem verirrt
 haben.
 
@@ -595,7 +595,7 @@ wechseln, unabhängig davon, wo Sie sich gerade befinden.
 Bislang haben wir bei der Angabe von Verzeichnisnamen oder sogar eines Verzeichnispfades
 (wie oben) **relative Pfade** verwendet. Wenn Sie einen relativen Pfad mit einem Befehl
 wie `ls` oder `cd` verwenden, wird versucht, diesen Ort von der Stelle aus zu finden, an
-der wir uns befinden, und nicht von der Wurzel des Dateisystems.
+der wir uns befinden, und nicht von der Root des Dateisystems.
 
 Es ist jedoch möglich, den **absoluten Pfad** zu einem Verzeichnis anzugeben, indem man
 den gesamten Pfad vom Stammverzeichnis aus einbezieht, was durch einen führenden
@@ -628,7 +628,7 @@ befinden, das wir erwarten.
 ## Zwei weitere Abkürzungen
 
 Die Shell interpretiert eine Tilde (`~`) am Anfang eines Pfades als "das
-Heimatverzeichnis des aktuellen Benutzers". Wenn zum Beispiel das Heimatverzeichnis von
+Homeverzeichnis des aktuellen Benutzers". Wenn zum Beispiel das Homeverzeichnis von
 Nelle `/Users/nelle` ist, dann ist `~/data` äquivalent zu `/Users/nelle/data`. Das
 funktioniert nur, wenn es das erste Zeichen im Pfad ist; `here/there/~/elsewhere` ist
 *nicht* `here/there/Users/nelle/elsewhere`.
@@ -675,7 +675,7 @@ Sie `cd -` erneut aus und Sie befinden sich wieder in
 ## Absolute vs. Relative Pfade
 
 Welchen der folgenden Befehle könnte Nelle ausgehend von `/Users/nelle/data` verwenden,
-um zu ihrem Heimatverzeichnis zu navigieren, das `/Users/nelle` ist?
+um zu ihrem Homeverzeichnis zu navigieren, das `/Users/nelle` ist?
 
 1. `cd .`
 2. `cd /`
@@ -693,13 +693,13 @@ um zu ihrem Heimatverzeichnis zu navigieren, das `/Users/nelle` ist?
 
 1. Nein: `.` steht für das aktuelle Verzeichnis.
 2. Nein: `/` steht für das Stammverzeichnis.
-3. Nein: Nelle's Heimatverzeichnis ist `/Users/nelle`.
+3. Nein: Nelle's Homeverzeichnis ist `/Users/nelle`.
 4. Nein: Dieser Befehl geht zwei Ebenen nach oben, d.h. er endet mit `/Users`.
-5. Ja: `~` steht für das Heimatverzeichnis des Benutzers, in diesem Fall `/Users/nelle`.
+5. Ja: `~` steht für das Homeverzeichnis des Benutzers, in diesem Fall `/Users/nelle`.
 6. Nein: Dieser Befehl würde in ein Verzeichnis `home` im aktuellen Verzeichnis
    navigieren, wenn es existiert.
 7. Ja: unnötig kompliziert, aber korrekt.
-8. Ja: Abkürzung, um zum Heimatverzeichnis des Benutzers zurückzukehren.
+8. Ja: Abkürzung, um zum Homeverzeichnis des Benutzers zurückzukehren.
 9. Ja: geht eine Ebene höher.
 
 :::::::::::::::::::::::::
@@ -740,7 +740,7 @@ enthält "backup"; und "/Users/thing/backup" enthält "2012-12-01", "2013-01-08"
 
 ::::::::::::::::::::::::::::::::::::::: challenge
 
-## `ls` Reading Comprehension
+## Einsichten in `ls` 
 
 Wenn `pwd` `/Users/backup` anzeigt und `-r` `ls` anweist, die Dinge in umgekehrter
 Reihenfolge anzuzeigen, welche(r) Befehl(e) führt/führen dann zu folgender Ausgabe?
@@ -920,7 +920,7 @@ vielen anderen Tools sehen.
 - Verzeichnisnamen in einem Pfad werden unter Unix mit `/` getrennt, unter Windows
   jedoch mit `\`.
 - `/` allein ist das Stammverzeichnis des gesamten Dateisystems.
-- Ein absoluter Pfad gibt einen Ort an, der von der Wurzel des Dateisystems ausgeht.
+- Ein absoluter Pfad gibt einen Ort an, der von der Root des Dateisystems ausgeht.
 - Ein relativer Pfad gibt einen Ort an, der vom aktuellen Ort ausgeht.
 - `.` allein bedeutet 'das aktuelle Verzeichnis'; `..` bedeutet 'das Verzeichnis über
   dem aktuellen'.
